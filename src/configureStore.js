@@ -1,8 +1,14 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleWare from 'redux-saga'
+import {Map, Record} from 'immutable'
+
 import createReducer from './reducers/index'
+import {saga} from './ducks/currency'
 
 const configureStore = (initialState) => {
-  const store = createStore(createReducer(), initialState)
+  const sagaMiddleWare = createSagaMiddleWare()
+  const enhancer = applyMiddleware(sagaMiddleWare)
+  const store = createStore(createReducer(), initialState, enhancer)
 
   store.injectReducers = (asyncReducers) => 
     store.replaceReducer(
@@ -16,7 +22,9 @@ const configureStore = (initialState) => {
     )
   }
 
-  return store;
+  sagaMiddleWare.run(saga)
+
+  return store
 }
 
 export default configureStore

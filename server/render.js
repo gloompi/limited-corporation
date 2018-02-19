@@ -12,12 +12,14 @@ import Routes from '../src/pages/Routes'
 import configureStore from '../src/configureStore'
 
 const store = configureStore()
+const context = {}
 
-export default ({ clientStats }) => (req, res, context) => {
-  const initialState = serialize(store.getState())
+export default ({ clientStats }) => (req, res) => {
+  console.log('store---', store.getState())
+  const initialState = store.getState()
   const app = renderToString(
     <Provider store={ store }>
-      <StaticRouter location={req.path}>
+      <StaticRouter location={req.path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>

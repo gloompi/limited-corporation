@@ -1,53 +1,16 @@
 const path = require('path')
+const merge = require('webpack-merge')
 const webpack = require('webpack')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const baseConfig = require('./client.base')
 
-module.exports = {
-  name: 'client',
-  target: 'web',
-  devtool: 'source-map',
+const config = {
   entry: [path.resolve(__dirname, '../src/index.js')],
-  output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, '../buildClient'),
-    publicPath: '/static/'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.styl$/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'stylus-loader'
-            }
-          ]
-        })
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['.js', '.css', '.styl']
-  },
   plugins: [
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
       filename: '[name].[chunkhash].js',
-      minChunks: Infinity
     }),
 
     new webpack.DefinePlugin({
@@ -72,3 +35,5 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin() // not needed for strategy to work (just good practice)
   ]
 }
+
+module.exports = merge(baseConfig, config)

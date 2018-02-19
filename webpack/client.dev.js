@@ -1,51 +1,15 @@
 const path = require('path')
+const merge = require('webpack-merge')
 const webpack = require('webpack')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const baseConfig = require('./client.base')
 
-module.exports = {
-  name: 'client',
-  target: 'web',
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.styl$/,
-        use: ExtractCssChunks.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                localIdentName: '[name]__[local]--[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'stylus-loader'
-            }
-          ]
-        })
-      }
-    ]
-  },
-  devtool: 'source-map',
+const config = {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
     'react-hot-loader/patch',
     path.resolve(__dirname, '../src/index.js')
   ],
-  output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
-    path: path.resolve(__dirname, '../buildClient'),
-    publicPath: '/'
-  },
-  resolve: {
-    extensions: ['.js', '.css', '.styl']
-  },
   plugins: [
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -61,3 +25,5 @@ module.exports = {
     })
   ]
 }
+
+module.exports = merge(baseConfig, config)

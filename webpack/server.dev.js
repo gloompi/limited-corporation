@@ -1,42 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
+const merge = require('webpack-merge')
+const baseConfig = require('./server.base')
 
-module.exports = {
-  name: 'server',
-  target: 'node',
-  devtool: 'source-map',
-  entry: path.resolve(__dirname, '../server/render.js'),
-  output: {
-    libraryTarget: 'commonjs2'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.styl$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'css-loader/locals',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
-          },
-          {
-            loader: 'stylus-loader'
-          }
-        ]
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['.js', '.css', '.styl']
-  },
+const config = {
   plugins: [
     // REQUIRED: To make dynamic css work correctly
     new webpack.optimize.LimitChunkCountPlugin({
@@ -49,3 +16,5 @@ module.exports = {
     })
   ]
 }
+
+module.exports = merge(baseConfig, config)

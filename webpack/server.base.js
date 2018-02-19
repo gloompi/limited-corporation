@@ -1,0 +1,66 @@
+const path = require('path')
+const webpack = require('webpack')
+
+const res = p => path.resolve(__dirname, p)
+
+const entry = res('../server/render.js')
+const output = res('../build/server/')
+
+module.exports = {
+  // Tell webpack to run babel on every file it runs through
+  entry: [entry],
+  output: {
+    path: output,
+    filename: '[name].js',
+    libraryTarget: 'commonjs2'
+  },
+  name: 'server',
+  target: 'node',
+  devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.styl$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'stylus-loader'
+          }
+        ]
+      },
+      {
+				test: /\.(gif|png|jpg|jpeg)$/,
+				exclude: /node_modules/,
+				include: path.resolve(__dirname, './src/assets/'),
+				use: 'url-loader?limit=10000&name=assets/img/[name]-[hash].[ext]'
+			},
+			{
+				test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "url-loader?limit=10000&name=assets/fonts/[name]-[hash].[ext]"
+      },
+      {
+				test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+        use: 'file-loader?limit=10000&name=assets/fonts/[name]-[hash].[ext]'
+      },
+			{
+				test: /\.(webm|mp4)$/,
+				loader: 'file-loader?limit=10000&name=assets/video/[name]-[hash].[ext]'
+			},
+    ]
+  },
+  resolve: {
+    extensions: ['.js', '.css', '.styl', 'gif']
+  },
+}
