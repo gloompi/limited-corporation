@@ -3,7 +3,7 @@ import createSagaMiddleWare from 'redux-saga'
 import {Map, Record} from 'immutable'
 
 import createReducer from './reducers/index'
-import {saga} from './ducks/currency'
+import rootSaga from './reducers/saga'
 
 const configureStore = (initialState) => {
   const sagaMiddleWare = createSagaMiddleWare()
@@ -22,7 +22,7 @@ const configureStore = (initialState) => {
     )
   }
 
-  sagaMiddleWare.run(saga)
+  sagaMiddleWare.run(rootSaga)
 
   return store
 }

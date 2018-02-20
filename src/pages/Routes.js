@@ -1,8 +1,7 @@
 import React from 'react'
 import universal from 'react-universal-component'
-import {Route} from 'react-router-dom'
 
-const UniversalComponent = universal(({ page }) => import(`./${page}`), {
+const UniversalComponent = (page) => universal(import(`./${page}`), {
   onLoad(module, info, props, context) {
     if (module.reducers) {
       context.store.injectReducers(module.reducers)
@@ -12,15 +11,15 @@ const UniversalComponent = universal(({ page }) => import(`./${page}`), {
 
 export default [
   {
-    component: universal(import('./App/index.js')),
+    component: UniversalComponent('App'),
     routes: [
       {
-        component: universal(import('./Home')),
+        component: UniversalComponent('Home'),
         path: '/',
         exact: true
       },
       {
-        component: universal(import('./News')),
+        component: UniversalComponent('News'),
         path: '/news'
       }
     ]

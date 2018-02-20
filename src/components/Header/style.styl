@@ -1,18 +1,186 @@
 @import '../../assets/styles/main'
 
 .header
+  position: relative
+  display: flex
+  flex-direction: column
+  z-index: 150
+
+.header__top
   background-color #fff
-  padding 15px 0
+  padding 10px 0
+
+.header__bottom
+  display: flex
+  align-items: center
+  justify-content: space-around
+  background-color: transparent
+  padding: 10px 0
 
 .header__list
   display flex
   align-items center
   justify-content space-between
   width 100%
+  height 40px
 
 .header__item
   display flex
   align-items center
+  height: 100%
   margin-right 5px
   &:last-child
     margin-right 0
+
+.coin__display
+  display: flex
+  align-items: center
+  min-width 150px
+  h3
+    Font(medium)
+    font-size 14px
+    color $txt
+  svg 
+    font-size 14px
+    margin-left 10px
+
+.coin__wrap
+  position relative
+  display: flex
+  flex-direction: column
+  justify-content: center
+  height: 100%
+
+.coin__list
+  box-shadow(0 0 15px $txt)
+  position: absolute
+  display flex
+  flex-direction column
+  align-items flex-start
+  justify-content: center
+  background-color $white
+  width: 100%
+  top: 100% + 15px
+  left: -9999px
+  padding: 15px 10px
+  border-radius: 10px
+  opacity 0
+  transition(.3s opacity)
+  &.active
+    left: 0
+    opacity 1
+
+.coin__item
+  width 100%
+  margin-bottom 5px
+  padding-bottom 5px
+  border-bottom 1px solid $txt
+  &:last-child
+    margin-bottom 0
+    padding-bottom 0
+    border-bottom: none
+
+.coin__link
+  Font(medium)
+  display: block
+  width: 100%
+  color $red
+  font-size 12px
+  &:hover
+    color $txt
+
+.social__list
+  display: flex
+  align-items: center
+
+.social__item
+  margin-right: 10px
+  &:last-child
+    margin-right 0
+
+.social__link
+  box-shadow(0 2px 1px rgba(134, 150, 168, 0.29))
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size 12px
+  width: 40px
+  height: 40px
+  color: $txt
+  background-color: $bg
+  border-radius: 50%
+  &:hover
+    background-color: $orange-light
+    color: $white
+
+.help__btn
+  Font()
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  font-size 11px
+  color: $white
+  width: 180px
+  height: 40px
+  border-radius: 20px
+  background: linear-gradient(-120deg, $orange-light 30%, $orange )
+  margin-right 10px
+  transition(.3s)
+  &:last-child
+    margin-right 0
+  &:hover
+    background: linear-gradient(-120deg, $orange 30%, $orange-light )
+
+.sign__in
+  Font(medium)
+  display: flex
+  align-items: center
+  font-size: 11px
+  color: $black
+  margin-right 25px
+  svg 
+    font-size 25px
+    margin-right 5px
+  &:hover
+    opacity: .3
+
+.sign__up
+  Font(medium)
+  display: flex
+  align-items: center
+  font-size: 11px
+  color: $white
+  background-color $red
+  padding: 6px 20px
+  border-radius: 30px
+  border: solid 2px transparent
+  box-shadow(0px 7px 30px rgba(255, 42, 47,0.5))
+  svg 
+    font-size 25px
+    margin-right 5px
+  &:hover
+    background-color $white
+    color $red
+    border-color: $red
+
+.logo
+  height: 65px
+  width 215px
+  background-color: $orange
+
+.mnu__list
+  display: flex
+  align-items: center
+
+.mnu__item
+  margin-right 25px
+  &:last-child
+    margin-right 0
+
+.mnu__link
+  font-size 14px
+  color $white
+  text-transform: uppercase
+  &.active
+    color $red

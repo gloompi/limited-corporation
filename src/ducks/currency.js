@@ -16,7 +16,6 @@ export const FETCH_CURRENCY_ERROR = `${appName}/${modulName}/FETCH_CURRENCY_ERRO
 
 export default (state = new ReducerRecord, action) => {
   const {type, payload, error} = action
-  console.log('---state', state)
   switch (type) {
     case FETCH_CURRENCY_REQUEST:
       return state.set('loaded', false)
@@ -38,7 +37,6 @@ export default (state = new ReducerRecord, action) => {
 }
 
 export const fetchCurrency = (currency) => {
-  console.log('fetchCurrency')
   return {
     type: FETCH_CURRENCY_REQUEST,
     currency
@@ -47,11 +45,10 @@ export const fetchCurrency = (currency) => {
 
 const fetchCurrencySaga = function * ({currency}) {
   try {
-    console.log('fetchCurrency')
     const response = yield call(axios.get, `https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=${currency}`)
     yield put({
       type: FETCH_CURRENCY_SUCCESS,
-      payload: {response}
+      payload: {response: response.data}
     })
   } catch (error) {
     yield put({

@@ -15,7 +15,6 @@ const store = configureStore()
 const context = {}
 
 export default ({ clientStats }) => (req, res) => {
-  console.log('store---', store.getState())
   const initialState = store.getState()
   const app = renderToString(
     <Provider store={ store }>
