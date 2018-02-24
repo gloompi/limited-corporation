@@ -1,6 +1,6 @@
 import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
-import {appName} from '../../config'
+import {appName} from '../../configClient'
 import axios from 'axios'
 
 const ReducerRecord = Record({

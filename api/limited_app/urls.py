@@ -21,6 +21,7 @@ from django.contrib import admin
 from api_v0 import urls as rest_urls
 
 urlpatterns = [
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^jet/', include('jet.urls', 'jet')),
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     url(r'^api/v0/', include(rest_urls, namespace='rest_app')),

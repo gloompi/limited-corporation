@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+from ckeditor.widgets import CKEditorWidget
 
 def upload_path(instance, filename):
     """
@@ -24,8 +26,8 @@ class NewsModel(models.Model):
   title = models.CharField(max_length=50, verbose_name='Title')
   slug = models.SlugField()
   cover_picture = models.ImageField(blank=True, upload_to=upload_path, verbose_name='Cover picture')
-  announce = models.TextField(verbose_name='Announce')
-  content = models.TextField(verbose_name='Content')
+  announce = RichTextField(verbose_name='Announce')
+  content = RichTextField(verbose_name='Content')
   author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, verbose_name='Author')
   meta_title = models.CharField(max_length=250, null=True, verbose_name='SEO/Meta title')
   meta_description = models.TextField(null=True, verbose_name='SEO/Meta description')

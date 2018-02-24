@@ -26,7 +26,7 @@ SECRET_KEY = 'sy$6f()1$47cba9wx6rzr20ds3%odx@k!1)w9q_g_==p59+z0k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jet.dashboard',
     'jet',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,15 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'ckeditor',
+    'ckeditor_uploader',
 
     'api_v0',
+    'take_access',
     'news'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -83,11 +88,14 @@ WSGI_APPLICATION = 'limited_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_db',
+        'USER' : 'gloompi',
+        'PASSWORD' : 'kuba1518639695',
+        'HOST' : '127.0.0.1',
+        'PORT' : '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -107,7 +115,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Authorization
+AUTH_USER_MODEL = 'take_access.CustomUser'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend'
+]
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -138,21 +151,31 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-
 # REST Framework settings
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     # 'DEFAULT_RENDERER_CLASSES': (
     #     'rest_framework.renderers.JSONRenderer',
     # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
 
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
 # CKEDITOR SETTINGS
 
 CKEDITOR_CONFIGS = {
@@ -210,6 +233,5 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_IMAGE_BACKEND = PIL
 CKEDITOR_UPLOAD_PATH = "ckeditor/uploads/"

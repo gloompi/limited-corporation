@@ -7,18 +7,18 @@ import { renderRoutes } from 'react-router-config'
 import { Helmet } from 'react-helmet'
 import flushChunks from 'webpack-flush-chunks'
 import serialize from 'serialize-javascript'
+import PropTypes from 'prop-types'
 
 import Routes from '../src/pages/Routes'
 import configureStore from '../src/configureStore'
 
-const store = configureStore()
-const context = {}
-
 export default ({ clientStats }) => (req, res) => {
+  const store = configureStore()
   const initialState = store.getState()
+  const context = {}
   const app = renderToString(
     <Provider store={ store }>
-      <StaticRouter location={req.path} context={context}>
+      <StaticRouter location={ req.path } context={ context }>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>
@@ -39,6 +39,9 @@ export default ({ clientStats }) => (req, res) => {
   console.log('SCRIPTS SERVED', scripts)
   console.log('STYLESHEETS SERVED', stylesheets)
 
+  if(context.url) {
+    return res.send(301, context.url)
+  }
   res.send(
     `<!doctype html>
       <html>

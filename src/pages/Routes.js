@@ -9,6 +9,11 @@ const UniversalComponent = (page) => universal(import(`./${page}`), {
   }
 })
 
+requireAuth = (nextState, replaceState) => {
+  if (!auth.loggedIn())
+    replaceState({ nextPathname: nextState.location.pathname }, '/sign-in')
+}
+
 export default [
   {
     component: UniversalComponent('App'),
@@ -17,6 +22,19 @@ export default [
         component: UniversalComponent('Home'),
         path: '/',
         exact: true
+      },
+      {
+        component: UniversalComponent('Account'),
+        path: '/account',
+        onEnter: requireAuth
+      },
+      {
+        component: UniversalComponent('SignIn'),
+        path: '/sign-in'
+      },
+      {
+        component: UniversalComponent('SignUp'),
+        path: '/sign-up'
       },
       {
         component: UniversalComponent('News'),

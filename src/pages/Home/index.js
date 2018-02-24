@@ -9,8 +9,11 @@ class Home extends Component{
 
   render(){
     return(
-      <div>
-        <h1 className={style.Home}>Homeeee</h1>
+      <div className={style.wrapper}>
+        <div className={`${style.container} ${style.home__wrap}`}>
+          <h1 className={style.home__title}>Инвестиции в криптовалюты</h1>
+          <div className={style.home__longtitle}>Инвестировать в криптовалюты - это просто.</div>
+        </div>
       </div>
     )
   }

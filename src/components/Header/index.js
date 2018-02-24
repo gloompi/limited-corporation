@@ -7,8 +7,10 @@ import style from './style.styl'
 import CoinParser from './CoinParser'
 import SocialList from './SocialList'
 import Menu from './Menu'
+import Auth from './Auth'
+import AccountWidget from './AccountWidget'
 
-function Header(props){
+function Header({loggedIn}){
   return(
     <header className={style.header}>
       <div className={style.header__top}>
@@ -31,14 +33,11 @@ function Header(props){
               </a>
             </li>
             <li className={style.header__item}>
-              <a href="" className={style.sign__in}>
-                <i className="fas fa-sign-in-alt"></i>
-                <span>АВТОРИЗАЦИЯ</span>
-              </a>
-              <a href="" className={style.sign__up}>
-                <i className="far fa-user"></i>
-                <span>РЕГИСТРАЦИЯ</span>
-              </a>
+              {
+                loggedIn
+                ? <AccountWidget />
+                : <Auth />
+              }
             </li>
           </ul>
         </div>
