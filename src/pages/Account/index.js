@@ -6,22 +6,25 @@ import style from './style.styl'
 import {fetchUser} from '../../ducks/auth'
 import {jwtSecretName} from '../../../configClient'
 import requireAuth from '../../components/hocs/requireAuth'
+import Header from '../../components/Header'
 
 class Account extends Component{
   static propTypes = {
   }
 
   componentDidMount() {
-    const {fetchUser, userName} = this.props
+    const {fetchUser} = this.props
+    const userName = localStorage.getItem('userName')
     const jwt = localStorage.getItem(jwtSecretName)
     fetchUser(userName)
   }
 
   render(){
     const {user} = this.props
-    console.log('user----', user)
+    console.log('account user----', user)
     return(
       <div className={`${style.wrapper} ${style.account__main}`}>
+        <Header />
         <div className={style.container}>
           <h2 className={style.account__title}>Личный кабинет</h2>
         </div>

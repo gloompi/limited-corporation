@@ -4,14 +4,29 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from news.models import NewsModel
-from take_access.models import CustomUser, DepositsModel
-from .serializers import (NewsSerializer, UserSerializer, CreateUserSerializer, DepositsSerializer)
+from take_access.models import CustomUser
+from deposits.models import DepositsModel, ProfitModel
+from .serializers import (
+  NewsSerializer, 
+  UserSerializer, 
+  CreateUserSerializer, 
+  DepositsSerializer, 
+  ProfitSerializer
+)
 
 # Create your views here.
 class DepositsViewSet(viewsets.ModelViewSet):
-  queryset = DepositsModel.objects.all()
+  permission_classes = (IsAuthenticated, )
   serializer_class = DepositsSerializer
-  lookup_field = 'slug'
+
+  def get_queryset(self):
+    print(self.request.user)
+    deposit_list = DepositsModel.objects.filter(user=self.request.user)
+    return deposit_list
+
+class ProfitViewSet(viewsets.ModelViewSet):
+  queryset = ProfitModel.objects.all()
+  serializer_class = ProfitSerializer
 
 class NewsItemViewSet(viewsets.ModelViewSet):
   queryset = NewsModel.objects.filter(is_published=True)

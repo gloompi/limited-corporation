@@ -1,0 +1,57 @@
+@import '../../assets/styles/main'
+
+.coininfo__wrap
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  width: 100%
+
+.display__wrap
+  display: flex
+  align-items: center
+  justify-content: space-between
+  flex-direction: column
+  width: 33%
+  min-height: 500px
+  padding: 20px 0 0
+  color: $white
+  border-radius: 20px
+  box-shadow(0px 7px 30px rgba(255, 42, 47,0.5))
+  background: linear-gradient(-120deg, #fe510d 30%, #ffa500ba )
+
+.icon__wrap
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100px
+  height: 100px
+  background: #fe510d
+  border-radius: 50%
+  border: solid 2px #ffffff
+
+.icon
+  font-size 40px
+  color: $white
+
+.profit__percent
+  Font(medium)
+  font-size 35px
+  color: $white
+
+.coin__name
+  Font(light)
+  font-size 14px
+
+.invest__btn
+  Font(medium)
+  display: flex
+  align-items: center
+  justify-content: center
+  color: $white
+  width 100%
+  padding: 15px 0
+  border-top 1px solid rgba($white, .3)
+  text-transform uppercase
+  &:hover
+    color: $orange
+    border-top 1px solid $white

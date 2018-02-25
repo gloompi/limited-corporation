@@ -11,16 +11,20 @@ export default (ChildComponent) => {
 
     componentDidMount() {
       const token = localStorage.getItem(jwtSecretName)
-      console.log(localStorage, token)
+      if(!token) return this.props.history.push('/sign-in')
+      else if(token) return this.setState({token})
+    }
+
+    componentWillReceiveProps(nextProps) {
+      const token = localStorage.getItem(jwtSecretName)
+      console.log('next', nextProps)
       if(token) return this.setState({token})
+      else if(!token) return this.props.history.push('/sign-in')
     }
 
     render() {
       const {token} = this.state
-      console.log('token---', token)
       switch(token) {
-        case false:
-          return <Redirect to="/sign-in" />
         case null:
           return <div>Loading...</div>
         default:

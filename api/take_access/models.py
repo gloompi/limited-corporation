@@ -16,21 +16,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 class CustomUser(AbstractUser):
   slug = models.SlugField()
   account_resource = models.FloatField(max_length=500000, null=True, default=0, verbose_name='Баланс')
-  deposits = models.ForeignKey(
-    'DepositsModel',
-    null=True,
-    on_delete=models.CASCADE,
-    verbose_name='Депозиты'
-  )
 
-class DepositsModel(models.Model):
-  slug = models.SlugField()
-  title = models.CharField(max_length=150, verbose_name="Валюта")
-  sum_num = models.FloatField(max_length=500000, null=True, default=0, verbose_name='Сумма')
-  profit = models.ManyToManyField(
-    'ProfitModel',
-    verbose_name='Профит'
-  )
-
-class ProfitModel(models.Model):
-  percent = models.FloatField(max_length=1000, null=True, default=0, verbose_name='Процент')
+  class Meta:
+    verbose_name = 'Пользователь'
+    verbose_name_plural = 'Пользователи'

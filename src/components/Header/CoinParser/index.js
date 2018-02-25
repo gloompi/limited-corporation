@@ -5,6 +5,11 @@ import {modulName, fetchCurrency} from '../../../ducks/currency'
 
 import style from '../style.styl'
 import Loader from '../../Loader'
+import Bit from '../../Icons/Bit'
+import Dash from '../../Icons/Dash'
+import Etherium from '../../Icons/Etherium'
+import Lite from '../../Icons/Lite'
+import Ripple from '../../Icons/Ripple'
 
 class CoinParser extends Component{
   static propTypes = {
@@ -65,19 +70,29 @@ class CoinParser extends Component{
   getCoinName = coin => {
     switch(coin){
       case 'BTC':
-        return 'BitCoin'
+        return [
+          <Bit color='#FF2830' key={1} height={20} />,
+          <span key={2}>BitCoin</span>]
 
       case 'LTC':
-        return 'LiteCoin'
+        return [
+          <Lite color='#FF2830' key={1} height={20} />,
+          <span key={2}>LiteCoin</span>]
 
       case 'ETH':
-        return 'Etherium'
+        return [
+          <Etherium color='#FF2830' key={1} height={20} />,
+          <span key={2}>Etherium</span>]
 
       case 'DASH':
-        return 'DigitalCash'
+        return [
+          <Dash color='#FF2830' key={1} height={20} />,
+          <span key={2}>DigitalCash</span>]
 
       case 'XRP':
-        return 'Ripple'
+        return [
+          <Ripple color='#FF2830' key={1} height={20} />,
+          <span key={2}>Ripple</span>]
 
       default:
         return coin

@@ -104,12 +104,12 @@ const fetchAuthSaga = function * ({username, password}) {
       },
       data: authentication,
     })
-    console.log('fetch auth response---', response)
     yield put({
       type: FETCH_AUTH_SUCCESS,
       payload: {response: response.data.token, username}
     })
     localStorage.setItem(jwtSecretName, response.data.token)
+    localStorage.setItem('userName', username)
   } catch (error) {
     yield put({
       type: FETCH_AUTH_ERROR,
@@ -130,7 +130,16 @@ const fetchUserSaga = function * ({user}) {
         'Authorization': `Token ${token}`
       },
     })
-
+    const deposits = yield call (axios, {
+      url: `http://localhost:8000/api/v0/deposits/`,
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      },
+    })
+    console.log('fetch deposits---', deposits)
     console.log('fetch user response---', response)
     yield put({
       type: FETCH_USER_SUCCESS,

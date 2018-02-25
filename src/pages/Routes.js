@@ -9,12 +9,11 @@ const UniversalComponent = (page) => universal(import(`./${page}`), {
   }
 })
 
-requireAuth = (nextState, replaceState) => {
-  if (!auth.loggedIn())
-    replaceState({ nextPathname: nextState.location.pathname }, '/sign-in')
-}
-
 export default [
+  {
+    component: UniversalComponent('Account'),
+    path: '/account'
+  },
   {
     component: UniversalComponent('App'),
     routes: [
@@ -22,11 +21,6 @@ export default [
         component: UniversalComponent('Home'),
         path: '/',
         exact: true
-      },
-      {
-        component: UniversalComponent('Account'),
-        path: '/account',
-        onEnter: requireAuth
       },
       {
         component: UniversalComponent('SignIn'),

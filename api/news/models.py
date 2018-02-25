@@ -19,25 +19,25 @@ class NewsModel(models.Model):
   DRAFT = False
 
   TYPES = (
-      (PUBLISHED, 'Published'),
-      (DRAFT, 'Draft'),
+      (PUBLISHED, 'Опубликовано'),
+      (DRAFT, 'Черновик'),
   )
 
-  title = models.CharField(max_length=50, verbose_name='Title')
   slug = models.SlugField()
-  cover_picture = models.ImageField(blank=True, upload_to=upload_path, verbose_name='Cover picture')
-  announce = RichTextField(verbose_name='Announce')
-  content = RichTextField(verbose_name='Content')
-  author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, verbose_name='Author')
-  meta_title = models.CharField(max_length=250, null=True, verbose_name='SEO/Meta title')
-  meta_description = models.TextField(null=True, verbose_name='SEO/Meta description')
-  date_added = models.DateTimeField(auto_now_add=True, verbose_name='Date added')
-  is_published = models.BooleanField(choices=TYPES, default=DRAFT, verbose_name='Is published?')
+  title = models.CharField(max_length=50, verbose_name='Название')
+  cover_picture = models.ImageField(blank=True, upload_to=upload_path, verbose_name='Главная картинка')
+  announce = RichTextField(verbose_name='Предпросмотр')
+  content = RichTextField(verbose_name='Контент')
+  author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, verbose_name='Автор')
+  meta_title = models.CharField(max_length=250, null=True, verbose_name='СЕО/Мета название')
+  meta_description = models.TextField(null=True, verbose_name='СEO/Мета описание')
+  date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+  is_published = models.BooleanField(choices=TYPES, default=DRAFT, verbose_name='Опубликовано?')
 
   class Meta:
     ordering = ['-date_added']
-    verbose_name = 'News'
-    verbose_name_plural = 'News'
+    verbose_name = 'Новость'
+    verbose_name_plural = 'Новости'
 
   def __str__(self):
     return str(self.title)
@@ -45,6 +45,6 @@ class NewsModel(models.Model):
   def is_news_published(self):
     return self.is_published
 
-  is_news_published.admin_order_field = 'is_published'
+  is_news_published.admin_order_field = 'Опубликовано'
   is_news_published.boolean = True
-  is_news_published.short_description = 'Is published?'
+  is_news_published.short_description = 'Опубликовано?'

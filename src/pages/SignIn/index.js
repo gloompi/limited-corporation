@@ -12,19 +12,27 @@ class SignIn extends Component{
   }
 
   state = {
-    validation: null
+    validation: null,
+    token: null
   }
 
   componentDidMount() {
-    const jwt = localStorage.getItem(jwtSecretName)
+    const token = localStorage.getItem(jwtSecretName)
+    if(token) return this.props.history.push('/account')
+    else if(!token) return this.setState({token})
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const token = localStorage.getItem(jwtSecretName)
+    if(!token) return this.setState({token})
+    else if(token) return this.props.history.push('/account')
   }
 
   render(){
-    const {token} = this.props
     const {validation} = this.state
     return(
       <div className={style.container}>
-        <form action="" onSubmit={this.handleSubmit} className={style.signin__wrap}>
+        <form action="" onSubmit={this.handleSubmit(history)} className={style.signin__wrap}>
           <h2 className={style.signin__title}>Панель входа</h2>
           <input className={style.input} type="text" placeholder="Логин"/>
           <input className={style.input} type="password" placeholder="Пароль"/>
@@ -34,7 +42,7 @@ class SignIn extends Component{
     )
   }
 
-  handleSubmit = e => {
+  handleSubmit = history => e => {
     e.preventDefault()
     const {fetchAuth} = this.props
     const validation = {}

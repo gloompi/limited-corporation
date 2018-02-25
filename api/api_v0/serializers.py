@@ -2,7 +2,8 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from news.models import NewsModel
-from take_access.models import CustomUser, DepositsModel
+from take_access.models import CustomUser
+from deposits.models import DepositsModel, ProfitModel
 
 # Additional serializers
 class DepositsSerializer(serializers.ModelSerializer):
@@ -12,8 +13,20 @@ class DepositsSerializer(serializers.ModelSerializer):
     fields = (
       'slug',
       'title',
-      'sum_num',
-      'profit'
+      'amount',
+      'profit',
+      'user'
+    )
+
+class ProfitSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = ProfitModel
+    fields = (
+      'slug',
+      'title',
+      'percent',
+      'description'
     )
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,13 +34,13 @@ class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = CustomUser
     fields = (
+      'id',
       'slug',
       'username',
       'first_name',
       'last_name',
       'email',
-      'account_resource',
-      'deposits'
+      'account_resource'
     )
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -55,7 +68,6 @@ class NewsSerializer(serializers.ModelSerializer):
   class Meta:
     model = NewsModel
     fields = (
-      'id',
       'title',
       'slug',
       'cover_picture',
