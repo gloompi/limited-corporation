@@ -5,7 +5,7 @@ from django.utils import timezone
 from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 from take_access.models import CustomUser
-
+  
 # Create your models here.
 class DepositsModel(models.Model):
   BITCOIN = 'BTC'
@@ -21,9 +21,9 @@ class DepositsModel(models.Model):
     (RIPPLE, 'Ripple')
   )
 
-  slug = models.SlugField(default='', blank=True)
   title = models.CharField(max_length=3, choices=COIN_CHOICES, verbose_name="Валюта")
   amount = models.FloatField(max_length=500000, default=0, verbose_name="Капитал")
+  date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
   user = models.ForeignKey(
     CustomUser,
     on_delete=models.PROTECT,
@@ -39,7 +39,7 @@ class DepositsModel(models.Model):
   )
 
   class Meta:
-    ordering = ['slug']
+    ordering = ['date_added']
     verbose_name = 'Депозит'
     verbose_name_plural = 'Депозиты'
 
@@ -50,7 +50,10 @@ class ProfitModel(models.Model):
   slug = models.SlugField()
   title = models.CharField(max_length=150, verbose_name="Название")
   percent = models.FloatField(max_length=1000, null=True, default=0, verbose_name='Процент')
-  description = RichTextField(verbose_name='Описание')
+  duration = models.IntegerField(default=0, verbose_name='Период начислений')
+  amount_floor = models.FloatField(max_length=150, verbose_name='Сумма депозита от')
+  amount_ceil = models.FloatField(max_length=150, verbose_name='Сумма депозита до')
+  pay_off = models.CharField(max_length=150, default='В конце срока', verbose_name='Возврат депозита')
 
   class Meta:
     verbose_name = 'Выгода'

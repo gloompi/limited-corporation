@@ -43,10 +43,14 @@ function Header({loggedIn}){
         </div>
       </div>
       <div className={style.header__bottom}>
-          <NavLink to="/">
-            <div className={style.logo}></div>
-          </NavLink>
-          <Menu />
+        <div className={style.container}>
+          <div className={style.header__container}>
+            <NavLink to="/">
+              <div className={style.logo}></div>
+            </NavLink>
+            <Menu />
+          </div>
+        </div>
       </div>
     </header>
   )

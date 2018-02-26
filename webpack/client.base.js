@@ -40,7 +40,7 @@ module.exports = {
       {
 				test: /\.(gif|png|jpg|jpeg)$/,
 				exclude: /node_modules/,
-				use: 'url-loader?limit=10000&name=assets/img/[name]-[hash].[ext]'
+				use: 'file-loader?limit=10000&name=assets/img/[name]-[hash].[ext]'
 			},
 			{
 				test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

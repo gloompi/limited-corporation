@@ -11,10 +11,14 @@
   padding 10px 0
 
 .header__bottom
+  width 100%
+  background-color: transparent
+
+.header__container
   display: flex
   align-items: center
-  justify-content: space-around
-  background-color: transparent
+  justify-content: space-between
+  width: 100%
   padding: 10px 0
 
 .header__list
@@ -32,6 +36,14 @@
   &:last-child
     margin-right 0
 
+.coin__wrap
+  position relative
+  display: flex
+  flex-direction: column
+  justify-content: center
+  height: 100%
+  z-index: 500
+
 .coin__display
   display: flex
   align-items: center
@@ -43,13 +55,6 @@
   svg 
     font-size 14px
     margin-left 10px
-
-.coin__wrap
-  position relative
-  display: flex
-  flex-direction: column
-  justify-content: center
-  height: 100%
 
 .coin__list
   box-shadow(0 0 15px $txt)
@@ -171,7 +176,7 @@
 .logo
   height: 65px
   width 215px
-  background-color: $orange
+  background-color: $white
 
 .mnu__list
   display: flex

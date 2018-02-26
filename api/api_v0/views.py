@@ -18,6 +18,7 @@ from .serializers import (
 class DepositsViewSet(viewsets.ModelViewSet):
   permission_classes = (IsAuthenticated, )
   serializer_class = DepositsSerializer
+  lookup_field = 'id'
 
   def get_queryset(self):
     print(self.request.user)

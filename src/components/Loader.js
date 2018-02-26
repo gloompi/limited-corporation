@@ -1,13 +1,14 @@
 import React from 'react'
 
+import img from '../assets/images/loader.gif'
+
 function Loader(props){
   const {width = 35} = props
   const style = {
     width: width
   }
   return(
-    <h3>Loading...</h3>
-    // <img src={require('../assets/images/loader.gif')} style={style} />
+    <img src={img} style={style} />
   )
 }
 

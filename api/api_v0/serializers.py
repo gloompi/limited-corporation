@@ -11,10 +11,11 @@ class DepositsSerializer(serializers.ModelSerializer):
   class Meta:
     model = DepositsModel
     fields = (
-      'slug',
+      'id',
       'title',
       'amount',
       'profit',
+      'date_added',
       'user'
     )
 
@@ -26,7 +27,10 @@ class ProfitSerializer(serializers.ModelSerializer):
       'slug',
       'title',
       'percent',
-      'description'
+      'duration',
+      'amount_floor',
+      'amount_ceil',
+      'pay_off'
     )
 
 class UserSerializer(serializers.ModelSerializer):
