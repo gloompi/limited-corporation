@@ -35,7 +35,7 @@ class DepositsModel(models.Model):
     'ProfitModel',
     on_delete=models.PROTECT,
     related_name='profits',
-    verbose_name='Выгода'
+    verbose_name='Валюта'
   )
 
   class Meta:
@@ -56,8 +56,8 @@ class ProfitModel(models.Model):
   pay_off = models.CharField(max_length=150, default='В конце срока', verbose_name='Возврат депозита')
 
   class Meta:
-    verbose_name = 'Выгода'
-    verbose_name_plural = 'Выгоды'
+    verbose_name = 'Валюта'
+    verbose_name_plural = 'Валюты'
 
   def __str__(self):
     return str(self.title)

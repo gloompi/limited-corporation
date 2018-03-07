@@ -4,9 +4,19 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from news.models import NewsModel
+from about.models import AboutModel
+from how_to_start.models import HowToStartModel
+from for_investors.models import ForInvestorsModel
+from for_partners.models import ForPartnersModel
+from faq.models import FaqModel
 from take_access.models import CustomUser
 from deposits.models import DepositsModel, ProfitModel
 from .serializers import (
+  FaqSerializer,
+  ForPartnersSerializer,
+  ForInvestorsSerializer,
+  HowToStartSerializer,
+  AboutSerializer,
   NewsSerializer, 
   UserSerializer, 
   CreateUserSerializer, 
@@ -15,6 +25,30 @@ from .serializers import (
 )
 
 # Create your views here.
+class FaqView(generics.ListAPIView):
+  queryset = FaqModel.objects.all()
+  serializer_class = FaqSerializer
+
+class ForPartnersView(generics.ListAPIView):
+  queryset = ForPartnersModel.objects.all()
+  serializer_class = ForPartnersSerializer
+
+class ForInvestorsView(generics.ListAPIView):
+  queryset = ForInvestorsModel.objects.all()
+  serializer_class = ForInvestorsSerializer
+
+class HowToStartView(generics.ListAPIView):
+  queryset = HowToStartModel.objects.all()
+  serializer_class = HowToStartSerializer
+
+class AboutView(generics.RetrieveAPIView):
+  serializer_class = AboutSerializer
+  lookup_field = 'slug'
+
+  def get_queryset(self):
+    about = AboutModel.objects.all()
+    return about
+
 class DepositsViewSet(viewsets.ModelViewSet):
   permission_classes = (IsAuthenticated, )
   serializer_class = DepositsSerializer
@@ -37,10 +71,10 @@ class NewsItemViewSet(viewsets.ModelViewSet):
 class CreateUserView(generics.CreateAPIView):
   queryset = CustomUser.objects.all()
   serializer_class = CreateUserSerializer
-  lookup_field = 'slug'
+  lookup_field = 'username'
 
 class UserView(generics.RetrieveUpdateDestroyAPIView):
   permission_classes = (IsAuthenticated, )
   queryset = CustomUser.objects.all()
   serializer_class = UserSerializer
-  lookup_field = 'slug'
+  lookup_field = 'username'

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 
 import style from '../style.styl'
 
@@ -29,7 +30,7 @@ function CoinDisplay({slug, title, percent, duration, amount_floor, amount_ceil,
         <div className={style.coin__content_title}>Возврат депозита:</div>
         <span className={style.coin__content_value}>{pay_off}</span>
       </div>
-      <button type="submit" className={style.invest__btn}>Инвестировать</button>
+      <Link to="/account" className={style.invest__btn}>Инвестировать</Link>
     </div>
   )
 }

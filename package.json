@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development node server/index.js",
+    "production": "cross-env NODE_ENV=production node server/index.js",
     "build-client": "webpack --config webpack/client.prod.js",
     "build-server": "webpack --config webpack/server.prod.js"
   },
@@ -15,6 +16,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "express": "^4.16.2",
+    "faker": "^4.1.0",
     "file-loader": "^1.1.6",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
@@ -26,7 +28,9 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-scroll-to-component": "^1.0.2",
     "react-universal-component": "^2.5.5",
+    "react-yandex-maps": "^2.1.4",
     "redux": "^3.7.2",
     "redux-form": "^7.2.3",
     "redux-saga": "^0.16.0",

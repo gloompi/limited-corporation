@@ -6,42 +6,37 @@ import {connect} from 'react-redux'
 import style from './style.styl'
 import '../../assets/js/fontawesome-all.min.js'
 import {jwtSecretName} from '../../../configClient'
-
+import {logout} from '../../ducks/auth'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 class App extends Component {
   state = {
-    loggedIn: false
+    token: null
   }
 
   componentDidMount() {
-    const {auth} = this.props
-    const jwt = localStorage.getItem(jwtSecretName)
-    console.log('auth---', auth)
-    console.log('jwt---', jwt)
-    if(jwt) this.setState({loggedIn: true})
+    const token = localStorage.getItem(jwtSecretName)
+    if(token) this.setState({token})
   }
-
+  
   componentWillReceiveProps(nextProps) {
-    const {auth} = nextProps
-    const jwt = localStorage.getItem(jwtSecretName)
-    console.log('auth---', auth)
-    console.log('jwt---', jwt)
-    if(jwt) this.setState({loggedIn: true})
+    const token = localStorage.getItem(jwtSecretName)
+    if(token) this.setState({token})
+    else this.setState({token: false})
   }
-
+  
   render() {
-    const {route} = this.props
-    const {loggedIn} = this.state
+    const {route, history} = this.props
+    const {token} = this.state
     return <div className={style.app}>
-      <Header loggedIn={loggedIn} />
+      <Header history={history} token={token} />
       <main className={style.app__main}>
         {renderRoutes(route.routes)}
       </main>
+      <Footer />
     </div>
   }
 }
 
-export default connect(state => ({
-  auth: state.auth.auth
-}))(App)
+export default connect(null, {logout})(App)

@@ -12,7 +12,8 @@ module.exports = {
   output: {
     path: output,
     filename: '[name].js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    publicPath: path.resolve(__dirname, '../build/static/')
   },
   name: 'server',
   target: 'node',
@@ -50,7 +51,7 @@ module.exports = {
         use: "url-loader?limit=10000&name=assets/fonts/[name]-[hash].[ext]"
       },
       {
-				test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+				test: /\.(ttf|otf|eot|svg)(\?[\s\S]+)?$/,
         use: 'file-loader?limit=10000&name=assets/fonts/[name]-[hash].[ext]'
       },
 			{
@@ -60,6 +61,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.css', '.styl', 'gif']
+    extensions: ['.js', '.css', '.styl']
   },
 }

@@ -3,8 +3,14 @@ import currency from '../ducks/currency'
 import profits from '../ducks/profits'
 import auth from '../ducks/auth'
 import news from '../ducks/news'
+import about from '../ducks/about'
+import howToStart from '../ducks/howToStart'
+import forInvestors from '../ducks/forInvestors'
+import forPartners from '../ducks/forPartners'
+import faq from '../ducks/faq'
 
 export default (asyncReducers) => combineReducers({
-  currency, auth, news, profits,
+  currency, auth, news, profits, about, howToStart, forInvestors,
+  forPartners, faq,
   ...asyncReducers
 })

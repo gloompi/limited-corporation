@@ -1,0 +1,41 @@
+@import '../../assets/styles/main'
+
+.section__title
+  margin-bottom 50px
+
+.faq__list
+  display flex
+  flex-direction: column
+  width 100%
+  margin-bottom 100px
+
+.faq__item
+  display flex
+  align-items: flex-start
+  justify-content: flex-start
+  flex-direction: column
+  width 100%
+  margin-bottom 25px
+  padding-bottom 25px
+  border-bottom 1px solid rgba($disable-txt, .3)
+  &:last-child
+    border-bottom: none
+
+.faq__link
+  display: flex
+  align-items: center
+  position: relative
+  height: 60px
+  width 100%
+  color: $red
+
+.question
+  Font(medium)
+  font-size 25px
+  color: $red
+
+.answer
+  Font(light)
+  font-size 14px
+  color: $txt
+  

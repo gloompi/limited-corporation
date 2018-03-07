@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+
 import {jwtSecretName} from '../../../configClient'
+import Loader from '../Loader'
 
 export default (ChildComponent) => {
   class RequireAuth extends Component {
@@ -17,7 +19,6 @@ export default (ChildComponent) => {
 
     componentWillReceiveProps(nextProps) {
       const token = localStorage.getItem(jwtSecretName)
-      console.log('next', nextProps)
       if(token) return this.setState({token})
       else if(!token) return this.props.history.push('/sign-in')
     }
@@ -26,7 +27,7 @@ export default (ChildComponent) => {
       const {token} = this.state
       switch(token) {
         case null:
-          return <div>Loading...</div>
+          return <Loader />
         default:
           return <ChildComponent {...this.props} {...this.state} />
       }

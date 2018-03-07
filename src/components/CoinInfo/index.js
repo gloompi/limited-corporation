@@ -24,14 +24,15 @@ class CoinInfo extends Component{
   }
 
   render(){
-    const {profits, loaded} = this.props
+    const {profits, loaded, error} = this.props
     const {activeCoin} = this.state
     if(!loaded) return <Loader />
+    if(error) return <h1>Что то пошло не так!</h1>
     const profitList = ObjToImmArr(profits)
     const coin = profits.get(activeCoin)
     const {slug, title, percent, duration, amount_floor, amount_ceil, pay_off} = coin
     return(
-      <form className={style.coininfo__wrap} onSubmit={this.handleSubmit}>
+      <form className={style.coininfo__wrap}>
         <CoinDisplay 
           slug={slug} 
           title={title} 
@@ -53,10 +54,6 @@ class CoinInfo extends Component{
           handleChange={this.handleChange} />
       </form>
     )
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
   }
 
   handleChange = value => e => {

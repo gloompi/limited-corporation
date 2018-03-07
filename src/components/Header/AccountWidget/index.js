@@ -34,9 +34,10 @@ class Auth extends Component{
 
   handleLogout = e => {
     e.preventDefault()
-    const {logout} = this.props
+    const {logout, history} = this.props
 
     logout()
+    history.push('/')
   }
 }
 

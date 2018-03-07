@@ -12,7 +12,7 @@ class SignIn extends Component{
   }
 
   state = {
-    validation: null,
+    validation: {},
     token: null
   }
 
@@ -25,16 +25,18 @@ class SignIn extends Component{
   componentWillReceiveProps(nextProps) {
     const token = localStorage.getItem(jwtSecretName)
     if(!token) return this.setState({token})
-    else if(token) return this.props.history.push('/account')
+    else if(token) return nextProps.history.push('/account')
   }
 
   render(){
     const {validation} = this.state
     return(
       <div className={style.container}>
-        <form action="" onSubmit={this.handleSubmit(history)} className={style.signin__wrap}>
+        <form action="" onSubmit={this.handleSubmit} className={style.signin__wrap}>
           <h2 className={style.signin__title}>Панель входа</h2>
+          {validation.username && <span className={style.warning}>{validation.username}</span>}
           <input className={style.input} type="text" placeholder="Логин"/>
+          {validation.password && <span className={style.warning}>{validation.password}</span>}
           <input className={style.input} type="password" placeholder="Пароль"/>
           <button className={style.btn} type="submit">Войти</button>
         </form>
@@ -42,9 +44,9 @@ class SignIn extends Component{
     )
   }
 
-  handleSubmit = history => e => {
+  handleSubmit = e => {
     e.preventDefault()
-    const {fetchAuth} = this.props
+    const {fetchAuth, history} = this.props
     const validation = {}
     const username = e.target[0].value
     const password = e.target[1].value
@@ -58,7 +60,7 @@ class SignIn extends Component{
     else validation.password = null
 
     this.setState({validation})
-    if(validation.username == null && validation.password == null) fetchAuth(username, password)
+    if(validation.username == null && validation.password == null) fetchAuth(username, password, history)
   }
 }
 

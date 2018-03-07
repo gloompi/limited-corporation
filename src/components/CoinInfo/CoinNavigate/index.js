@@ -40,8 +40,9 @@ class CoinNavigate extends Component{
       profits, 
       handleChange} = this.props
     const {inputvalue} = this.state
-    const profit = inputvalue * percent
-    const profitPerDay = (percent - 100) / duration + ''
+    const realPercent = percent - 100
+    const profit = inputvalue * percent * 0.01
+    const profitPerDay = realPercent / duration + ''
     return(
       <div className={style.navigate__wrap}>
         <div className={style.instruction__wrap}>

@@ -47,7 +47,7 @@ module.exports = {
         use: "url-loader?limit=10000&name=assets/fonts/[name]-[hash].[ext]"
       },
       {
-				test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
+				test: /\.(ttf|otf|eot|svg)(\?[\s\S]+)?$/,
         use: 'file-loader?limit=10000&name=assets/fonts/[name]-[hash].[ext]'
       },
 			{
@@ -57,6 +57,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.css', '.styl', 'gif']
+    extensions: ['.js', '.css', '.styl']
   },
 }

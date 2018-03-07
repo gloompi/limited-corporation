@@ -29,7 +29,7 @@ export default (state = new ReducerRecord, action) => {
     case FETCH_CURRENCY_ERROR:
       return state
         .set('loaded', true)
-        .set('error', payload.error)
+        .set('error', error)
 
     default:
       return state
@@ -51,6 +51,7 @@ const fetchCurrencySaga = function * ({currency}) {
       payload: {response: response.data}
     })
   } catch (error) {
+    console.log('fetch currency error---', error)
     yield put({
       type: FETCH_CURRENCY_ERROR,
       error

@@ -1,0 +1,335 @@
+@import '../../assets/styles/main'
+
+.about__video
+  max-width 900px
+  margin-bottom 100px
+
+.statistic__wrap
+  width 100%
+  background: url('../../assets/images/bg3.png') 0 no-repeat
+  background-size auto 100%
+
+.statistic__list
+  display flex
+  align-items: center
+  justify-content: space-between
+  width 100%
+  margin-bottom 25px
+
+.statistic__item
+  display: flex
+  align-items: center
+
+.statistic__icon_wrap
+  display: flex
+  align-items: center
+  justify-content: center
+  width 90px
+  height: 90px
+  border-radius: 50%
+  background-color rgba($red, .3)
+  margin-right 10px
+
+.statistic__icon
+  display flex
+  align-items: center
+  justify-content: center
+  width 60px
+  height: 60px
+  border-radius: 50%
+  background: linear-gradient(-120deg, #fe510d 30%, #ff2830 )
+  svg 
+    font-size 30px
+    color: $white
+
+.statistic__txt_wrap
+  display flex
+  flex-direction: column
+  
+.statistic__item_txt
+  font-size 14px
+
+.statistic__payment
+  display: flex
+  justify-content: space-between
+  width 100%
+  margin-bottom 100px
+
+.statistic__payment_wrap
+  display flex
+  align-items: flex-start
+  flex-direction: column
+  width 48%
+
+.statistic__payment_title
+  font-weight normal
+  font-size 25px
+  text-transform uppercase
+  margin-bottom 15px
+
+.statistic__payment_list
+  display flex
+  flex-direction: column
+  width 100%
+
+.statistic__payment_item
+  display flex
+  align-items: center
+  justify-content: space-between
+  width 100%
+  height: 60px
+  padding: 0 10px
+  margin-bottom 5px
+  background-color $white
+  border-radius: 5px
+  box-shadow(0 0px 6px rgba(134, 150, 168, 0.29))
+
+.statistic__payment_info_wrap
+  display: flex
+  flex-direction: column
+
+.statistic__payment_info_title
+  font-size 12
+
+.statistic__payment_info
+  display flex
+  align-items: center
+  font-size 14px
+  img 
+    width 15px
+    margin-right 5px
+
+.path__wrap
+  position: relative
+  width 100%
+  min-height 100vh
+  &:after
+    content: ""
+    position: absolute
+    left: 50%
+    top: 0
+    width: 100%
+    height: 768px
+    background: url('../../assets/images/image.svg') center no-repeat
+    background-size auto 100%
+    transform: translateX(-50%)
+  
+.path__list
+  position: relative
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  flex-wrap: wrap
+  padding: 20px 50px 0
+  z-index: 100
+
+.path__item
+  display flex
+  flex-direction: column
+  width 30%
+  margin-bottom 133px
+  &:nth-child(0n + 4),
+  &:nth-child(5n),
+  &:nth-child(6n) 
+    text-align: right
+    .path__top
+      justify-content: flex-end
+    .path__top_txt
+      order: -1
+      margin-right 15px
+    .path__top_number
+      margin-right 0
+
+.path__top
+  Font(light)
+  font-size 14px
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  color: $white
+  margin-bottom 40px
+  a
+    Font(medium)
+    display flex
+    align-items: center
+    justify-content: center
+    height: 60px
+    width: 100%
+    font-size 20px
+    color: $txt
+    background-color $white
+    border-radius: 50px
+    box-shadow(0 0 28px rgba(129,0,46,.44))
+
+.path__top_number
+  font-size 36px
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 60px
+  width 60px
+  color: $black
+  background-color $white
+  border-radius: 50%
+  margin-right 15px
+  box-shadow(0 0 28px rgba(129,0,46,.44))
+
+.path__top_txt
+  width 65%
+
+.path__title
+  font-size 15px
+  margin-bottom 20px
+  color: $txt
+
+.path__descr
+  font-size 14px
+  color: $txt
+
+.partner__wrap
+  background: #fafafa;
+
+.partner__descr
+  width 100%
+  margin-top -40px
+  margin-bottom 15px
+  p
+    text-align: center
+    color: $txt
+
+.partner__btns_wrap
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-bottom 50px
+
+.partner__btn
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size 12px
+  width 190px
+  height: 40px
+  border-radius: 50px
+  color: $txt
+  text-transform uppercase
+  &.red
+    background-color $red
+    color: $white
+    border 2px solid $red
+    margin-right 15px
+    box-shadow(0px 7px 30px rgba(255, 42, 47,0.5))
+    &:hover
+      background-color $white
+      color: $txt
+
+.partner__info_wrap
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  width 100%
+
+.partner__info_container
+  display: flex
+  flex-direction: column
+  width 48%
+
+.partner__img_wrap
+  position: relative
+  width 100%
+
+.partner__icon_wrap
+  position: absolute
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 130px
+  height: 130px
+  top: 100px
+  right: 120px
+  border-radius: 50%
+  background: linear-gradient(-120deg, #fe510d 30%, #ff2830 );
+  box-shadow(0 37px 109px rgb(255, 76, 18))
+  svg 
+    font-size 60px
+    color: $white
+
+.partner__info_title
+  position: relative
+  font-size 30px
+  color: $txt
+  margin-bottom 20px
+  &:after
+    content: ""
+    position: absolute
+    background: #fe510d
+    width: 35px
+    height: 3px
+    left: 0
+    bottom: -12px
+
+.partner__info_descr
+  font-size 19px
+  margin-bottom 10px
+  color: $txt
+
+.partner__title
+  font-size 30px
+  color: $txt
+  margin: 20px 0px 25px
+  text-transform uppercase
+
+.partner__diagram_list
+  display flex
+  align-items: center
+  justify-content: center
+  width 100%
+  padding: 0 15px
+  margin-bottom 50px
+
+.partner__diagram_item
+  position: relative
+  display flex
+  align-items: flex-start
+  justify-content: flex-start
+  flex-direction: column
+  width 33.3%
+  padding: 10px
+  margin-bottom 50px
+  color: $white
+  background: #fe3128
+  border-radius(10px 0px 0px 10px)
+  box-shadow(0 10px 84px rgb(254, 49, 40))
+  &:nth-child(0n + 1)  
+    &:after
+      content: url(../../assets/images/right-arrow-ref.svg)
+      position: absolute
+      width: 27px
+      right: -25px
+      top: 0
+      z-index: 1
+  &:nth-child(2n)
+    background: #fe411a
+    padding: 10px 10px 10px 35px
+    border-radius 0
+    box-shadow(0 10px 84px rgb(254, 65, 26))
+  &:nth-child(3n)
+    background: #fe4e0f
+    border-radius(0px 10px 10px 0px)
+    box-shadow(0 10px 84px rgb(254, 78, 15))
+    &:after
+      content: url(../../assets/images/left-arrow-ref.svg);
+      position: absolute
+      width: 26px
+      left: -25px
+      top: 0
+      z-index: 1
+
+.partner__diagram_title
+  font-size 24px
+  margin-bottom 10px
+  color: $white
+
+.partner__diagram_type
+  font-size 19px
+  color: $white

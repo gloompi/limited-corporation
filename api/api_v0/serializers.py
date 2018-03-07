@@ -2,10 +2,45 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from news.models import NewsModel
+from about.models import AboutModel
+from for_investors.models import ForInvestorsModel
+from for_partners.models import ForPartnersModel
+from how_to_start.models import HowToStartModel
+from faq.models import FaqModel
 from take_access.models import CustomUser
 from deposits.models import DepositsModel, ProfitModel
 
 # Additional serializers
+class FaqSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = FaqModel
+    fields = ('question', 'answer')
+
+class ForPartnersSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = HowToStartModel
+    fields = ('title', 'cover_pic', 'content')
+
+class ForInvestorsSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = HowToStartModel
+    fields = ('title', 'cover_pic', 'content')
+
+class HowToStartSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = HowToStartModel
+    fields = ('title', 'cover_pic', 'content')
+
+class AboutSerializer(serializers.ModelSerializer):
+  
+  class Meta:
+    model = AboutModel
+    fields = ('slug', 'content')
+
 class DepositsSerializer(serializers.ModelSerializer):
 
   class Meta:
@@ -38,8 +73,6 @@ class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = CustomUser
     fields = (
-      'id',
-      'slug',
       'username',
       'first_name',
       'last_name',
@@ -52,7 +85,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
   class Meta:
     model = CustomUser
     fields = (
-      'slug',
       'username',
       'password',
       'first_name',

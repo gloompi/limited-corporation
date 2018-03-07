@@ -6,10 +6,8 @@ import axios from 'axios'
 import {jwtSecretName} from '../../configClient'
 
 const ReducerRecord = Record({
-  token: null,
-  user: null,
-  userName: null,
-  userLoading: null,
+  user: {},
+  userLoaded: null,
   error: null,
   loaded: null
 })
@@ -18,6 +16,9 @@ export const modulName = 'authentication'
 export const FETCH_AUTH_REQUEST = `${appName}/${modulName}/FETCH_AUTH_REQUEST`
 export const FETCH_AUTH_SUCCESS = `${appName}/${modulName}/FETCH_AUTH_SUCCESS`
 export const FETCH_AUTH_ERROR = `${appName}/${modulName}/FETCH_AUTH_ERROR`
+export const FETCH_REGISTER_REQUEST = `${appName}/${modulName}/FETCH_REGISTER_REQUEST`
+export const FETCH_REGISTER_SUCCESS = `${appName}/${modulName}/FETCH_REGISTER_SUCCESS`
+export const FETCH_REGISTER_ERROR = `${appName}/${modulName}/FETCH_REGISTER_ERROR`
 export const FETCH_USER_SUCCESS = `${appName}/${modulName}/FETCH_USER_SUCCESS`
 export const FETCH_USER_REQUEST = `${appName}/${modulName}/FETCH_USER_REQUEST`
 export const FETCH_USER_ERROR = `${appName}/${modulName}/FETCH_USER_ERROR`
@@ -30,41 +31,34 @@ export default (state = new ReducerRecord, action) => {
     case FETCH_AUTH_REQUEST:
       return state.set('loaded', false)
 
-    case FETCH_USER_REQUEST:
-      return state.set('userLoading', true)
-
     case LOGOUT_REQUEST:
       return state
         .set('loaded', false)
-        .set('userLoading', false)
+        .set('userLoaded', false)
         .set('error', false)
 
     case FETCH_AUTH_SUCCESS:
       return state
         .set('loaded', true)
         .set('error', false)
-        .set('token', payload.response)
-        .set('userName', payload.username)
 
     case FETCH_USER_SUCCESS:
       return state
-        .set('userLoading', false)
+        .set('userLoaded', true)
         .set('user', payload.response)
         
     case LOGOUT_SUCCESS:
       return state
-        .set('token', false)
         .set('user', null)
 
     case FETCH_AUTH_ERROR:
       return state
         .set('loaded', true)
         .set('error', error)
-        .set('token', false)
 
     case FETCH_USER_ERROR:
       return state
-        .set('userLoading', false)
+        .set('userLoaded', false)
         .set('user', false)
 
     default:
@@ -72,10 +66,17 @@ export default (state = new ReducerRecord, action) => {
   }
 }
 
-export const fetchAuth = (username, password) => {
+export const fetchAuth = (username, password, history) => {
   return {
     type: FETCH_AUTH_REQUEST,
-    username, password
+    username, password, history
+  }
+}
+
+export const fetchRegister = (username, password, email, first_name, last_name, history) => {
+  return {
+    type: FETCH_REGISTER_REQUEST,
+    username, password, email, first_name, last_name, history
   }
 }
 
@@ -92,7 +93,7 @@ export const logout = () => {
   }
 }
 
-const fetchAuthSaga = function * ({username, password}) {
+const fetchAuthSaga = function * ({username, password, history}) {
   const authentication = {username, password}
   try {
     const response = yield call(axios, {
@@ -104,15 +105,40 @@ const fetchAuthSaga = function * ({username, password}) {
       },
       data: authentication,
     })
+    yield localStorage.setItem(jwtSecretName, response.data.token)
+    yield localStorage.setItem('userName', username)
     yield put({
       type: FETCH_AUTH_SUCCESS,
-      payload: {response: response.data.token, username}
     })
-    localStorage.setItem(jwtSecretName, response.data.token)
-    localStorage.setItem('userName', username)
+    history.push('/account')
   } catch (error) {
     yield put({
       type: FETCH_AUTH_ERROR,
+      error
+    })
+  }
+}
+
+const fetchRegisterSaga = function * ({username, password, email, first_name, last_name, history}) {
+  const data = {username, password, email, first_name, last_name}
+  try {
+    const response = yield call(axios, {
+      url: 'http://localhost:8000/api/v0/register/',
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data
+    })
+    yield put({
+      type: FETCH_REGISTER_SUCCESS,
+      username, password, history
+    })
+  } catch (error) {
+    console.log('register error---', error)
+    yield put({
+      type: FETCH_REGISTER_ERROR,
       error
     })
   }
@@ -130,7 +156,7 @@ const fetchUserSaga = function * ({user}) {
         'Authorization': `Token ${token}`
       },
     })
-    const deposits = yield call (axios, {
+    const deposits = yield call(axios, {
       url: `http://localhost:8000/api/v0/deposits/`,
       method: 'get',
       headers: {
@@ -155,8 +181,8 @@ const fetchUserSaga = function * ({user}) {
 
 const logoutSaga = function * (props) {
   try {
-    const token = yield localStorage.removeItem(jwtSecretName)
-    console.log('removed token---', token)
+    yield localStorage.removeItem(jwtSecretName)
+    console.log('token removed ---')
 
     yield put({
       type: LOGOUT_SUCCESS
@@ -170,5 +196,7 @@ const logoutSaga = function * (props) {
 export const saga = function * () {
   yield takeEvery(FETCH_AUTH_REQUEST, fetchAuthSaga)
   yield takeEvery(FETCH_USER_REQUEST, fetchUserSaga)
+  yield takeEvery(FETCH_REGISTER_REQUEST, fetchRegisterSaga)
+  yield takeEvery(FETCH_REGISTER_SUCCESS, fetchAuthSaga)
   yield takeEvery(LOGOUT_REQUEST, logoutSaga)
 }

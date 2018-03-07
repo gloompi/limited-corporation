@@ -10,7 +10,7 @@ import Menu from './Menu'
 import Auth from './Auth'
 import AccountWidget from './AccountWidget'
 
-function Header({loggedIn}){
+function Header({loggedIn, history, token}){
   return(
     <header className={style.header}>
       <div className={style.header__top}>
@@ -34,8 +34,8 @@ function Header({loggedIn}){
             </li>
             <li className={style.header__item}>
               {
-                loggedIn
-                ? <AccountWidget />
+                token
+                ? <AccountWidget history={history} />
                 : <Auth />
               }
             </li>
@@ -46,7 +46,13 @@ function Header({loggedIn}){
         <div className={style.container}>
           <div className={style.header__container}>
             <NavLink to="/">
-              <div className={style.logo}></div>
+              <div className={style.logo}>
+                <img src={require('../../assets/images/logo-pic.png')} alt="logo"/>
+                <div>
+                  <h3>Cryproinvest.systems</h3>
+                  <span>Future starts today</span>
+                </div>
+              </div>
             </NavLink>
             <Menu />
           </div>

@@ -1,11 +1,606 @@
 @import '../../assets/styles/main'
 
-.account__main
+.account__wrapper
+  display: flex
+  justify-content: space-between
   width: 100%
-  min-height 300px
-  background-color $white
-  padding: 25px 0
 
-.account__title
-  font-size 35px
+.account__sidebar
+  position: fixed
+  left: 0
+  top: 0
+  display: flex
+  align-items: center
+  flex-direction: column
+  width: 17%
+
+.sidebar__logo
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  width: 100%
+  min-height: 25vh
+  color: $white
+  padding: 25px
+  background: linear-gradient(-120deg, $orange 30%, $red)
+  z-index: 1000
+  img 
+    width: 50%
+    margin-bottom 10px
+  h3
+    Font(medium)
+    font-size 18px
+  span 
+    Font(light)
+    font-size 14px
+
+.sidebar__nav
+  display flex
+  align-items flex-start
+  flex-direction: column
+  padding: 50px 15px
+  height: 75vh
+  overflow-y: scroll
+
+.sidebar__home_btn
+  display: flex
+  align-items: center
+  width: 100%
+  color: $disable-txt
+  margin-bottom 50px
+  &:hover
+    color: $txt
+    svg
+      color: $red
+  svg 
+    color: $disable-txt
+    margin-right 5px
+    transition(.3s)
+
+.sidebar__list
+  display: flex
+  flex-direction: column
+  width: 100%
+  margin-bottom 50px
+
+.sidebar__item
+  width: 100%
+  margin-bottom 25px
+  &:last-child
+    margin-bottom 0
+  &.active
+    .sidebar__inner_list
+      position: relative
+      left: 0
+      opacity: 1
+
+    .sidebar__mnu_btn
+      color: $orange
+
+.sidebar__mnu_btn
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  font-size 14px
+  color: $disable-txt
+  span 
+    svg 
+      margin-right 5px
+  .icon
+    margin-left auto
+  &:hover
+    color: $orange
+
+.sidebar__inner_list
+  position: absolute
+  width: 100%
+  padding-left 15px
+  left: -9999px
+  opacity 0
+  transition(.3s opacity)
+
+.sidebar__inner_item
+  width: 100%
+  margin-top 25px
+
+.sidebar__inner_btn
+  position: relative
+  font-size 14px
+  width: 100%
+  color: $disable-txt
+  &:hover
+    color: $red
+
+.sidebar__setup_btn
+  Font(medium)
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size 12px
+  width: 100%
+  padding: 10px 0
+  color: $disable-txt
+  border 1px solid $disable-txt
+  border-radius: 5px
+  &:hover
+    background-color rgba($red, .8)
+    color: $white
+    border: none
+    svg
+      color: $white
+  svg 
+    color: $disable-txt
+    margin-right 5px
+    transition(.3s)
+
+.account__main
+  position: absolute
+  right 0
+  top: 0
+  display: flex
+  flex-direction: column
+  width: 83%
+  min-height 100vh
+  padding-top 60px
+  background-color #F6F7FB
+
+.account__header_list
+  position: fixed
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  right: 0
+  top: 0
+  height: 60px
+  width: 83%;
+  padding-right 25px
+  background: linear-gradient(-120deg, $red 30%, $orange )
+  color: $white
+  z-index: 1000
+
+.account__header_item
+  margin-right 50px
+  &:last-child
+    margin-right 0
+
+.account__header_link
+  Font(light)
+  font-size 14px
+  display: flex
+  align-items: center
+  color: $white
+  svg 
+    margin-right 5px
+    margin-bottom 2px
+    &.icon
+      margin-right 0
+      margin-left 10px
+
+.user__link_wrap
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 40px
+  height: 40px
+  background-color $red
+  border: 1px solid $white
+  border-radius: 50%
+  margin-right 10px
+  svg
+    margin: 0
+    font-size 20px
+    color: $white
+
+.account__mnu_list
+  position: absolute
+  display flex
+  flex-direction: column
+  top: 100%
+  right: -9999px
+  opacity: 0
+  padding: 10px 0
+  background-color $white
+  border-radius: 5px 0 5px 5px
+  box-shadow(0 2px 5px rgba(0, 0, 0, 0.2))
+  z-index: 1000
+  transition(.3s opacity)
+  &.active
+    right: 0
+    opacity: 1
+
+.account__mnu_item
+  &:nth-child(5n)
+    border 1px solid rgba($disable-txt, .5)
+    border-left: none 
+    border-right: none
+  
+.account__mnu_link
+  display flex
+  align-items: center
+  padding: 10px 15px
+  color: $txt
+  svg 
+    margin-right 5px
+  &:hover
+    color: $red
+
+.breadcrumb__wrapper
+  display: flex
+  flex-direction: column
+  width: 100%
+  padding: 25px
+  background-color $white
+
+.breadcrumb__title
+  font-size 20px
+  color: $txt
+  margin-bottom 5px
+
+.breadcrumb__list
+  display: flex
+  align-items: center
+
+.breadcrumb__item
+  position: relative
+  font-size 14px
+  padding-right 10px
+  margin-right 10px
+  color: $disable-txt
+  a
+    font-size 14px
+    color: $disable-txt 
+  &:after
+    content: '\203A'
+    position: absolute
+    right: 0
+    top: 50%
+    font-size 18px
+    color: $disable-txt
+    transform: translateY(-50%)
+  &:last-child
+    &:after
+      display: none
+
+.deposit__wrap
+  display: flex
+  align-items: flex-start
+  justify-content: flex-start
+  flex-direction: column
+  padding: 25px
+  width: 100%
+
+.deposit__title
+  Font(light)
+  font-size 18px
+  color: $txt
+  margin-bottom 25px
+
+.deposit__content
+  display: flex
+  align-items: flex-start
+  justify-content: flex-start
+  width: 100%
+
+.navigate__list
+  display: flex
+  flex-direction: column
+  padding-left 15px
+  margin-right 25px
+  width: 30%
+
+.navigate__item
+  width: 100%
+  margin-bottom 25px
+  box-shadow(0 7px 15px rgba(0, 0, 0, 0.075))
+  &:last-child
+    margin-bottom 0
+
+.navigate__link
+  display flex
+  align-items center
+  justify-content: space-between
+  width 100%
+  padding: 15px
+  color: $txt
+  background-color: $white
+  border-radius: 5px
+  &.active
+    color: $white
+    background: linear-gradient(-120deg, $red 30%, $orange)
+  svg 
+    width 30%
+
+.navigate__content
+  display: flex
+  flex-direction: column
+  width: 70%
+
+.deposit__form_wrap
+  width: 65%
+  padding: 30px
+  border-radius: 5px
+  background-color $white
+  box-shadow(0 7px 15px rgba(0, 0, 0, 0.075))
+
+.deposit__inner_wrap
+  display flex
+  align-items: center
+  flex-direction: column
+  width: 100%
+  border 1px solid $red
+  border-radius: 5px
+  overflow: hidden
+
+.deposit__form_top
+  display flex
+  align-items: center
+  justify-content: space-between
+  height: 50px
+  width: 100%
+  padding: 0 15px
+  color: $white
+  background-color $red
+  margin-bottom 25px
+
+.deposit__main
+  display: flex
+  align-items: center
+  flex-direction: column
+  padding: 0 25px 50px
+
+.deposit__input_wrap
+  display: flex
+  align-items: center
+  flex-direction: column
+  max-width: 360px
+  padding: 15px
+  border-radius: 5px
+  border 1px solid rgba(109, 109, 109, .3)
+  margin-bottom 50px
+
+.deposit__input_title
+  Font(light)
+  font-size 22px
+  color: $disable-txt
+  text-align: center
+  margin-bottom 10px
+
+.deposit__input_container
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+
+.deposit__input
+  Font(light)
+  height: 40px
+  width 85%
+  padding: 0 15px
+  color: $txt
+  border-radius(5px 0 0 5px)
+  border 1px solid rgba($disable-txt, .5)
+
+.deposit__icon_wrap
+  display: flex
+  align-items: center
+  justify-content: center
+  width 15%
+  height: 40px
+  border-radius(0 5px 5px 0)
+  border 1px solid rgba($disable-txt, .5)
+
+.deposit__input_icon
+  font-size 25px
   color: $red
+
+.deposit__info
+  Font(light)
+  font-size: 14px
+
+.deposit__form_btn
+  padding: 10px 25px
+  color: $white
+  background-color: $red
+  border none
+  border-radius(5px)
+
+.deposit__additionals_title
+  width 100%
+  font-size 20px
+  color: $txt
+  text-align: center
+  padding-bottom 15px
+  margin-bottom 25px
+  border-bottom 1px solid rgba($disable-txt, .3)
+
+.deposit__additionals_wrap
+  display flex
+  align-items: flex-start
+  justify-content: space-between
+  width 100%
+
+.deposit__additional_container
+  display: flex
+  flex-direction: column
+  width: 48%
+  padding: 15px
+  border-radius: 5px
+  border 1px solid rgba($disable-txt, .5)
+  box-shadow(0 7px 15px rgba(0, 0, 0, 0.075))
+
+.deposit__additional_title
+  font-size 16px
+  color: $black
+  text-align: center
+  margin-bottom 15px
+
+.deposit__additional_item
+  display flex
+  justify-content: space-between
+  align-items: flex-start
+  margin-bottom 10px
+  &:last-child
+    margin-bottom 0
+
+.deposit__additional_item2
+  display flex
+  flex-direction: column
+  margin-bottom 10px
+  &:last-child
+    margin-bottom 0
+
+.section__wrap
+  display flex
+  flex-direction: column
+  width 100%
+  padding: 25px
+
+.section
+  width: 100%
+  margin-bottom 25px
+  border-radius: 5px
+  background-color $white
+  border 1px solid rgba($disable-txt, .3)
+  box-shadow(0 7px 15px rgba(0, 0, 0, 0.075))
+  &:last-child
+    margin-bottom 0
+
+.section__top
+  display: flex
+  align-items: center
+  width 100%
+  height: 50px
+  padding-left 15px
+  border-bottom 1px solid rgba($disable-txt, .3)
+
+.section__title
+  Font(light)
+  font-size 18px
+  color: $txt
+
+.section__container
+  width 100%
+  padding: 30px
+
+.statistic__list
+  display flex
+  flex-direction: column
+
+.statistic__item
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding-bottom 25px
+  margin-bottom 25px
+  border-bottom 1px solid rgba($disable-txt, .3)
+  &:last-child
+    margin-bottom 0
+    padding-bottom 0
+    border-bottom none
+
+.statistic__info
+  display: flex
+  align-items: center
+  svg 
+    font-size 35px
+    color: $red
+
+.icon__wrap
+  display: flex
+  justify-content: center
+  width 70px
+
+.statistic__info_title
+  font-size 16px
+  color: $txt
+
+.statistic__info_descr
+  Font(light)
+  font-size 14px
+  color: $disable-txt
+  line-height 15px
+
+.statistic__value
+  padding: 5px 15px
+  color: $white
+  border-radius: 15px
+
+.table
+  width 100%
+  border 1px solid rgba($disable-txt, .3)
+  border-collapse: collapse
+  border-radius: 5px
+  td
+    height: 50px
+    border 1px solid rgba($disable-txt, .3)
+  th
+    font-size 14px
+    color: $txt
+    height 50px
+    width: 30%
+    border 1px solid rgba($disable-txt, .3)
+    &:nth-child(4n)
+      width 25%
+    &:nth-child(1n + 3)
+      width 15%
+  &.payoff
+    th
+      width: 15%
+      &:nth-child(2n)
+        width 25%
+      &:nth-child(3n)
+        width 30%
+      &:nth-child(4n)
+        width 15%
+
+.payoff__list
+  display: flex
+  justify-content: flex-start
+  flex-wrap: wrap
+
+.payoff__item
+  width: 31%
+  border 1px solid rgba($disable-txt, .3)
+  margin-bottom 25px
+  margin-right 3%
+  border-radius(5px)
+  transition(.3s)
+  &:hover
+    box-shadow(0 7px 15px rgba(0, 0, 0, 0.075))
+  &:nth-child(3n + 3)
+    margin-right 0
+
+.payoff__link
+  display flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  color: $txt
+  width: 100%
+  padding: 25px
+  svg 
+    margin-bottom 15px
+
+.payoff__title
+  font-size 20px
+  text-align: center
+  color: $txt
+  margin-bottom 5px
+
+.payoff__info
+  Font(light)
+  font-size 12
+  color: $disable-txt
+  margin-bottom 10px
+
+.payoff__btn
+  font-size 14px
+  width: 100%
+  color: $white
+  padding: 3px 0
+  text-align center
+  background-color $red
+  border-radius(5px)

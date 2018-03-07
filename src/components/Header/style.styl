@@ -133,13 +133,13 @@
   width: 180px
   height: 40px
   border-radius: 20px
-  background: linear-gradient(-120deg, $orange-light 30%, $orange )
+  background: linear-gradient(-120deg, $red 30%, $orange )
   margin-right 10px
   transition(.3s)
   &:last-child
     margin-right 0
   &:hover
-    background: linear-gradient(-120deg, $orange 30%, $orange-light )
+    background: linear-gradient(-120deg, $orange 30%, $red )
 
 .sign__in
   Font(medium)
@@ -174,9 +174,22 @@
     border-color: $red
 
 .logo
+  display flex
+  align-items: center
+  justify-content: space-between
   height: 65px
-  width 215px
-  background-color: $white
+  min-width 215px
+  img 
+    height 100%
+    margin-right 10px
+  h3
+    Font(medium)
+    font-size 16px
+    color: $white
+  span 
+    Font(light)
+    font-size 14px
+    color: $white
 
 .mnu__list
   display: flex

@@ -1,0 +1,54 @@
+@import '../../assets/styles/main'
+
+.section__title
+  margin-bottom 50px
+
+.guide__list
+  display flex
+  flex-direction: column
+  width 100%
+  margin-bottom 100px
+
+.guide__item
+  display flex
+  align-items: center
+  justify-content: space-between
+  flex-wrap: wrap
+  width 100%
+  padding: 25px 25px 50px
+  margin-bottom 25px
+  border-bottom 1px solid rgba($disable-txt, .3)
+  &:last-child
+    border-bottom none
+  &:nth-child(2n + 2)
+    .guide__pic_wrap
+      order: 1
+
+.guide__pic_wrap
+  display flex
+  align-items: center
+  justify-content: center
+  width 150px
+  height: 150px
+  border: 1px solid $red
+  border-radius: 50%
+  overflow: hidden
+  img 
+    width 100%
+
+.guide__content
+  display flex
+  align-items: center
+  flex-direction: column
+  text-align: center
+  width 70%
+
+.guide__title
+  Font(medium)
+  font-size 18px
+  color: $red
+
+.guide__descr
+  Font(light)
+  font-size 14px
+  color: $txt

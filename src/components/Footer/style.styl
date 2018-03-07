@@ -1,0 +1,171 @@
+@import '../../assets/styles/main'
+
+.footer
+  position: relative
+  background-color #fafafa
+  z-index: 100
+  padding: 25px 0
+
+.logo
+  display flex
+  align-items: center
+  justify-content: flex-start
+  height: 65px
+  min-width 215px
+  margin-bottom 15px
+  img 
+    height 100%
+    margin-right 10px
+  h3
+    Font(medium)
+    font-size 16px
+    color: $black
+  span 
+    Font(light)
+    font-size 14px
+    color: $black
+
+.footer__top
+  display flex
+  align-items: flex-start
+  justify-content: space-between
+  padding-bottom 25px
+  margin-bottom 25px
+  border-bottom 1px solid rgba($txt, .1)
+
+.footer__top_item
+  display flex
+  flex-direction: column
+  width 32%
+  &:first-child
+    padding-top 25px
+  
+.footer__top_descr
+  Font(light)
+  font-size 14px
+  color: $black
+
+.footer__top_title
+  Font(light)
+  font-size 24px
+  margin-bottom: 20px
+  text-transform uppercase
+
+.footer__news_list
+  display flex
+  flex-direction: column
+  width: 100%
+
+.footer__news_item
+  width: 100%
+  margin-bottom 15px
+  a
+    display flex
+    align-items: center
+    width 100%
+    color: $txt
+
+.footer__top_date_wrap
+  display flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  background: linear-gradient(-120deg, #fe510d 30%, #ff2830 )
+  width: 55px
+  height: 55px
+  border-radius: 5px
+  color: $white
+  margin-right: 7px
+  padding: 10px
+  .day
+    font-size 12px
+  .month
+    font-size 18px
+
+.footer__news_txt
+  display flex
+  flex-direction: column
+  .title
+    font-size 20px
+    color: $red
+    text-transform uppercase
+  .text
+    font-size 14px
+    p
+      margin: 0
+
+.footer__top_icon_wrap
+  display flex
+  align-items: center
+  justify-content: center
+  background: linear-gradient(-120deg, #fe510d 30%, #ff2830 )
+  width: 30px
+  height: 30px
+  border-radius: 50%
+  margin-right 5px
+  svg 
+    font-size 14
+    color: $white
+
+.footer__top_contacts
+  display flex
+  flex-direction: column
+  font-size 11px
+  b
+    font-size 15px
+    color: $txt
+
+.footer__middle
+  display flex
+  align-items: center
+  justify-content: space-between
+  width 100%
+  padding-bottom 25px
+  margin-bottom 25px
+  border-bottom 1px solid rgba($txt, .1)
+
+.footer__middle_item
+  width 35px
+  svg 
+    width 100%
+
+.footer__bottom
+  display flex
+  align-items: center
+  justify-content: space-between
+
+.mnu__list
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width 45%
+  height: 100%
+
+.mnu__link
+  color: $txt
+  &.active
+    color: $red
+
+.footer__scroll_btn
+  position: absolute
+  display flex
+  align-items: center
+  justify-content: center
+  left: 50%
+  bottom: 15px
+  width 80px
+  height: 80px
+  border-radius: 50%
+  background-color rgba($red, .3)
+  transform: translateX(-50%)
+  .footer__scroll_inner
+    display flex
+    align-items: center
+    justify-content: center
+    width 60px
+    height: 60px
+    border-radius: 50%
+    background: linear-gradient(-120deg, #fe510d 30%, #ff2830 )  
+    svg 
+      font-size 20px
+      color: $white

@@ -23,7 +23,7 @@ class NewsModel(models.Model):
       (DRAFT, 'Черновик'),
   )
 
-  slug = models.SlugField()
+  slug = models.SlugField(unique=True)
   title = models.CharField(max_length=50, verbose_name='Название')
   cover_picture = models.ImageField(blank=True, upload_to=upload_path, verbose_name='Главная картинка')
   announce = RichTextField(verbose_name='Предпросмотр')
