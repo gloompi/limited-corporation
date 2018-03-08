@@ -1,9 +1,9 @@
 import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
-import {appName} from '../../configClient'
 import axios from 'axios'
 
-import {jwtSecretName} from '../../configClient'
+import {getCookie} from '../helpers'
+import {appName, jwtSecretName} from '../../configClient'
 
 const ReducerRecord = Record({
   user: {},
@@ -95,13 +95,15 @@ export const logout = () => {
 
 const fetchAuthSaga = function * ({username, password, history}) {
   const authentication = {username, password}
+  const csrf = getCookie('csrftoken')
   try {
     const response = yield call(axios, {
       url: 'http://88.85.81.121/api/v0/auth/',
       method: 'post',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-CSRFToken': `${csrf}`
       },
       data: authentication,
     })
@@ -121,13 +123,15 @@ const fetchAuthSaga = function * ({username, password, history}) {
 
 const fetchRegisterSaga = function * ({username, password, email, first_name, last_name, history}) {
   const data = {username, password, email, first_name, last_name}
+  const csrf = getCookie('csrftoken')
   try {
     const response = yield call(axios, {
       url: 'http://88.85.81.121/api/v0/register/',
       method: 'post',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-CSRFToken': `${csrf}`
       },
       data
     })

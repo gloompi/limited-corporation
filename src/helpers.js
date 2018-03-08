@@ -1,5 +1,12 @@
 import {Map, Record, OrderedMap} from 'immutable'
 
+export function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 export function arrToImmObj(arr, DataRec = Map, id = 'id'){
   return arr.reduce((acc, elem) => {
     return acc.set(elem[id], new DataRec(elem))
