@@ -96,7 +96,7 @@ const fetchAuthSaga = function * ({username, password}) {
   const authentication = {username, password}
   try {
     const response = yield call(axios, {
-      url: 'http://localhost:8000/api/v0/auth/',
+      url: 'http://88.85.81.121/api/v0/auth/',
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -122,7 +122,7 @@ const fetchUserSaga = function * ({user}) {
   try {
     const token = localStorage.getItem(jwtSecretName)
     const response = yield call(axios, {
-      url: `http://localhost:8000/api/v0/user/${user}/`,
+      url: `http://88.85.81.121/api/v0/user/${user}/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

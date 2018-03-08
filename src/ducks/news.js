@@ -66,7 +66,7 @@ export const fetchNewsItem = (slug) => {
 const fetchNewsSaga = function * ({page}) {
   try {
     const response = yield call(axios, {
-      url: 'http://localhost:8000/api/v0/news/',
+      url: 'http://88.85.81.121/api/v0/news/',
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -88,7 +88,7 @@ const fetchNewsSaga = function * ({page}) {
 const fetchNewsItemSaga = function * ({slug}) {
   try {
     const response = yield call(axios, {
-      url: `http://localhost:8000/api/v0/news/${slug}`,
+      url: `http://88.85.81.121/api/v0/news/${slug}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

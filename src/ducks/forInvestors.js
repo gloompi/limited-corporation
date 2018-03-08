@@ -42,7 +42,7 @@ export const fetchForInvest = () => {
 const fetchForInvestSaga = function * () {
   try {
     const {data} = yield call(axios, {
-      url: 'http://localhost:8000/api/v0/for_investors/',
+      url: 'http://88.85.81.121/api/v0/for_investors/',
       method: 'get',
       headers: {
         'Accept': 'application/json',
