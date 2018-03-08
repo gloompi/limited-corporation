@@ -5,9 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development node server/index.js",
-    "production": "cross-env NODE_ENV=production node server/index.js",
-    "build-client": "webpack --config webpack/client.prod.js",
-    "build-server": "webpack --config webpack/server.prod.js"
+    "production": "cross-env NODE_ENV=production pm2 start server/index.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/server.prod.js"
   },
   "dependencies": {
     "axios": "^0.17.1",

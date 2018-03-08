@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'sy$6f()1$47cba9wx6rzr20ds3%odx@k!1)w9q_g_==p59+z0k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,22 +93,22 @@ WSGI_APPLICATION = 'limited_app.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'django_db',
-    #     'USER' : 'gloompi',
-    #     'PASSWORD' : 'kuba1518639695',
-    #     'HOST' : '127.0.0.1',
-    #     'PORT' : '5432',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django_db',
-        'USER' : 'admin',
-        'PASSWORD' : 'qscgukijn',
+        'USER' : 'gloompi',
+        'PASSWORD' : 'kuba1518639695',
         'HOST' : '127.0.0.1',
         'PORT' : '5432',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'django_db',
+    #     'USER' : 'admin',
+    #     'PASSWORD' : 'qscgukijn',
+    #     'HOST' : '127.0.0.1',
+    #     'PORT' : '5432',
+    # }
 }
 
 # Password validation
