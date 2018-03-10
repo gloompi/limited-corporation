@@ -59,7 +59,7 @@ export const fetchProfit = () => {
 const fetchProfitSaga = function * () {
   try {
     const response = yield call(axios, {
-      url: 'http://88.85.81.121/api/v0/profits/',
+      url: 'https://cryptoinves.systems/api/v0/profits/',
       method: 'get',
       headers: {
         'Accept': 'application/json',

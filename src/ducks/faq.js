@@ -42,7 +42,7 @@ export const fetchFaq = () => {
 const fetchFaqSaga = function * () {
   try {
     const {data} = yield call(axios, {
-      url: 'http://88.85.81.121/api/v0/faq/',
+      url: 'https://cryptoinves.systems/api/v0/faq/',
       method: 'get',
       headers: {
         'Accept': 'application/json',

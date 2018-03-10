@@ -49,7 +49,7 @@ function Header({loggedIn, history, token}){
               <div className={style.logo}>
                 <img src={require('../../assets/images/logo-pic.png')} alt="logo"/>
                 <div>
-                  <h3>Cryproinvest.systems</h3>
+                  <h3>Cryptoinvest.systems</h3>
                   <span>Future starts today</span>
                 </div>
               </div>

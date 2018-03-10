@@ -26,7 +26,7 @@ SECRET_KEY = 'sy$6f()1$47cba9wx6rzr20ds3%odx@k!1)w9q_g_==p59+z0k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost:3000', 'cryptoinvest.systems', '88.85.81.121']
 
 
 # Application definition
@@ -193,8 +193,9 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-    'cryptoinvest.systems'
+    'localhost:3000', 
+    'cryptoinvest.systems', 
+    '88.85.81.121'
 )
 # CKEDITOR SETTINGS
 

@@ -42,7 +42,7 @@ export const fetchGuide = () => {
 const fetchGuideSaga = function * () {
   try {
     const {data} = yield call(axios, {
-      url: 'http://88.85.81.121/api/v0/how_to/',
+      url: 'https://cryptoinves.systems/api/v0/how_to/',
       method: 'get',
       headers: {
         'Accept': 'application/json',
