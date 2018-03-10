@@ -66,7 +66,7 @@ export const fetchNewsItem = (slug) => {
 const fetchNewsSaga = function * ({page}) {
   try {
     const response = yield call(axios, {
-      url: 'https://cryptoinves.systems/api/v0/news/',
+      url: `${api}/news/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -88,7 +88,7 @@ const fetchNewsSaga = function * ({page}) {
 const fetchNewsItemSaga = function * ({slug}) {
   try {
     const response = yield call(axios, {
-      url: `https://cryptoinves.systems/api/v0/news/${slug}`,
+      url: `${api}/news/${slug}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

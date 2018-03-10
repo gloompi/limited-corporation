@@ -50,6 +50,7 @@ export default ({ clientStats }) => (req, res) => {
           ${helmet.title.toString()}
           ${helmet.meta.toString()}
           ${styles}
+          <meta name="theme-color" content="#ffffff">
         </head>
         <body>
           <script>

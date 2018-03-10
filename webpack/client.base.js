@@ -38,7 +38,7 @@ module.exports = {
         })
       },
       {
-				test: /\.(gif|png|jpg|jpeg)$/,
+				test: /\.(gif|png|ico|jpg|jpeg)$/,
 				exclude: /node_modules/,
 				use: 'file-loader?limit=10000&name=assets/img/[name]-[hash].[ext]'
 			},

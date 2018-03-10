@@ -26,7 +26,7 @@ SECRET_KEY = 'sy$6f()1$47cba9wx6rzr20ds3%odx@k!1)w9q_g_==p59+z0k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost:3000', 'cryptoinvest.systems', '88.85.81.121']
+ALLOWED_HOSTS = ['localhost', 'cryptoinvest.systems', '88.85.81.121', '0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -187,15 +187,12 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 # request response settings
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000', 
+    'localhost:3000',
+    'localhost', 
     'cryptoinvest.systems', 
-    '88.85.81.121'
+    '88.85.81.121',
+    '127.0.0.1'
 )
 # CKEDITOR SETTINGS
 

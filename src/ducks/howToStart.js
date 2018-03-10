@@ -1,6 +1,6 @@
 import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
-import {appName, jwtSecretName} from '../../configClient'
+import {appName, jwtSecretName, api} from '../../configClient'
 import axios from 'axios'
 
 const ReducerRecord = Record({
@@ -42,7 +42,7 @@ export const fetchGuide = () => {
 const fetchGuideSaga = function * () {
   try {
     const {data} = yield call(axios, {
-      url: 'https://cryptoinves.systems/api/v0/how_to/',
+      url: `${api}/how_to/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

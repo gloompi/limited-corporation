@@ -1,9 +1,8 @@
 import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
-import {appName} from '../../configClient'
 import axios from 'axios'
 
-import {jwtSecretName} from '../../configClient'
+import {appName, jwtSecretName, api} from '../../configClient'
 
 const ReducerRecord = Record({
   token: null,
@@ -96,7 +95,7 @@ const fetchAuthSaga = function * ({username, password}) {
   const authentication = {username, password}
   try {
     const response = yield call(axios, {
-      url: 'https://cryptoinves.systems/api/v0/auth/',
+      url: `${api}/auth/`,
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -122,7 +121,7 @@ const fetchUserSaga = function * ({user}) {
   try {
     const token = localStorage.getItem(jwtSecretName)
     const response = yield call(axios, {
-      url: `https://cryptoinves.systems/api/v0/user/${user}/`,
+      url: `${api}/user/${user}/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

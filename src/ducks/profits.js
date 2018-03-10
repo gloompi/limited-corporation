@@ -1,10 +1,9 @@
 import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
-import {appName} from '../../configClient'
 import {arrToImmObj} from '../helpers'
 
-import {jwtSecretName} from '../../configClient'
+import {appName, jwtSecretName, api} from '../../configClient'
 
 const ProfitRecord = Record({
   slug: null,
@@ -59,7 +58,7 @@ export const fetchProfit = () => {
 const fetchProfitSaga = function * () {
   try {
     const response = yield call(axios, {
-      url: 'https://cryptoinves.systems/api/v0/profits/',
+      url: `${api}/profits/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

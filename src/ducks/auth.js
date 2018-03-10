@@ -3,7 +3,7 @@ import {put, call, takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 
 import {getCookie} from '../helpers'
-import {appName, jwtSecretName} from '../../configClient'
+import {appName, jwtSecretName, api} from '../../configClient'
 
 const ReducerRecord = Record({
   user: {},
@@ -98,7 +98,7 @@ const fetchAuthSaga = function * ({username, password, history}) {
   const csrf = getCookie('csrftoken')
   try {
     const response = yield call(axios, {
-      url: 'https://cryptoinves.systems/api/v0/auth/',
+      url: `${api}/auth/`,
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -126,7 +126,7 @@ const fetchRegisterSaga = function * ({username, password, email, first_name, la
   const csrf = getCookie('csrftoken')
   try {
     const response = yield call(axios, {
-      url: 'https://cryptoinves.systems/api/v0/register/',
+      url: `${api}/register/`,
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -152,7 +152,7 @@ const fetchUserSaga = function * ({user}) {
   try {
     const token = localStorage.getItem(jwtSecretName)
     const response = yield call(axios, {
-      url: `https://cryptoinves.systems/api/v0/user/${user}/`,
+      url: `${api}/user/${user}/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -161,7 +161,7 @@ const fetchUserSaga = function * ({user}) {
       },
     })
     const deposits = yield call(axios, {
-      url: `https://cryptoinves.systems/api/v0/deposits/`,
+      url: `${api}/deposits/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',
