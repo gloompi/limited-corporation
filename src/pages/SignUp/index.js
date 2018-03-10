@@ -38,6 +38,8 @@ class SignUp extends Component{
           <input className={style.input} type="text" placeholder="Логин"/>
           {validation.password && <span className={style.warning}>{validation.password}</span>}
           <input className={style.input} type="password" placeholder="Пароль"/>
+          {validation.confirm && <span className={style.warning}>{validation.confirm}</span>}
+          <input className={style.input} type="password" placeholder="Подтвердить пароль"/>
           {validation.email && <span className={style.warning}>{validation.email}</span>}
           <input className={style.input} type="email" placeholder="Email"/>
           <input className={style.input} type="text" placeholder="Имя"/>
@@ -45,9 +47,9 @@ class SignUp extends Component{
           {validation.checkbox && <span className={style.warning}>{validation.checkbox}</span>}
           <label className={style.agreement__label}>
             <input className={style.agreement__checkbox} type="checkbox"/>
-            <span>Я согласен с <Link to="/agreement">условиями</Link> использования сервиса StartCom</span>
+            <span>Я согласен с <Link to="/agreement">условиями</Link> использования сервиса</span>
           </label>
-          <button className={style.btn} type="submit">Зарегестрироваться</button>
+          <button className={style.btn} type="submit">Зарегистрироваться</button>
         </form>
       </div>
     )
@@ -59,10 +61,11 @@ class SignUp extends Component{
     const validation = {}
     const username = e.target[0].value
     const password = e.target[1].value
-    const email = e.target[2].value
-    const first_name = e.target[3].value
-    const last_name = e.target[4].value
-    const checkbox = e.target[5].checked
+    const confirm = e.target[2].value
+    const email = e.target[3].value
+    const first_name = e.target[4].value
+    const last_name = e.target[5].value
+    const checkbox = e.target[6].checked
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     if(!username) validation.username = 'Логин не может быть пустым'
@@ -72,6 +75,10 @@ class SignUp extends Component{
     if(!password) validation.password = 'Пароль не может быть пустым'
     else if(password.length < 8) validation.password = 'Пароль должен состоять из более 8ми символов'
     else validation.password = null
+
+    if(!confirm) validation.confirm = 'Подтвердите пароль'
+    else if(password !== confirm) validation.confirm = 'Пароли не совпадают'
+    else validation.confirm = null
 
     if(!email) validation.email = 'Укажите почтовый адрес'
     else if(!re.test(String(email).toLowerCase())) validation.email = 'Укажите корректный email'

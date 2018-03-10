@@ -39,3 +39,12 @@ export function scrollIt(element, offset = 0) {
     'top': element.offsetTop + offset
   })
 }
+
+export function splitBy3(numb) {
+  const numbarr = []
+  numb = numb + ''
+  for(let i = numb.length; i > 0; i-=3){
+    numbarr.push(numb.slice(i-3 <= 0 ? 0 : i-3 , i))
+  }
+  return numbarr.reverse().join(' ')
+}

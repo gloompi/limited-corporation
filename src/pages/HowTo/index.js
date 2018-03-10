@@ -31,7 +31,7 @@ class About extends Component{
               {entities.map(item => {
                 const {title, cover_pic, content} = item
                 return <li key={title} className={style.guide__item}>
-                  <div className={style.guide__pic_wrap}><img src={cover_pic} alt="pic"/></div>
+                  <div className={style.guide__pic_wrap}><img src={cover_pic.replace(/http/i, 'https')} alt="pic"/></div>
                   <div className={style.guide__content}>
                     <h3 className={style.guide__title}>{title}</h3>
                     <div className={style.guide__descr} dangerouslySetInnerHTML={createMarkup(content)}></div>

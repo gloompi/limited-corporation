@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes, { func } from 'prop-types'
 
 import style from './style'
+import {splitBy3} from '../../helpers'
 import kz from '../../assets/images/kz.gif'
 import ru from '../../assets/images/ru.gif'
 import br from '../../assets/images/br.gif'
@@ -25,7 +26,7 @@ function Statistic({holding_users, payoff_users, payedoff, holded, total}){
             </div>
             <div className={style.statistic__txt_wrap}>
               <span className={style.statistic__item_txt}>Депозитов</span>
-              <span className={style.statistic__item_txt}>{total}</span>
+              <span className={style.statistic__item_txt}>{splitBy3(total)}</span>
             </div>
           </li>
           <li className={style.statistic__item}>
@@ -34,7 +35,7 @@ function Statistic({holding_users, payoff_users, payedoff, holded, total}){
             </div>
             <div className={style.statistic__txt_wrap}>
               <span className={style.statistic__item_txt}>Инвесторов</span>
-              <span className={style.statistic__item_txt}>56700</span>
+              <span className={style.statistic__item_txt}>56 700</span>
             </div>  
           </li>
           <li className={style.statistic__item}>
@@ -43,7 +44,7 @@ function Statistic({holding_users, payoff_users, payedoff, holded, total}){
             </div>
             <div className={style.statistic__txt_wrap}>
               <span className={style.statistic__item_txt}>Инвестировано</span>
-              <span className={style.statistic__item_txt}>{holded} RUB</span>
+              <span className={style.statistic__item_txt}>{splitBy3(holded)} RUB</span>
             </div>  
           </li>
           <li className={style.statistic__item}>
@@ -52,7 +53,7 @@ function Statistic({holding_users, payoff_users, payedoff, holded, total}){
             </div>
             <div className={style.statistic__txt_wrap}>
               <span className={style.statistic__item_txt}>Выплачено</span>
-              <span className={style.statistic__item_txt}>{payedoff} RUB </span>
+              <span className={style.statistic__item_txt}>{splitBy3(payedoff)} RUB </span>
             </div>  
           </li>
         </ul>
