@@ -8,6 +8,7 @@ import Dash from '../../Icons/Dash'
 import Etherium from '../../Icons/Etherium'
 import Ripple from '../../Icons/Ripple'
 import Lite from '../../Icons/Lite'
+import Slider from '../Slider'
 
 class CoinNavigate extends Component{
   state = {
@@ -77,9 +78,7 @@ class CoinNavigate extends Component{
                     value={inputvalue} 
                     onChange={this.onChange} />
                   <i className={`fas fa-ruble-sign ${style.input__currency}`}></i>
-                  <a 
-                    className={style.input__refresh} 
-                    onClick={this.handleRefresh}><i className={`fab fa-first-order`}></i></a>
+                  <Slider handleSlide={this.handleSlide} />
                 </div>
               </label>
             </div>
@@ -119,7 +118,7 @@ class CoinNavigate extends Component{
     )
   }
 
-  handleRefresh = e => {
+  handleSlide = e => {
     e.preventDefault()
     const {amount_floor} = this.props
     this.setState({
@@ -128,8 +127,10 @@ class CoinNavigate extends Component{
   }
 
   onChange = e => {
+    if(!e.target.value.length) return this.setState({inputvalue: ''})
+    else if(isNaN(parseInt(e.target.value))) return
     this.setState({
-      inputvalue: e.target.value
+      inputvalue: parseInt(e.target.value)
     })
   }
 

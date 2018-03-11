@@ -12,7 +12,7 @@ class CoinForm extends Component{
     const {inputvalue} = this.state
     const {slug, title, percent, duration, amount_floor, amount_ceil, pay_off} = this.props.coin
     const percentPerDay = (percent - 100) / duration
-    const profit = inputvalue * percentPerDay * 0.01 * duration + ''
+    const profit = inputvalue * percentPerDay * 0.01 * duration
     const outputProfit = parseInt(inputvalue) + parseInt(profit) * 1
     return(
       <form action="" className={style.deposit__form_wrap}>
@@ -49,7 +49,7 @@ class CoinForm extends Component{
                   </li>
                   <li className={style.deposit__additional_item}>
                     <span>Начисленная прибыль (чистый доход)</span>
-                    <b>{profit.slice(0, profit.indexOf('.') + 2) || 0} р.</b>
+                    <b>{parseInt(profit) || 0} р.</b>
                   </li>
                   <li className={style.deposit__additional_item}>
                     <span>Сумма на выходе</span>
@@ -79,8 +79,10 @@ class CoinForm extends Component{
   }
 
   onChange = e => {
+    if(!e.target.value.length) return this.setState({inputvalue: ''})
+    else if(isNaN(parseInt(e.target.value))) return
     const {amount_ceil, amount_floor} = this.props
-    const {value} = e.target
+    const value = parseInt(e.target.value)
     if(value < amount_floor || value > amount_ceil) return
     this.setState({
       inputvalue: value
