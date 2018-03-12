@@ -5,7 +5,7 @@ import style from '../../../pages/Account/style.styl'
 
 function DepositsList(props){
   return(
-    <div className={style.section}>
+    <div className={`${style.section} ${style.account__section}`}>
       <div className={style.section__top}>
         <h3 className={style.section__title}>Список открытых и закрытых депозитов:</h3>
       </div>

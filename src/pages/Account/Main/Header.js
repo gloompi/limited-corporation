@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import style from '../../../pages/Account/style.styl'
+import style from '../style'
 import {logout} from '../../../ducks/auth'
 import Loader from '../../../components/Loader'
 
@@ -25,13 +25,13 @@ class Header extends Component{
 
   render(){
     const {accountPopUp, contactsPopUp} = this.state
-    const {user, loaded} = this.props
+    const {user, loaded, openContacts, closeContacts, openSettings} = this.props
     if(!loaded) return <Loader />
     const {first_name, username} = user
     return(
       <ul className={style.account__header_list}>
         <li className={style.account__header_item}>
-          <a href="" className={style.account__header_link}>
+          <a href="" onClick={openContacts} className={style.account__header_link}>
             <i className="fas fa-headphones"></i>
             <span>Контактный центр</span>
           </a>
@@ -68,10 +68,10 @@ class Header extends Component{
              </Link>
            </li>
            <li className={style.account__mnu_item}>
-             <Link to='/account/settings' className={style.account__mnu_link}>
+             <a href='' onClick={openSettings} className={style.account__mnu_link}>
               <i className="fas fa-cog"></i>
               <span>Настройки профайла</span>
-             </Link>
+             </a>
            </li>
            <li className={style.account__mnu_item}>
              <Link to='/account/logout' className={style.account__mnu_link} onClick={this.handleLogout}>

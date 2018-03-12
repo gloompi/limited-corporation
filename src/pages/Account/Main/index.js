@@ -5,17 +5,16 @@ import {renderRoutes} from 'react-router-config'
 
 import style from '../style.styl'
 import Header from './Header'
+import Footer from './Footer'
 
 class Main extends Component{
-  static propTypes = {
-  }
-
   render(){
-    const {route, history} = this.props
+    const {route, history, openSettings, openContacts, closeSettings, closeContacts} = this.props
     return(
       <div className={style.account__main}>
-        <Header history={history} />
+        <Header history={history} openSettings={openSettings} closeSettings={closeSettings} openContacts={openContacts} closeContacts={closeContacts} />
         {renderRoutes(route.routes)}
+        <Footer />
       </div>
     )
   }

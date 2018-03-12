@@ -15,7 +15,7 @@ class PayOffRequest extends Component{
         key={1}
         title='Создать заявку на вывод средств'
         pathName='Вывести деньги' />,
-      <div className={style.section__wrap}>
+      <div key={2} className={style.section__wrap}>
         <PayOffList />
       </div>
     ]

@@ -22,6 +22,7 @@ class SideBar extends Component{
 
   render(){
     const {activeNav} = this.state
+    const {openSettings, closeSettings} = this.props
     return(
       <div className={style.account__sidebar}>
         <Link to="/account" className={style.sidebar__logo}>
@@ -39,7 +40,7 @@ class SideBar extends Component{
             <i className="fas fa-sign-out-alt"></i>
             Выйти
           </Link>
-          <a href="" className={style.sidebar__setup_btn}>
+          <a href="" onClick={openSettings} className={style.sidebar__setup_btn}>
             <i className="fas fa-cog"></i>
             Настройки профайла
           </a>

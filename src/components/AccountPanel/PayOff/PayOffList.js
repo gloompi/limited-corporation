@@ -10,7 +10,7 @@ import Bit from '../../Icons/Bit'
 
 function PayOffList(props){
   return(
-    <div className={style.section}>
+    <div className={`${style.section} ${style.account__section}`}>
       <div className={style.section__top}>
         <h3 className={style.section__title}>Выберите платежную систему для вывода денежных средств:</h3>
       </div>

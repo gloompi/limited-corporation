@@ -5,6 +5,9 @@
   justify-content: space-between
   width: 100%
 
+.account__section
+  padding-top 0
+
 .account__sidebar
   position: fixed
   left: 0
@@ -13,6 +16,10 @@
   align-items: center
   flex-direction: column
   width: 17%
+
+/************************
+* SideBar
+*************************/
 
 .sidebar__logo
   display: flex
@@ -134,6 +141,10 @@
     color: $disable-txt
     margin-right 5px
     transition(.3s)
+
+/************************
+* Account
+*************************/
 
 .account__main
   position: absolute
@@ -492,6 +503,7 @@
 .statistic__list
   display flex
   flex-direction: column
+  width 100%
 
 .statistic__item
   display: flex
@@ -608,3 +620,84 @@
   text-align center
   background-color $red
   border-radius(5px)
+
+/************************
+* Footer
+*************************/
+
+.footer
+  Font(light)
+  display: flex
+  align-items: center
+  justify-content: space-between
+  font-size 12px
+  color: $txt
+  width 100%
+  height: 50px
+  margin auto 0 0
+  padding: 0 25px
+  border-top: 1px solid rgba($disable-txt, .3)
+
+.footer__list
+  display: flex
+  align-items: center
+
+.footer__item
+  margin-right 15px
+  &:last-child
+    margin-right 0
+  a
+    color: $txt
+
+
+/************************
+* Modals
+*************************/
+
+.modal__wrap
+  position: fixed
+  width 100%
+  height: 100vh
+  left: -9999px
+  top: 0
+  display flex
+  align-items: center
+  justify-content: center
+  background-color rgba($black, .3)
+  opacity: 0
+  transition(.3s opacity)
+  z-index: 1100
+  &.active
+    left: 0
+    opacity: 1
+
+.modal
+  position: relative
+  display flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  min-width 360px
+  min-height 200px
+  background-color $white
+  border-radius: 5px
+  box-shadow(0 3px 9px rgba(0, 0, 0, 0.5))
+
+.close__btn_x
+  position: absolute
+  top: 15px
+  right: 15px
+  color: $txt
+  font-size 20px
+  &:hover
+    color: $red
+
+.close__btn
+  padding: 5px 15px
+  color: $red
+  background-color: $white
+  border 1px solid rgba($red)
+  border-radius: 5px
+  &:hover
+    color: $white
+    background-color: $red
