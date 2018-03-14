@@ -39,6 +39,8 @@ class CoinNavigate extends Component{
       duration, 
       pay_off, 
       profits, 
+      amount_floor,
+      amount_ceil,
       handleChange} = this.props
     const {inputvalue} = this.state
     const realPercent = percent - 100
@@ -78,7 +80,11 @@ class CoinNavigate extends Component{
                     value={inputvalue} 
                     onChange={this.onChange} />
                   <i className={`fas fa-ruble-sign ${style.input__currency}`}></i>
-                  <Slider handleSlide={this.handleSlide} />
+                  <Slider 
+                    slug={slug}
+                    min={amount_floor} 
+                    max={amount_ceil} 
+                    handleSlide={this.handleSlide} />
                 </div>
               </label>
             </div>
@@ -95,7 +101,7 @@ class CoinNavigate extends Component{
                   <h4 className={style.info__item_title}>Получите прибыли</h4>
                   <i className="far fa-money-bill-alt"></i>
                 </div>
-                <span className={style.info__item_value}>{`${profit} RUB`}</span>
+                <span className={style.info__item_value}>{`${parseInt(profit)} RUB`}</span>
               </li>
               <li className={style.info__item}>
                 <div className={style.info__item_top}>
@@ -118,12 +124,8 @@ class CoinNavigate extends Component{
     )
   }
 
-  handleSlide = e => {
-    e.preventDefault()
-    const {amount_floor} = this.props
-    this.setState({
-      inputvalue: amount_floor
-    })
+  handleSlide = value => {
+    this.setState({inputvalue: value})
   }
 
   onChange = e => {

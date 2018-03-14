@@ -15,6 +15,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 # Create your models here.
 class CustomUser(AbstractUser):
   slug = models.SlugField()
+  email = models.EmailField(blank=False, unique=True)
   account_resource = models.FloatField(max_length=500000, null=True, default=0, verbose_name='Баланс')
 
   class Meta:

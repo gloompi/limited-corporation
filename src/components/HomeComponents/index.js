@@ -15,9 +15,9 @@ class HomeComponents extends Component{
   state = {
     payoff_users: [],
     holding_users: [],
-    total: 80190,
-    payedoff: 157781840,
-    holded: 531028490
+    total: 801,
+    payedoff: 157781,
+    holded: 531028
   }
 
   componentDidMount() {

@@ -114,6 +114,7 @@ const fetchAuthSaga = function * ({username, password, history}) {
     })
     history.push('/account')
   } catch (error) {
+    if(error.response.status == 400) alert('Введены неверные данные')
     yield put({
       type: FETCH_AUTH_ERROR,
       error
@@ -140,7 +141,7 @@ const fetchRegisterSaga = function * ({username, password, email, first_name, la
       username, password, history
     })
   } catch (error) {
-    console.log('register error---', error)
+    alert(error.response.request.responseText)
     yield put({
       type: FETCH_REGISTER_ERROR,
       error
@@ -176,6 +177,7 @@ const fetchUserSaga = function * ({user}) {
       payload: {response: response.data}
     })
   } catch (error) {
+    alert(error)
     yield put({
       type: FETCH_USER_ERROR,
       error

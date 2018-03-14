@@ -32,7 +32,7 @@ class NewsModal extends Component{
       <div className={style.section}>
         <div className={`${style.container} ${style.section__container}`}>
           <h2 className={style.newsitem__title}>{title}</h2>
-          <div className={style.newsitem__pic_wrap}><img src={cover_picture} alt="cover pic"/></div>
+          <div className={style.newsitem__pic_wrap}><img src={cover_picture.replace(/http/i, 'https')} alt="cover pic"/></div>
           <div className={style.newsitem__pic_content} dangerouslySetInnerHTML={createMarkup(content)}></div>
           <div className={style.newsitem__date}>{date_added.slice(0, date_added.indexOf('T'))}</div>
         </div>

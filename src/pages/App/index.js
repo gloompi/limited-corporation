@@ -33,6 +33,7 @@ class App extends Component {
     const {token} = this.state
     return <div className={style.app}>
       <Helmet>
+        <title>Cryptoinvest Systems</title>
         <link rel="icon" type="image/ico" sizes="32x32" href={icon} />
         <link rel="icon" type="image/ico" sizes="16x16" href={icon} />
       </Helmet>

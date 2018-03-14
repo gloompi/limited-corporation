@@ -1,27 +1,25 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import ReactSlider from 'react-slider'
 
 import style from './style'
 
 class Slider extends Component{
-  static propTypes = {
-  }
-
   render(){
-    const {handleSlide} = this.props
+    const {handleSlide, max, min} = this.props
     return(
-      <a 
-        className={style.input__refresh} 
-        onDrag={this.onDrag}
-        onDragEnd={(e) => console.log('drag end', e.target)}
-        onDragStart={(e) => console.log('drag start', e.target)}>
-          <i className={`fab fa-first-order`} />
-      </a>
+      <ReactSlider 
+        className={style.slider} 
+        min={min}
+        max={max}
+        onChange={handleSlide}
+        withBars style={{width: '90%'}}>
+        <span 
+          className={style.input__refresh} >
+            <i className={`fab fa-first-order`} />
+        </span>
+      </ReactSlider>
     )
-  }
-
-  onDrag = e => {
-    console.log(e.target)
   }
 }
 

@@ -35,7 +35,7 @@ function Statistic({holding_users, payoff_users, payedoff, holded, total}){
             </div>
             <div className={style.statistic__txt_wrap}>
               <span className={style.statistic__item_txt}>Инвесторов</span>
-              <span className={style.statistic__item_txt}>56 700</span>
+              <span className={style.statistic__item_txt}>56</span>
             </div>  
           </li>
           <li className={style.statistic__item}>
