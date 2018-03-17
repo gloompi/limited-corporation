@@ -27,10 +27,9 @@ class Contacts extends Component{
                   <div>
                     <h3 className={style.contacts__item_title}>Арендуемый офис:</h3>
                     <span className={style.contacts__item_info}>
-                      <p>Россия, 123100, Москва,</p>
-                      <p>ММДЦ "Москва-Сити",</p>
-                      <p>Деловой центр "ИМПЕРИЯ", этаж 50, офис B5</p>
-                      <p>Пресненская набережная, д.6, строение 2</p>
+                      <p>Россия, 129344, Москва,</p>
+                      <p>ул. Искры, дом 31,</p>
+                      <p>строение 1, офис 709А</p>
                     </span>
                   </div>
                 </div>

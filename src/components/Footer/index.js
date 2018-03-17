@@ -112,7 +112,7 @@ class Footer extends Component{
           <div className={style.footer__bottom}>
             <div>
               <p>© 2018 Cryproinvest.systems. Все права защищены.</p>
-              <p>ООО «ЛТД-КОРПОРАЦИЯ» ОГРН: 1177746844560 ИНН: 7720390290 </p>
+              <p>ООО «Дабл Ю коммуникэйшен» ОГРН: 1127746328731 ИНН: 7716715161</p>
             </div>
             <nav className={style.mnu__list}>
               <li className={style.mnu__item}>

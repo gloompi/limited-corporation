@@ -8,7 +8,7 @@ import ru from '../../assets/images/ru.gif'
 import br from '../../assets/images/br.gif'
 import by from '../../assets/images/by.gif'
 
-function Statistic({holding_users, payoff_users, payedoff, holded, total}){
+function Statistic({holding_users, investors, payoff_users, payedoff, holded, total}){
   let today = new Date().toISOString()
   today = today.slice(0, today.indexOf('T'))
   return(
@@ -35,7 +35,7 @@ function Statistic({holding_users, payoff_users, payedoff, holded, total}){
             </div>
             <div className={style.statistic__txt_wrap}>
               <span className={style.statistic__item_txt}>Инвесторов</span>
-              <span className={style.statistic__item_txt}>56</span>
+              <span className={style.statistic__item_txt}>{investors}</span>
             </div>  
           </li>
           <li className={style.statistic__item}>

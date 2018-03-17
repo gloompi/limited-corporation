@@ -8,7 +8,8 @@ import {createMarkup} from '../../helpers'
 import Loader from '../../components/Loader'
 
 class ForPartners extends Component{
-  static propTypes = {
+  state = {
+    active: 1
   }
 
   componentDidMount() {
@@ -18,6 +19,7 @@ class ForPartners extends Component{
 
   render(){
     const {entities, loaded} = this.props
+    const {active} = this.state
     if(!loaded) return <Loader />
     return(
       <div className={style.wrapper}>
@@ -29,9 +31,9 @@ class ForPartners extends Component{
             <h2 className={style.section__title}>Вопрос - Ответ</h2>
             <ul className={style.faq__list}>
               {entities.map(item => {
-                const {question, answer} = item
-                return <li key={question} className={style.faq__item}>
-                  <span className={style.faq__link}><h3 className={style.question}>{question}</h3></span>
+                const {id, question, answer} = item
+                return <li key={question} className={`${style.faq__item} ${active == id ? style.active : null}`}>
+                  <a className={style.faq__link} onClick={this.handleChange(id)}><h3 className={style.question}>{question}</h3></a>
                   <div className={style.answer}>{answer}</div>
                 </li>
               })}
@@ -40,6 +42,12 @@ class ForPartners extends Component{
         </section>
       </div>
     )
+  }
+
+  handleChange = (id) => e => {
+    e.preventDefault()
+    
+    this.setState({active: id})
   }
 }
 

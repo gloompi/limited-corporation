@@ -15,7 +15,7 @@ class FaqSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = FaqModel
-    fields = ('question', 'answer')
+    fields = ('id', 'question', 'answer')
 
 class ForPartnersSerializer(serializers.ModelSerializer):
 

@@ -15,9 +15,10 @@ class HomeComponents extends Component{
   state = {
     payoff_users: [],
     holding_users: [],
-    total: 801,
-    payedoff: 157781,
-    holded: 531028
+    investors: 894,
+    total: 1352,
+    payedoff: 9475145,
+    holded: 18930609
   }
 
   componentDidMount() {
@@ -29,8 +30,9 @@ class HomeComponents extends Component{
       payoff_users.push(user)
       holding_users.push(hold_user)
     }
+    
     this.setState({payoff_users, holding_users})
-
+    setInterval(this.setState({investors: this.state.investors + 1}), 5000)
     setInterval(loop.bind(this), 5000)
 
     function loop(){
@@ -55,7 +57,7 @@ class HomeComponents extends Component{
   }
 
   render(){
-    const {holding_users, payoff_users, payedoff, holded, total} = this.state
+    const {holding_users, payoff_users, investors, payedoff, holded, total} = this.state
     return(
       <div>
         <About />
@@ -63,6 +65,7 @@ class HomeComponents extends Component{
           total={total} 
           holded={holded} 
           payedoff={payedoff} 
+          investors={investors}
           holding_users={holding_users} 
           payoff_users={payoff_users} />
         <PartnerProgram />

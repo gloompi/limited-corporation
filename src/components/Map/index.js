@@ -14,10 +14,8 @@ export default class MapComponent extends Component {
   }
   getMap = () => {
     const mapState = {
-      center: [
-        32.37302558666005, 119.42665999999997
-      ],
-      zoom: 12,
+      center: [55.86375256886657,37.65080999999997],
+      zoom: 15,
     }
     return <YMaps style={{width: "100%", height: "100%"}}>
       <Map 
@@ -27,7 +25,7 @@ export default class MapComponent extends Component {
         instanceRef = {ref => { ref && ref.behaviors.disable('scrollZoom'); }}>
         <Placemark
           geometry={{
-            coordinates: [32.37302558666005,119.42665999999997]
+            coordinates: [55.86375256886657,37.65080999999997]
           }}
           properties={{
             hintContent: 'Собственный значок метки',

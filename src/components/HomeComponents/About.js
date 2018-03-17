@@ -11,7 +11,7 @@ function About(props){
           <img src={require('../../assets/images/logo-pic.png')} alt="icon"/>
         </div>
         <h2 className={style.section__title}>О компании</h2>
-        <span className={style.section__longtitle}>Мы - инновационная платформа</span>
+        <span className={style.section__longtitle}>Мы - инновационная платформа, Посмотри видео как это работает.</span>
         <video className={style.about__video} src={require('../../assets/video/video.mp4')} controls></video>
       </div>
     </section>

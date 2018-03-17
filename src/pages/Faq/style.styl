@@ -20,6 +20,11 @@
   border-bottom 1px solid rgba($disable-txt, .3)
   &:last-child
     border-bottom: none
+  &.active
+    .answer
+      position relative
+      opacity 1
+      left: 0
 
 .faq__link
   display: flex
@@ -36,6 +41,10 @@
 
 .answer
   Font(light)
+  position: absolute
   font-size 14px
   color: $txt
+  left: -9999px
+  opacity 0
+  transition(.3s opacity)
   

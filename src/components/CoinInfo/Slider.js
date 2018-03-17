@@ -5,14 +5,24 @@ import ReactSlider from 'react-slider'
 import style from './style'
 
 class Slider extends Component{
+  state = {
+    value: 0
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.slug !== nextProps.slug) this.setState({value: 0})
+  }
+
   render(){
-    const {handleSlide, max, min} = this.props
+    const {max, min} = this.props
+    const {value} = this.state
     return(
       <ReactSlider 
         className={style.slider} 
         min={min}
         max={max}
-        onChange={handleSlide}
+        value={value}
+        onChange={this.handleChange}
         withBars style={{width: '90%'}}>
         <span 
           className={style.input__refresh} >
@@ -20,6 +30,13 @@ class Slider extends Component{
         </span>
       </ReactSlider>
     )
+  }
+
+  handleChange = (value) => {
+    const {handleSlide} = this.props
+    
+    this.setState({value})
+    handleSlide(value)
   }
 }
 
