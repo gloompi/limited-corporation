@@ -4,7 +4,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from news.models import NewsModel
-from about.models import AboutModel
+from about.models import AboutModel, DocumentsModel
 from how_to_start.models import HowToStartModel
 from for_investors.models import ForInvestorsModel
 from for_partners.models import ForPartnersModel
@@ -12,6 +12,7 @@ from faq.models import FaqModel
 from take_access.models import CustomUser
 from deposits.models import DepositsModel, ProfitModel
 from .serializers import (
+  DocumentsSerializer,
   FaqSerializer,
   ForPartnersSerializer,
   ForInvestorsSerializer,
@@ -40,6 +41,10 @@ class ForInvestorsView(generics.ListAPIView):
 class HowToStartView(generics.ListAPIView):
   queryset = HowToStartModel.objects.all()
   serializer_class = HowToStartSerializer
+
+class DocumentsView(viewsets.ModelViewSet):
+  serializer_class = DocumentsSerializer
+  queryset = DocumentsModel.objects.all()
 
 class AboutView(generics.RetrieveAPIView):
   serializer_class = AboutSerializer

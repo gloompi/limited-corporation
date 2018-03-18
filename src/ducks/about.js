@@ -41,7 +41,7 @@ export const fetchAbout = () => {
 
 const fetchAboutSaga = function * () {
   try {
-    const response = yield call(axios, {
+    const content = yield call(axios, {
       url: `${api}/about/content`,
       method: 'get',
       headers: {
@@ -49,9 +49,21 @@ const fetchAboutSaga = function * () {
         'Content-Type': 'application/json',
       },
     })
+    const documents = yield call(axios, {
+      url: `${api}/documents`,
+      method: 'get',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    const data = {
+      documents: documents.data.results,
+      content: content.data
+    }
     yield put({
       type: FETCH_ABOUT_SUCCESS,
-      payload: {response: response.data}
+      payload: {response: data}
     })
   } catch (error) {
     yield put({

@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from .views import (
+  DocumentsView,
   FaqView,
   ForPartnersView,
   ForInvestorsView,
@@ -17,6 +18,7 @@ from .views import (
 router = DefaultRouter()
 router.register(r'news', NewsItemViewSet)
 router.register(r'profits', ProfitViewSet)
+router.register(r'documents', DocumentsView)
 router.register(r'deposits', DepositsViewSet, base_name='deposits')
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

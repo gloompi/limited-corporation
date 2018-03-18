@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from news.models import NewsModel
-from about.models import AboutModel
+from about.models import AboutModel, DocumentsModel
 from for_investors.models import ForInvestorsModel
 from for_partners.models import ForPartnersModel
 from how_to_start.models import HowToStartModel
@@ -34,6 +34,12 @@ class HowToStartSerializer(serializers.ModelSerializer):
   class Meta:
     model = HowToStartModel
     fields = ('title', 'cover_pic', 'content')
+
+class DocumentsSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = DocumentsModel
+    fields = ('id', 'img')
 
 class AboutSerializer(serializers.ModelSerializer):
   
