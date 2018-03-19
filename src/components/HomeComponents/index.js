@@ -32,10 +32,13 @@ class HomeComponents extends Component{
     }
     
     this.setState({payoff_users, holding_users})
-    setInterval(this.setState({investors: this.state.investors + 1}), 5000)
-    setInterval(loop.bind(this), 5000)
+    setInterval(() => {
+      return this.setState({investors: this.state.investors + 1})
+    }, 20000)
+    setInterval(loopPayoff.bind(this), 15000)
+    setInterval(loopHolding.bind(this), 5000)
 
-    function loop(){
+    function loopPayoff(){
       setTimeout(() => {
         let sum = Math.ceil(Math.random() * 3000) + 100 + '0'
         let user = {name: name(), sum, country: Math.ceil(Math.random() * 4)}
@@ -44,11 +47,12 @@ class HomeComponents extends Component{
         payoff_users.unshift(user)
         this.setState({payoff_users, total: this.state.total - 1, payedoff: this.state.payedoff + parseInt(sum)})
       }, Math.random() * 5000)
-  
+    }
+    function loopHolding(){
       setTimeout(() => {
         let sum = Math.ceil(Math.random() * 3000) + 100 + '0'
         let user = {name: name(), sum, country: Math.ceil(Math.random() * 4)}
-  
+
         holding_users.pop()
         holding_users.unshift(user)
         this.setState({holding_users, total: this.state.total + 1, holded: this.state.holded + parseInt(sum)})
