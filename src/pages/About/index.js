@@ -45,7 +45,7 @@ class About extends Component{
                   const {id, img} = item
                   return <li key={id} className={`${style.documents__item}`}>
                     <a href="" onClick={this.handleOpen(img)} className={style.documents__link}>
-                      <img src={img} />
+                      <img src={img && img.replace(/http/i, 'https')} />
                     </a>
                   </li>
                 })}

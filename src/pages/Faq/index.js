@@ -21,6 +21,7 @@ class ForPartners extends Component{
     const {entities, loaded} = this.props
     const {active} = this.state
     if(!loaded) return <Loader />
+    this.setState({active: entities.length - 1})
     return(
       <div className={style.wrapper}>
         <section className={style.section}>
