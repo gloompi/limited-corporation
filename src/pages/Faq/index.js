@@ -9,7 +9,7 @@ import Loader from '../../components/Loader'
 
 class ForPartners extends Component{
   state = {
-    active: 8
+    active: 0
   }
 
   componentDidMount() {
