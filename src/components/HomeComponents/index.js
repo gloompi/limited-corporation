@@ -7,11 +7,9 @@ import Statistic from './Statistic'
 import PartnerProgram from './PartnerProgram'
 import ProfitPath from './ProfitPath'
 import {name} from '../../nicknames'
+import {investors, total, payedoff, holded} from '../../../configClient'
 
 class HomeComponents extends Component{
-  static propTypes = {
-  }
-
   state = {
     payoff_users: [],
     holding_users: [],
@@ -24,6 +22,20 @@ class HomeComponents extends Component{
   componentDidMount() {
     const payoff_users = []
     const holding_users = []
+    const localTotal = localStorage.getItem(total)
+    const localInvestors = localStorage.getItem(investors)
+    const localPayedoff = localStorage.getItem(payedoff)
+    const localHolded = localStorage.getItem(holded)
+
+    if(localHolded) this.setState({holded: parseInt(localHolded)})
+    else localStorage.setItem(holded, this.state.holded)
+    if(localInvestors) this.setState({investors: parseInt(localInvestors)})
+    else localStorage.setItem(investors, this.state.investors)
+    if(localPayedoff) this.setState({payedoff: parseInt(localPayedoff)})
+    else localStorage.setItem(payedoff, this.state.payedoff)
+    if(localTotal) this.setState({total: parseInt(localTotal)})
+    else localStorage.setItem(total, this.state.total)
+
     for(let i=0; i<6; i++){
       let user = {name: name(), sum: Math.ceil(Math.random() * 3000) + 100 + '0', country: Math.ceil(Math.random() * 4)}
       let hold_user = {name: name(), sum: Math.ceil(Math.random() * 3000) + 100 + '0', country: Math.ceil(Math.random() * 4)}
@@ -33,7 +45,8 @@ class HomeComponents extends Component{
     
     this.setState({payoff_users, holding_users})
     setInterval(() => {
-      return this.setState({investors: this.state.investors + 1})
+      localStorage.setItem(investors, parseInt(this.state.investors) + 1)
+      return this.setState({investors: parseInt(this.state.investors) + 1})
     }, 20000)
     setInterval(loopPayoff.bind(this), 15000)
     setInterval(loopHolding.bind(this), 5000)
@@ -45,7 +58,9 @@ class HomeComponents extends Component{
   
         payoff_users.pop()
         payoff_users.unshift(user)
-        this.setState({payoff_users, total: this.state.total - 1, payedoff: this.state.payedoff + parseInt(sum)})
+        localStorage.setItem(total, parseInt(this.state.total) - 1)
+        localStorage.setItem(payedoff, parseInt(this.state.payedoff) + parseInt(sum))
+        this.setState({payoff_users, total: parseInt(this.state.total) - 1, payedoff: parseInt(this.state.payedoff) + parseInt(sum)})
       }, Math.random() * 5000)
     }
     function loopHolding(){
@@ -55,7 +70,9 @@ class HomeComponents extends Component{
 
         holding_users.pop()
         holding_users.unshift(user)
-        this.setState({holding_users, total: this.state.total + 1, holded: this.state.holded + parseInt(sum)})
+        localStorage.setItem(total, parseInt(this.state.total) + 1)
+        localStorage.setItem(holded, parseInt(this.state.holded) + parseInt(sum))
+        this.setState({holding_users, total: parseInt(this.state.total) + 1, holded: parseInt(this.state.holded) + parseInt(sum)})
       }, Math.random() * 10000)
     }
   }
