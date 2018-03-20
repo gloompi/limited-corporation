@@ -9,7 +9,7 @@ import Loader from '../../components/Loader'
 
 class ForPartners extends Component{
   state = {
-    active: 1
+    active: 8
   }
 
   componentDidMount() {
@@ -21,7 +21,6 @@ class ForPartners extends Component{
     const {entities, loaded} = this.props
     const {active} = this.state
     if(!loaded) return <Loader />
-    this.setState({active: entities.length + 1})
     return(
       <div className={style.wrapper}>
         <section className={style.section}>

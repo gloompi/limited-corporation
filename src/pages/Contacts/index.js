@@ -43,10 +43,10 @@ class Contacts extends Component{
                     </span>
                   </div>
                 </div>
-                <div className={style.footer__top_contacts}>
+                <a href="mailto: support@cryptoinvest.systems" className={style.footer__top_contacts}>
                   <span>Оффлайн поддержка</span>
-                  <b>support@ltd-corporation.org</b>
-                </div>
+                  <b>support@cryptoinvest.systems</b>
+                </a>
               </div>
               <form action="" className={style.contacts__form}>
                 <h3 className={style.contacts__form_title}>Форма обратной связи</h3>

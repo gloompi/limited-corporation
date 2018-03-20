@@ -23,11 +23,11 @@ function Header({loggedIn, history, token}){
               <SocialList />
             </li>
             <li className={style.header__item}>
-              <a href="" className={style.help__btn}>
+              <a href="mailto: support@cryptoinvest.systems" className={style.help__btn}>
                 <span>Оффлайн поддержка</span>
-                <span>support@ltd-corporation.org</span>
+                <span>support@cryptoinvest.systems</span>
               </a>
-              <a href="" className={style.help__btn}>
+              <a href="tel: 8-800-511-03-82" className={style.help__btn}>
                 <span>Центр поддержки</span>
                 <span>8-800-511-03-82</span>
               </a>

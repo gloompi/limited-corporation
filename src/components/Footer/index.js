@@ -65,11 +65,11 @@ class Footer extends Component{
               <h2 className={style.footer__top_title}>Обратная связь</h2>
               <ul className={style.footer__news_list}>
                 <li className={style.footer__news_item}>
-                  <a href="mailto: support@ltd-corporation.org">
+                  <a href="mailto: support@cryptoinvest.systems">
                     <div className={style.footer__top_icon_wrap}><i className="fas fa-envelope"></i></div>
                     <div className={style.footer__top_contacts}>
                       <span>Оффлайн поддержка</span>
-                      <b>support@ltd-corporation.org</b>
+                      <b>support@cryptoinvest.systems</b>
                     </div>
                   </a>
                 </li>
