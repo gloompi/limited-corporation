@@ -35,6 +35,7 @@ export default (state = new ReducerRecord, action) => {
       return state
         .set('loaded', false)
         .set('userLoaded', false)
+        .set('user', {})
         .set('error', false)
 
     case FETCH_AUTH_SUCCESS:
@@ -49,7 +50,8 @@ export default (state = new ReducerRecord, action) => {
         
     case LOGOUT_SUCCESS:
       return state
-        .set('user', null)
+        .set('userLoaded', false)
+        .set('user', {})
 
     case FETCH_AUTH_ERROR:
       return state

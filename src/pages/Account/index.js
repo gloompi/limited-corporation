@@ -22,9 +22,9 @@ class Account extends Component{
   }
 
   componentDidMount() {
-    const {fetchUser} = this.props
+    const {fetchUser, loaded} = this.props
     const userName = localStorage.getItem('userName')
-    fetchUser(userName)
+    if(!loaded) fetchUser(userName)
   }
 
   render(){
@@ -79,5 +79,5 @@ class Account extends Component{
 }
 
 export default connect(state => ({
-  loading: state.auth.userLoading
+  loaded: state.auth.userLoaded
 }), {fetchUser})(requireAuth(Account))

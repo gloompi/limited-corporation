@@ -472,6 +472,14 @@
   flex-direction: column
   width 100%
   padding: 25px
+  &.row
+    flex-direction row
+    align-items: flex-start
+    justify-content space-between
+    .section
+      width 40%
+      &:last-child
+        width 58%
 
 .section
   width: 100%
@@ -528,6 +536,13 @@
   display: flex
   justify-content: center
   width 70px
+
+.centered
+  text-align: center
+  margin 0 auto
+
+.red
+  color $red
 
 .statistic__info_title
   font-size 16px
@@ -621,6 +636,32 @@
   background-color $red
   border-radius(5px)
 
+.partners__link
+  Font(light)
+  font-size 18px
+  text-align center
+  width 100%
+  height 60px
+  color $red
+  border none
+  background-color rgba($orange-light, .2)
+  margin: 15px 0
+
+.copy__to_clipboard
+  Font(medium)
+  font-size 14px
+  padding: 7px 15px
+  color $white
+  margin-bottom 50px
+  background-color rgba($orange-light)
+  border 1px solid transparent
+  border-radius(5px)
+  svg
+    margin-right 7px
+  &:hover
+    color $orange
+    border-color $orange-light
+    background-color $white
 /************************
 * Footer
 *************************/
@@ -660,11 +701,10 @@
   height: 100vh
   left: -9999px
   top: 0
-  display flex
-  align-items: center
-  justify-content: center
   background-color rgba($black, .3)
   opacity: 0
+  padding: 25px 0
+  overflow-y: scroll
   transition(.3s opacity)
   z-index: 1100
   &.active
@@ -678,10 +718,198 @@
   justify-content: center
   flex-direction: column
   min-width 360px
+  max-width 60%
   min-height 200px
   background-color $white
   border-radius: 5px
+  margin 25px auto
   box-shadow(0 3px 9px rgba(0, 0, 0, 0.5))
+
+.modal__header
+  font-size 20px
+  font-weight normal
+  display flex
+  align-items: center
+  height 60px
+  width 100%
+  padding-left 25px
+  color $txt
+  border-bottom 1px solid rgba($disable-txt, .4)
+  svg
+    margin-right 10px
+  &.blue
+    color $white
+    background-color: $red
+
+.modal__container
+  display flex
+  align-items center
+  flex-direction column
+  width 100%
+  min-height 250px
+  padding: 15px
+  border-bottom 1px solid rgba($disable-txt, .4)
+  &.contacts
+    flex-direction row
+    align-items: flex-start
+    justify-content space-between
+
+.modal__top
+  display flex
+  align-items center
+  flex-direction: column
+  width 100%
+  padding: 25px 0 50px
+  border-bottom 1px solid rgba($disable-txt, .4)
+
+.user__pic_wrap
+  display flex
+  align-items center
+  justify-content center
+  width 100px
+  height 100px
+  padding: 2px
+  background-color #fff
+  border: 2px solid $red
+  border-radius(50%)
+  overflow hidden
+  div
+    display flex
+    align-items: center
+    justify-content center
+    width 100%
+    height 100%
+    border-radius: 50%
+    background-color $red
+  svg
+    color $white
+    font-size 60px
+
+.user_name
+  font-size 20px
+  color $orange-light
+  margin: 10px 0
+
+.user_identificator
+  font-size 14px
+  color $disable-txt
+
+.modal__info
+  display flex
+  align-items: flex-start
+  justify-content flex-start
+  width 100%
+  min-height 100px
+  padding: 50px
+  border-bottom 1px solid rgba($disable-txt, .4)
+  &:last-child
+    border-bottom none
+  svg
+    font-size 25px
+    color $red
+    margin-top 10px
+    margin-right 25px
+
+.modal__info_txt
+  display flex
+  align-items flex-start
+  flex-direction: column
+  max-width 80%
+
+.modal__info_title
+  font-size 18px
+  color $red
+  margin-bottom 10px
+
+.modal__info_descr
+  font-size 14px
+  color $txt
+  margin-bottom 10px
+
+.modal__info_link
+  display flex
+  align-items: center
+  height 40px
+  color $txt
+  font-size 14px
+  padding: 0 25px
+  margin-bottom 25px
+  border: 1px solid $disable-txt
+  border-radius(5px)
+  svg
+    font-size 14px
+    color $txt
+    margin-right 5px
+    margin-bottom 10px
+    transition(.3s)
+  &:hover
+    color $red
+    svg
+      color $red
+
+.info__window
+  position: absolute
+  left 9999px
+  width 100%
+  padding: 25px
+  margin-top: 25px
+  color $white
+  background-color rgba($red, .7)
+  opacity 0
+  transition(.3s opacity)
+  &.active
+    position relative
+    left: 0
+    opacity 1
+  h3
+    font-size 18px
+    color $white
+    margin-bottom 15px
+  span
+    color $white
+    font-size 14px
+  ul
+    position relative
+    padding-left 15px
+  li
+    position relative
+    color $white
+    font-size 14px
+    margin-bottom 15px
+    &:before
+      content: ">"
+      position: absolute
+      left -15px
+      top 50%
+      color $red
+      transform: translateY(-50%)
+
+.modal__list
+  display flex
+  align-items: flex-start
+  flex-direction column
+  width 50%
+  .title
+    margin-bottom 25px
+
+.modal__item
+  margin-bottom 25px
+  &:last-child
+    margin-bottom 0
+
+.modal__link
+  display flex
+  align-items: center
+  padding-right 50px
+  img 
+    width 50px
+    margin-right 15px
+  div
+    display flex
+    align-items flex-start
+    flex-direction column
+  .link
+    color $red
 
 .close__btn_x
   position: absolute
@@ -691,6 +919,9 @@
   font-size 20px
   &:hover
     color: $red
+  &.red
+    &:hover
+      color $white
 
 .close__btn
   padding: 5px 15px
@@ -698,6 +929,7 @@
   background-color: $white
   border 1px solid rgba($red)
   border-radius: 5px
+  margin: 15px 0
   &:hover
     color: $white
     background-color: $red

@@ -1,10 +1,8 @@
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleWare from 'redux-saga'
-import {Map, Record} from 'immutable'
 
 import createReducer from './reducers/index'
 import rootSaga from './reducers/saga'
-import history from './history'
 
 const configureStore = (initialState) => {
   const sagaMiddleWare = createSagaMiddleWare()

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from rest_framework import viewsets, mixins, generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
@@ -77,6 +78,18 @@ class CreateUserView(generics.CreateAPIView):
   queryset = CustomUser.objects.all()
   serializer_class = CreateUserSerializer
   lookup_field = 'username'
+
+  def perform_create(self, serializer, **kwargs):
+    user = serializer.save()
+    try:
+      first_name = str(self.request.data['first_name'])
+      last_name = str(self.request.data['last_name'])
+    except:
+      first_name = ''
+      last_name = ''
+    user.first_name = first_name
+    user.last_name = last_name
+    user.save()
 
 class UserView(generics.RetrieveUpdateDestroyAPIView):
   permission_classes = (IsAuthenticated, )

@@ -15,6 +15,8 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 # Create your models here.
 class CustomUser(AbstractUser):
   slug = models.SlugField()
+  first_name = models.CharField(max_length=50, verbose_name="Имя")
+  last_name = models.CharField(max_length=50, verbose_name="Фамилия")
   email = models.EmailField(blank=False, unique=True)
   account_resource = models.FloatField(max_length=500000, null=True, default=0, verbose_name='Баланс')
 

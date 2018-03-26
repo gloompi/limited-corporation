@@ -50,12 +50,6 @@ class Header extends Component{
              </Link>
            </li>
            <li className={style.account__mnu_item}>
-             <Link to='/account/deposit-list' className={style.account__mnu_link}>
-              <i className="fas fa-credit-card"></i>
-              <span>Пополнить баланс</span>
-             </Link>
-           </li>
-           <li className={style.account__mnu_item}>
              <Link to='/account/create-payoff-request' className={style.account__mnu_link}>
               <i className="far fa-credit-card"></i>
               <span>Вывести средства</span>
