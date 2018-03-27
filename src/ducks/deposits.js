@@ -2,7 +2,7 @@ import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 
-import {appName, jwtSecretName, api} from '../../configClient'
+import {appName, jwtSecretName, merchant} from '../../configClient'
 
 const ReducerRecord = Record({
   entities: [],
@@ -50,14 +50,16 @@ export const fetchMerchant = (data) => ({
 export const fetchMerchantSaga = function * ({data}) {
   try {
     const response = yield call(axios, {
-      url: `https://f-change.biz/obmen/get_merchant_cources/cryptoinvest`,
+      url: `${merchant}/obmen/get_merchant_cources/cryptoinvest`,
       method: 'get',
       crossDomain: true,
       headers: {
         'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
     })
+    console.log('response ---', response)
     yield put({
       type: FETCH_MERCHANT_SUCCESS,
       payload: {response: response.data}

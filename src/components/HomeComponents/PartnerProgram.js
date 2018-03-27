@@ -20,7 +20,7 @@ function PartnerProgram(props){
           <p>Дополнительным заработком на платформе является 3-х-уровневая партнерская программа. Приглашая новых участников, зарабатывайте до 5% от их вкладов. При правильном подходе - это отличная возможность получать пассивную прибыль не вкладывая собственные средства.</p>
         </div>
         <div className={style.partner__btns_wrap}>
-          <Link to='/account' className={`${style.partner__btn} ${style.red}`}>Стать партнером</Link>
+          <Link to='/account/partner-links' className={`${style.partner__btn} ${style.red}`}>Стать партнером</Link>
         </div>
         <div className={style.partner__info_wrap}>
           <div className={style.partner__info_container}>
