@@ -8,6 +8,8 @@ import {saga as forInvestSaga} from '../ducks/forInvestors'
 import {saga as forPartnersSaga} from '../ducks/forPartners'
 import {saga as faqSaga} from '../ducks/faq'
 import {saga as depositSaga} from '../ducks/deposits'
+import {saga as payoffSaga} from '../ducks/pay_off'
+import {saga as partnersSaga} from '../ducks/partners'
 import {all} from 'redux-saga/effects'
 
 export default function * rootSaga() {
@@ -23,6 +25,8 @@ export default function * rootSaga() {
       forPartnersSaga(),
       faqSaga(),
       depositSaga(),
+      payoffSaga(),
+      partnersSaga(),
     ])
   } catch (error) {
     console.log('root saga---', error)

@@ -26,7 +26,7 @@ SECRET_KEY = 'sy$6f()1$47cba9wx6rzr20ds3%odx@k!1)w9q_g_==p59+z0k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'cryptoinvest.systems', '88.85.81.121', '0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'how_to_start',
     'for_investors',
     'for_partners',
-    'faq'
+    'faq',
+    'pay_off_requests'
 ]
 
 MIDDLEWARE = [
@@ -188,11 +189,10 @@ REST_FRAMEWORK = {
 }
 # request response settings
 CORS_ORIGIN_WHITELIST = (
+    '*',
+    '127.0.0.1',
     'localhost:3000',
-    'localhost', 
-    'cryptoinvest.systems', 
-    '88.85.81.121',
-    '127.0.0.1'
+    'localhost'
 )
 # CKEDITOR SETTINGS
 

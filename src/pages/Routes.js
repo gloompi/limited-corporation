@@ -73,6 +73,10 @@ export default [
         exact: true
       },
       {
+        component: UniversalComponent('ReferalPage'),
+        path: '/ref/:username'
+      },
+      {
         component: UniversalComponent('SignIn'),
         path: '/sign-in'
       },
@@ -116,6 +120,14 @@ export default [
       {
         component: UniversalComponent('NewsModal'),
         path: '/news/:slug'
+      },
+      {
+        component: UniversalComponent('PaymentSuccess'),
+        path: '/payment-success'
+      },
+      {
+        component: UniversalComponent('PaymentFail'),
+        path: '/payment-fail'
       }
     ]
   }

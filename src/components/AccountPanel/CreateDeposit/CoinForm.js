@@ -4,11 +4,13 @@ import {connect} from 'react-redux'
 
 import style from '../../../pages/Account/style.styl'
 import {fetchMerchant} from '../../../ducks/deposits'
+import ModalForm from './ModalForm'
 import Loader from '../../Loader'
 
 class CoinForm extends Component{
   state = {
-    inputvalue: ''
+    inputvalue: '',
+    modal: false
   }
 
   componentDidMount() {
@@ -17,13 +19,14 @@ class CoinForm extends Component{
   }
 
   render(){
-    const {entities, loaded, error} = this.props
-    const {inputvalue} = this.state
-    const {slug, title, percent, duration, amount_floor, amount_ceil, pay_off} = this.props.coin
+    const {user, entities, loaded, error} = this.props
+    const {inputvalue, modal} = this.state
+    const {id, slug, title, percent, duration, amount_floor, amount_ceil, pay_off} = this.props.coin
     const percentPerDay = (percent - 100) / duration
     const profit = inputvalue * percentPerDay * 0.01 * duration
     const outputProfit = parseInt(inputvalue) + parseInt(profit) * 1
-    console.log(entities)
+    if(!loaded) return <Loader />
+    if(error) return <h1>Не удалось загрузить данные, попробуйте перезагрузить страницу</h1>
     return(
       <form className={style.deposit__form_wrap} method="post" action="https://f-change.biz/merchant_pay" target="_blank">
         <div className={style.deposit__inner_wrap}>
@@ -38,23 +41,25 @@ class CoinForm extends Component{
                 <div className={style.deposit__input_container}>
                   <input 
                     type="text" 
-                    name="amount"
+                    name="rub-value"
                     className={style.deposit__input}
                     value={inputvalue} 
                     onChange={this.onChange} 
                     placeholder="Сумма 0.00"/>
-                  <input type="hidden" name="merchant_name" value="cryptoinvest" />
-                  <input type="hidden" name="payed_paysys" value='QWRUB' />
-                  <input type="hidden" name="Инвестирование в криптовалюты" value="Название Вашего проекта" />
-                  <input type="hidden" name="payment_info" value={`инвестирование в ${title}`} />
-                  <input type="hidden" name="payment_num" value={slug} />
-                  <input type="hidden" name="sucess_url" value="https://cryptoinvest.systems/merchant-success" />
-                  <input type="hidden" name="error_url" value="https://cryptoinvest.systems/merchant-fail" />
                   <span className={style.deposit__icon_wrap}><i className={`fas fa-ruble-sign ${style.deposit__input_icon}`}></i></span>
                 </div>
+                <input type="hidden" name="user_id" value={user.id} />
+                <input type="hidden" name="profit" value={id} />
+                <input type="hidden" name="merchant_name" value="CryptoInvest" />
+                <input type="hidden" name="merchant_title" value={`Инвестирование в ${title}`} />
+                <input type="hidden" name="payment_info" value={`Инвестирование в криптовалюты`} />
+                <input type="hidden" name="payment_num" value={Date.now() + user.id} />
+                <input type="hidden" name="sucess_url" value="https://cryptoinvest.systems/payment-success" />
+                <input type="hidden" name="error_url" value="https://cryptoinvest.systems/payment-fail" />
               </label>
               <span className={style.deposit__info}>Вы можете вложить от {amount_floor} до {amount_ceil}</span>
-              <button type="submit" className={style.deposit__form_btn}>Создать депозит</button>
+              <ModalForm entities={entities} amount={inputvalue} modal={modal} handleClose={this.handleModalClose} />
+              <button onClick={this.handleModal} className={style.deposit__form_btn}>Создать депозит</button>
             </div>
             <h3 className={style.deposit__additionals_title}>Персональная информация по депозиту</h3>
             <div className={style.deposit__additionals_wrap}>
@@ -96,20 +101,42 @@ class CoinForm extends Component{
     )
   }
 
+  handleModal = e => {
+    e.preventDefault()
+
+    const value = this.state.inputvalue
+    const {amount_ceil, amount_floor} = this.props.coin
+    if(value.length <= 0) return
+    if(value < amount_floor || value > amount_ceil) return
+
+    this.setState({
+      modal: true
+    })
+  }
+
+  handleModalClose = e => {
+    e.preventDefault()
+
+    this.setState({
+      modal: false
+    })
+  }
+
   onChange = e => {
     if(!e.target.value.length) return this.setState({inputvalue: ''})
     else if(isNaN(parseInt(e.target.value))) return
-    const {amount_ceil, amount_floor} = this.props
+    const {amount_ceil} = this.props.coin
     const value = parseInt(e.target.value)
-    if(value < amount_floor || value > amount_ceil) return
+    if(value > amount_ceil) return
     this.setState({
       inputvalue: value
     })
   }
 }
 
-export default connect(({deposits}) => ({
+export default connect(({deposits, auth}) => ({
+  user: auth.user,
   entities: deposits.entities,
   loaded: deposits.loaded,
-  error: deposits.loaded
+  error: deposits.error
 }), {fetchMerchant})(CoinForm)

@@ -6,6 +6,7 @@ import {arrToImmObj} from '../helpers'
 import {appName, jwtSecretName, api} from '../../configClient'
 
 const ProfitRecord = Record({
+  id: null,
   slug: null,
   title: null,
   percent: null,

@@ -8,9 +8,22 @@ from for_partners.models import ForPartnersModel
 from how_to_start.models import HowToStartModel
 from faq.models import FaqModel
 from take_access.models import CustomUser
-from deposits.models import DepositsModel, ProfitModel
+from deposits.models import DepositsModel, ProfitModel, GetAllDepositsInfoModel
+from pay_off_requests.models import PayOffModel
 
 # Additional serializers
+class GetAllDepositsInfoSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = GetAllDepositsInfoModel
+    fields = ('id', 'deposits', 'payed_off', 'active_deposits', 'partner_sum')
+
+class PayOffSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = PayOffModel
+    fields = ('id', 'amount', 'wallet', 'date_added', 'agregator', 'comment', 'status')
+
 class FaqSerializer(serializers.ModelSerializer):
 
   class Meta:
@@ -53,10 +66,10 @@ class DepositsSerializer(serializers.ModelSerializer):
     model = DepositsModel
     fields = (
       'id',
-      'title',
       'amount',
       'profit',
       'date_added',
+      'is_active',
       'user'
     )
 
@@ -65,6 +78,7 @@ class ProfitSerializer(serializers.ModelSerializer):
   class Meta:
     model = ProfitModel
     fields = (
+      'id',
       'slug',
       'title',
       'percent',
@@ -84,7 +98,6 @@ class UserSerializer(serializers.ModelSerializer):
       'first_name',
       'last_name',
       'email',
-      'account_resource'
     )
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -97,6 +110,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
       'first_name',
       'last_name',
       'email',
+      'partner',
     )
     
   def create(self, validated_data):

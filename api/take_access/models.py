@@ -18,7 +18,14 @@ class CustomUser(AbstractUser):
   first_name = models.CharField(max_length=50, verbose_name="Имя")
   last_name = models.CharField(max_length=50, verbose_name="Фамилия")
   email = models.EmailField(blank=False, unique=True)
-  account_resource = models.FloatField(max_length=500000, null=True, default=0, verbose_name='Баланс')
+  partner = models.ForeignKey(
+    'CustomUser',
+    on_delete=models.PROTECT,
+    blank=True,
+    null=True,
+    related_name='referal_user',
+    verbose_name='Рефералы'
+  )
 
   class Meta:
     verbose_name = 'Пользователь'

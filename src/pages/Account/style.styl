@@ -565,6 +565,7 @@
   border-collapse: collapse
   border-radius: 5px
   td
+    text-align center
     height: 50px
     border 1px solid rgba($disable-txt, .3)
   th
@@ -884,6 +885,28 @@
       color $red
       transform: translateY(-50%)
 
+.modal__input
+  font-size 14px
+  width 100%
+  height 50px
+  color $white
+  padding-left 15px
+  background-color rgba($orange-light, .9)
+  border: none 
+  border-radius: 5px
+  margin-bottom 25px
+
+.modal__textarea
+  font-size 14px
+  width 100%
+  min-height 100px
+  color $white
+  background-color rgba($orange-light, .9)
+  border: none 
+  border-radius: 5px
+  padding 15px
+  margin-bottom 25px
+
 .modal__list
   display flex
   align-items: flex-start
@@ -933,3 +956,100 @@
   &:hover
     color: $white
     background-color: $red
+
+/************************
+* Modal Form
+************************/
+.form__modal_wrap
+  position fixed
+  width 100%
+  height 100vh
+  left: -9999px
+  top: 0
+  padding 50px
+  opacity 0
+  background-color rgba($black, .5)
+  overflow-y: scroll
+  transition(.3s opacity)
+  z-index 10000
+  &.active
+    left 0
+    opacity 1
+
+.form__modal
+  display flex
+  align-items center
+  flex-direction column
+  width 100%
+  max-width 480px
+  padding: 25px
+  background-color $white
+  border-radius: 5px
+  margin: 0 auto
+
+.form__modal_title
+  Font(light)
+  font-size 18px
+  color $txt
+  margin-bottom 25px
+
+.form__modal_list
+  display flex
+  align-items: center
+  justify-content center
+  flex-wrap: wrap
+  margin-right -25px
+
+.form__modal_item
+  margin-right 25px
+  margin-bottom 25px
+  input 
+    position: absolute
+    left: -9999px
+    top: 0
+    opacity 0
+  img
+    padding: 7px
+    border 1px solid transparent
+    border-radius: 5px
+    cursor pointer
+  input:checked + img
+    border-color: $red
+
+.form__modal_info
+  display flex
+  align-items: center
+  flex-direction: column
+  margin-bottom 25px
+  h3
+    font-size 14px
+    color $orange
+    margin-bottom 15px
+  span
+    font-size 14px
+    color: $red
+    margin-bottom 25px
+
+.form__modal_btns
+  display flex
+  align-items: center
+  button 
+    padding: 8px 15px
+    color $white
+    border 1px solid $orange-light
+    background-color $orange-light
+    border-radius: 5px
+    margin-right 25px
+    &:hover
+      color $orange-light
+      background-color $white
+  a
+    padding: 6px 15px
+    color $white
+    border 1px solid $red
+    background-color $red
+    border-radius: 5px
+    margin-right 25px
+    &:hover
+      color $red
+      background-color $white

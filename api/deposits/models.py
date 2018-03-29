@@ -8,22 +8,15 @@ from take_access.models import CustomUser
   
 # Create your models here.
 class DepositsModel(models.Model):
-  BITCOIN = 'BTC'
-  LITECOIN = 'LTC'
-  ETHERIUM = 'ETH'
-  DASH = 'DSH'
-  RIPPLE = 'XRP'
-  COIN_CHOICES = (
-    (BITCOIN, 'BitCoin'),
-    (LITECOIN, 'LiteCoin'),
-    (ETHERIUM, 'Etherium'),
-    (DASH, 'Dash'),
-    (RIPPLE, 'Ripple')
+  ACTIVE = True
+  NOT_ACTIVE = False
+  TYPES = (
+    (ACTIVE, 'Активный'),
+    (NOT_ACTIVE, 'Не активный'),
   )
-
-  title = models.CharField(max_length=3, choices=COIN_CHOICES, verbose_name="Валюта")
   amount = models.FloatField(max_length=500000, default=0, verbose_name="Капитал")
   date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+  is_active = models.BooleanField(max_length=10, default=ACTIVE, choices=TYPES, verbose_name='Статус')
   user = models.ForeignKey(
     CustomUser,
     on_delete=models.PROTECT,
@@ -44,7 +37,7 @@ class DepositsModel(models.Model):
     verbose_name_plural = 'Депозиты'
 
   def __str__(self):
-    return str(self.title)
+    return str(self.user)
 
 class ProfitModel(models.Model):
   slug = models.SlugField()
@@ -61,3 +54,9 @@ class ProfitModel(models.Model):
 
   def __str__(self):
     return str(self.title)
+
+class GetAllDepositsInfoModel(models.Model):
+  deposits = models.IntegerField(default=0, verbose_name='Всего депозитов')
+  payed_off = models.IntegerField(default=0, verbose_name='Всего выведено')
+  active_deposits = models.IntegerField(default=0, verbose_name='Сумма активных депозитов')
+  partner_sum = models.IntegerField(default=0, verbose_name='Партнерка')

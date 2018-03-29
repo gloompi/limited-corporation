@@ -126,6 +126,8 @@ const fetchAuthSaga = function * ({username, password, history}) {
 
 const fetchRegisterSaga = function * ({username, password, email, first_name, last_name, history}) {
   const data = {username, password, email, first_name, last_name}
+  const partner_name = localStorage.getItem('partner_name')
+  if(partner_name && partner_name.length !== 0) data['partner_name'] = partner_name
   const csrf = getCookie('csrftoken')
   try {
     const response = yield call(axios, {
@@ -163,17 +165,6 @@ const fetchUserSaga = function * ({user}) {
         'Authorization': `Token ${token}`
       },
     })
-    const deposits = yield call(axios, {
-      url: `${api}/deposits/`,
-      method: 'get',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${token}`
-      },
-    })
-    console.log('fetch deposits---', deposits)
-    console.log('fetch user response---', response)
     yield put({
       type: FETCH_USER_SUCCESS,
       payload: {response: response.data}
