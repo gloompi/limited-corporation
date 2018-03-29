@@ -18,6 +18,7 @@ class CustomUser(AbstractUser):
   first_name = models.CharField(max_length=50, verbose_name="Имя")
   last_name = models.CharField(max_length=50, verbose_name="Фамилия")
   email = models.EmailField(blank=False, unique=True)
+  account_resource = models.FloatField(default=0, verbose_name='Баланс')
   partner = models.ForeignKey(
     'CustomUser',
     on_delete=models.PROTECT,
