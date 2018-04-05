@@ -22,19 +22,21 @@ class HomeComponents extends Component{
   componentDidMount() {
     this.socket = new WebSocket(ws)
     const {socket} = this
-    socket.onmessage = (msg) => {
-      const data = JSON.parse(msg.data)
-      const {payoff_users, holding_users, total, investors, payedoff, holded} = data
-      this.setState({
-        holded, payedoff, total, investors,
-        holding_users, payoff_users
-      })
-      if(!this.state.loaded) this.setState({loaded: true})
+    if(socket){
+      socket.onmessage = (msg) => {
+        const data = JSON.parse(msg.data)
+        const {payoff_users, holding_users, total, investors, payedoff, holded} = data
+        this.setState({
+          holded, payedoff, total, investors,
+          holding_users, payoff_users
+        })
+        if(!this.state.loaded) this.setState({loaded: true})
+      }
     }
   }
 
   componentWillUnmount() {
-    this.socket.close()
+    if(this.socket) this.socket.close()
   }
 
   render(){

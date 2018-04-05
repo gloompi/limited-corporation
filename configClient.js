@@ -1,7 +1,7 @@
 export const appName = 'limited-corporation'
 export const jwtSecretName = 'js[potosdt[rewp]re]d'
 export const api = 'http://localhost:8000/api/v0'
-export const ws = 'ws://localhost:9999'
+export const ws = 'ws://cryptoinvest.systems/statistics/'
 export const merchant = 'http://localhost:7777'
 export const userId = 80355
 
