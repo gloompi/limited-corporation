@@ -19,25 +19,25 @@ class HomeComponents extends Component{
     holded: 0
   }
 
-  componentDidMount() {
-    this.socket = new WebSocket(ws)
-    const {socket} = this
-    if(socket){
-      socket.onmessage = (msg) => {
-        const data = JSON.parse(msg.data)
-        const {payoff_users, holding_users, total, investors, payedoff, holded} = data
-        this.setState({
-          holded, payedoff, total, investors,
-          holding_users, payoff_users
-        })
-        if(!this.state.loaded) this.setState({loaded: true})
-      }
-    }
-  }
+  // componentDidMount() {
+  //   this.socket = new WebSocket(ws)
+  //   const {socket} = this
+  //   if(socket){
+  //     socket.onmessage = (msg) => {
+  //       const data = JSON.parse(msg.data)
+  //       const {payoff_users, holding_users, total, investors, payedoff, holded} = data
+  //       this.setState({
+  //         holded, payedoff, total, investors,
+  //         holding_users, payoff_users
+  //       })
+  //       if(!this.state.loaded) this.setState({loaded: true})
+  //     }
+  //   }
+  // }
 
-  componentWillUnmount() {
-    if(this.socket) this.socket.close()
-  }
+  // componentWillUnmount() {
+  //   if(this.socket) this.socket.close()
+  // }
 
   render(){
     const {loaded, holding_users, payoff_users, investors, payedoff, holded, total} = this.state
