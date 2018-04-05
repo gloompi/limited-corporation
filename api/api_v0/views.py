@@ -1,4 +1,6 @@
 from django.http import Http404
+from django.utils import timezone
+from datetime import date, timedelta, datetime
 from django.shortcuts import render
 from django.conf import settings
 from rest_framework.views import APIView
@@ -16,7 +18,9 @@ from faq.models import FaqModel
 from take_access.models import CustomUser
 from deposits.models import DepositsModel, ProfitModel, GetAllDepositsInfoModel
 from pay_off_requests.models import PayOffModel
+from balance_charge.models import BalanceCharge
 from .serializers import (
+  BalanceChargeSerializer,
   GetAllDepositsInfoSerializer,
   PayOffSerializer,
   DocumentsSerializer,
@@ -33,6 +37,30 @@ from .serializers import (
 )
 
 # Create your views here.
+class BalanceChargeView(viewsets.ModelViewSet):
+  serializer_class = BalanceChargeSerializer
+
+  def get_queryset(self):
+    balance_charge_list = BalanceCharge.objects.filter(user=self.request.user)
+    return balance_charge_list
+
+  def perform_create(self, serializer, **kwargs):
+    balance_charge = serializer.save()
+
+    try:
+      user = CustomUser.objects.filter(id = self.request.data['user_id'])[0]
+      amount = str(self.request.data['rub-value'])
+      agregator = str(self.request.data['agregator'])
+      user.account_resource += amount
+    except:
+      raise Http404
+
+    user.save()
+    balance_charge.amount = amount
+    balance_charge.agregator = agregator
+    balance_charge.user = self.request.user
+    balance_charge.save()
+
 class PayOffView(generics.ListAPIView):
   serializer_class = PayOffSerializer
 
@@ -50,11 +78,16 @@ class CreatePayOffView(generics.CreateAPIView):
     try:
       user = CustomUser.objects.filter(id = self.request.data['user_id'])[0]
       wallet = str(self.request.data['wallet'])
-      amount = str(self.request.data['amount'])
+      amount = self.request.data['amount']
       agregator = str(self.request.data['agregator'])
       comment = str(self.request.data['comment'])
-
     except:
+      raise Http404
+
+    if user.account_resource >= amount:
+      user.account_resource -= amount
+      user.save()
+    else:
       raise Http404
 
     pay_off.amount = amount
@@ -114,6 +147,7 @@ class GetAllDepositsInfoView(APIView):
     return Response(info)
 
 class CreateDepositView(generics.CreateAPIView):
+  permission_classes = (IsAuthenticated, )
   queryset = DepositsModel.objects.all()
   serializer_class = DepositsSerializer
 
@@ -121,10 +155,17 @@ class CreateDepositView(generics.CreateAPIView):
     deposit = serializer.save()
 
     try:
-      user = CustomUser.objects.filter(id = self.request.data['user_id'])[0]
+      user = self.request.user
+      balance = user.account_resource
       profit = ProfitModel.objects.filter(id = self.request.data['profit'])[0]
-      amount = self.request.data['rub-value']
+      amount = self.request.data['amount']
     except:
+      raise Http404
+
+    if balance >= amount:
+      user.account_resource = balance - amount
+      user.save()
+    else: 
       raise Http404
 
     deposit.user = user
@@ -138,7 +179,17 @@ class DepositsViewSet(viewsets.ModelViewSet):
   lookup_field = 'id'
 
   def get_queryset(self):
-    deposit_list = DepositsModel.objects.filter(user=self.request.user)
+    user = self.request.user
+    deposit_list = DepositsModel.objects.filter(user=user)
+    for item in deposit_list:
+      profit = ProfitModel.objects.filter(title = item.profit)[0]
+      duration = profit.duration
+      endDate = item.date_added + timedelta(days=duration)
+      if endDate < timezone.now():
+        item.is_active = false
+        user.account_resource += item.amount
+        user.save()
+
     return deposit_list
 
 class ProfitViewSet(viewsets.ModelViewSet):

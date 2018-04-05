@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'for_investors',
     'for_partners',
     'faq',
-    'pay_off_requests'
+    'pay_off_requests',
+    'balance_charge'
 ]
 
 MIDDLEWARE = [

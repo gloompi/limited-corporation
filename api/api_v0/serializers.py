@@ -10,8 +10,15 @@ from faq.models import FaqModel
 from take_access.models import CustomUser
 from deposits.models import DepositsModel, ProfitModel, GetAllDepositsInfoModel
 from pay_off_requests.models import PayOffModel
+from balance_charge.models import BalanceCharge
 
 # Additional serializers
+class BalanceChargeSerializer(serializers.ModelSerializer):
+  
+  class Meta:
+    model = BalanceCharge
+    fields = ('amount', 'date_added', 'agregator')
+
 class GetAllDepositsInfoSerializer(serializers.ModelSerializer):
 
   class Meta:
@@ -98,6 +105,7 @@ class UserSerializer(serializers.ModelSerializer):
       'first_name',
       'last_name',
       'email',
+      'account_resource'
     )
 
 class CreateUserSerializer(serializers.ModelSerializer):

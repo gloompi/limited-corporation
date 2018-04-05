@@ -36,14 +36,14 @@ export default [
             component: UniversalComponent('Deposits', './Account/Main/'),
             path: '/account/deposit-list'
           },
-          // {
-          //   component: UniversalComponent('ChargeMethod', './Account/Main/'),
-          //   path: '/account/charge-method'
-          // },
-          // {
-          //   component: UniversalComponent('BalanceHistory', './Account/Main/'),
-          //   path: '/account/balance-charge-history'
-          // },
+          {
+            component: UniversalComponent('Charge', './Account/Main/'),
+            path: '/account/charge'
+          },
+          {
+            component: UniversalComponent('ChargeHistory', './Account/Main/'),
+            path: '/account/charge-history'
+          },
           {
             component: UniversalComponent('PayOffRequest', './Account/Main/'),
             path: '/account/create-payoff-request'

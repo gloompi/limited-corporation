@@ -31,6 +31,11 @@ export default (state = new ReducerRecord, action) => {
     case FETCH_AUTH_REQUEST:
       return state.set('loaded', false)
 
+    case FETCH_USER_REQUEST:
+      return state
+        .set('userLoaded', false)
+        .set('user', {})
+
     case LOGOUT_REQUEST:
       return state
         .set('loaded', false)

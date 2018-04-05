@@ -15,7 +15,7 @@ class CoinInfo extends Component{
   }
 
   state = {
-    activeCoin: 'BTC'
+    activeCoin: 'LTC'
   }
 
   componentDidMount() {

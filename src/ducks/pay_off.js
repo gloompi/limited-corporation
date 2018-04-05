@@ -2,6 +2,7 @@ import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 
+import {fetchUser} from './auth'
 import {getCookie} from '../helpers'
 import {api, appName, jwtSecretName, merchant} from '../../configClient'
 
@@ -63,8 +64,8 @@ export const fetchPayoffList = () => ({
 })
 
 const createPayOffSaga = function * ({user_id, amount, wallet, agregator, comment}) {
+  amount = parseInt(amount)
   const data = {user_id, amount, wallet, agregator, comment}
-  console.log(data)
   const token = localStorage.getItem(jwtSecretName)
   const csrf = getCookie('csrftoken')
   try {

@@ -15,6 +15,9 @@ const ReducerRecord = Record({
 })
 
 export const modulName = 'deposits'
+export const CREATE_DEPOSIT_REQUEST = `${appName}/${modulName}/CREATE_DEPOSIT_REQUEST`
+export const CREATE_DEPOSIT_SUCCESS = `${appName}/${modulName}/CREATE_DEPOSIT_SUCCESS`
+export const CREATE_DEPOSIT_FAIL = `${appName}/${modulName}/CREATE_DEPOSIT_FAIL`
 export const FETCH_DEPOSITS_REQUEST = `${appName}/${modulName}/FETCH_DEPOSITS_REQUEST`
 export const FETCH_DEPOSITS_SUCCESS = `${appName}/${modulName}/FETCH_DEPOSITS_SUCCESS`
 export const FETCH_DEPOSITS_ERROR = `${appName}/${modulName}/FETCH_DEPOSITS_ERROR`
@@ -74,6 +77,11 @@ export default (state = new ReducerRecord, action) => {
   }
 }
 
+export const createDeposit = (profit, amount) => ({
+  type: CREATE_DEPOSIT_REQUEST,
+  profit, amount
+})
+
 export const fetchDepositsAmount = () => ({
   type: FETCH_DEPOSITS_AMOUNT_REQUEST
 })
@@ -86,6 +94,34 @@ export const fetchMerchant = (data) => ({
   type: FETCH_MERCHANT_REQUEST,
   data
 })
+
+export const createDepositSaga = function * ({profit, amount}) {
+  const data = {profit, amount}
+  try {
+    const token = localStorage.getItem(jwtSecretName)
+    const response = yield call(axios, {
+      url: `${api}/create-deposit/`,
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      },
+      data
+    })
+    yield put({
+      type: CREATE_DEPOSIT_SUCCESS,
+      payload: {response}
+    })
+    alert('Депозит успешно создан')
+  } catch (error) {
+    alert('Недостаточно средств на балансе')
+    yield put({
+      type: CREATE_DEPOSIT_FAIL,
+      error
+    })
+  }
+}
 
 export const fetchDepositsAmountSaga = function * () {
   try {
@@ -154,6 +190,7 @@ export const fetchMerchantSaga = function * ({data}) {
 }
 
 export const saga = function * () {
+  yield takeEvery(CREATE_DEPOSIT_REQUEST, createDepositSaga)
   yield takeEvery(FETCH_DEPOSITS_AMOUNT_REQUEST, fetchDepositsAmountSaga)
   yield takeEvery(FETCH_DEPOSITS_REQUEST, fetchDepositsSaga)
   yield takeEvery(FETCH_MERCHANT_REQUEST, fetchMerchantSaga)

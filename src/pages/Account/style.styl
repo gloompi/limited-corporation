@@ -371,9 +371,54 @@
   border 1px solid rgba(109, 109, 109, .3)
   margin-bottom 50px
 
+.deposit__balance_title
+  Font(light)
+  font-size 20px
+  color: $txt
+  text-align: center
+  margin-bottom 10px
+
+.deposit__resource_info
+  font-size 25px
+  width 100%
+  color: $white
+  text-align center
+  background-color rgba($red, .5)
+  padding: 15px 0
+  margin: 10px 0 25px
+
+.info
+  Font(ligth)
+  font-size 14px
+  color $txt
+  text-align: center
+
+.payoff__create_info
+  Font(light)
+  font-size 14px
+  color $txt
+  padding: 15px
+  margin-bottom 25px
+  border 1px solid rgba($red, .3)
+  box-shadow(0 1px 2px 0 rgba(0,0,0,0.16),0 1px 10px 0 rgba(0,0,0,0.12))
+  h4
+    font-size 18px
+    text-align center
+    margin-bottom 15px
+  ul
+    padding-left 15px
+  li
+    position relative
+    &:before
+      content "\27A4"
+      position absolute
+      left: -15px
+      top: 0
+      color $red
+
 .deposit__input_title
   Font(light)
-  font-size 22px
+  font-size 20px
   color: $disable-txt
   text-align: center
   margin-bottom 10px

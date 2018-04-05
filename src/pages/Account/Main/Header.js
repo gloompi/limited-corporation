@@ -56,6 +56,12 @@ class Header extends Component{
              </Link>
            </li>
            <li className={style.account__mnu_item}>
+             <Link to='/account/charge' className={style.account__mnu_link}>
+              <i className="fas fa-credit-card"></i>
+              <span>Пополнить баланс</span>
+             </Link>
+           </li>
+           <li className={style.account__mnu_item}>
              <Link to='/account/partner-links' className={style.account__mnu_link}>
               <i className="far fa-file-alt"></i>
               <span>Партнерская программа</span>

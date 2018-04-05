@@ -12,9 +12,10 @@ import deposits from '../ducks/deposits'
 import payoff from '../ducks/pay_off'
 import partners from '../ducks/partners'
 import counter from '../ducks/counter'
+import charge from '../ducks/charge'
 
 export default (asyncReducers) => combineReducers({
   currency, auth, news, profits, about, howToStart, forInvestors,
-  forPartners, faq, deposits, payoff, partners, counter,
+  forPartners, faq, deposits, payoff, partners, counter, charge,
   ...asyncReducers
 })

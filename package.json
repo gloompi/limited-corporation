@@ -39,6 +39,7 @@
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
     "serialize-javascript": "^1.4.0",
+    "socket.io": "^2.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.6.2",
@@ -47,6 +48,7 @@
     "webpack-flush-chunks": "^1.2.0",
     "webpack-hot-server-middleware": "^0.2.0",
     "webpack-merge": "^4.1.1",
+    "websocket": "^1.0.25",
     "ws": "^5.1.1"
   },
   "devDependencies": {

@@ -29,6 +29,7 @@ class PayOffList extends Component{
         </div>
         <form action="" onSubmit={this.handleSubmit} className={style.section__container}>
           <PayOffModal 
+            user={this.props.user}
             open={open} 
             input={input} 
             amount={amount} 
@@ -100,13 +101,14 @@ class PayOffList extends Component{
 
     const {createPayOff, user} = this.props
     const {agregator, input, amount, comment} = this.state
-    console.log(agregator, input, amount, comment)
 
     if(agregator.length <= 0 || input.length <= 0 || amount.length <= 0) return
     createPayOff(user.id, amount, input, agregator, comment)
   }
 
   handleAmount = e => {
+    const {account_resource} = this.props.user
+    if(isNaN(e.target.value) || e.target.value > account_resource) return
     this.setState({amount: e.target.value})
   }
 

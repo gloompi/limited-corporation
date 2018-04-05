@@ -26,24 +26,24 @@ function MnuList({activeNav, handleClick}){
           </li>
         </ul>
       </li>
-      {/* <li className={`${style.sidebar__item} ${balance && style.active}`}>
+      <li className={`${style.sidebar__item} ${balance && style.active}`}>
         <a href="" className={style.sidebar__mnu_btn} onClick={handleClick('balance')}>
           <span><i className="fas fa-credit-card"></i>Пополнить баланс</span>
           {deposits ? <i className={`fas fa-angle-down ${style.icon}`}></i> : <i className={`fas fa-angle-right ${style.icon}`}></i>}
         </a>
         <ul className={style.sidebar__inner_list}>
           <li className={style.sidebar__inner_item}>
-            <NavLink to='/account/charge-method' activeStyle={{color: "#000"}} className={style.sidebar__inner_btn}>
+            <NavLink to='/account/charge' activeStyle={{color: "#000"}} className={style.sidebar__inner_btn}>
               Выбрать способ оплаты
             </NavLink>
           </li>
           <li className={style.sidebar__inner_item}>
-            <NavLink to='/account/balance-charge-history' activeStyle={{color: "#000"}} className={style.sidebar__inner_btn}>
+            <NavLink to='/account/charge-history' activeStyle={{color: "#000"}} className={style.sidebar__inner_btn}>
               История пополнения баланся
             </NavLink>
           </li>
         </ul>
-      </li> */}
+      </li>
       <li className={`${style.sidebar__item} ${pay_off && style.active}`}>
         <a href="" className={style.sidebar__mnu_btn} onClick={handleClick('pay_off')}>
           <span><i className="far fa-credit-card"></i>Вывести деньги</span>
