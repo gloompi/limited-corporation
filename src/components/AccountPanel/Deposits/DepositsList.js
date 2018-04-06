@@ -43,7 +43,7 @@ class DepositsList extends Component{
                   <td>{date.toLocaleDateString()} - {new Date(date.setDate(date.getDate() + duration)).toLocaleDateString()}</td>
                   <td>{amount} руб - {amount * percent * 0.01} руб</td>
                   <td>{duration} дней</td>
-                  <td style={{color: is_active && 'green'}}>{is_active ? 'Акивный' : 'Не активный'}</td>
+                  <td style={{color: is_active && 'green'}}>{is_active ? 'Активный' : 'Завершенный'}</td>
                 </tr>
               })}
             </tbody>

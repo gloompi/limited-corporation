@@ -17,15 +17,6 @@ function ContactsModal({open, handleClose}){
             <span className={style.title}>Подпишитесь на наши социальные сети чтобы всегда быть в курсе событий:</span>
             <li className={style.modal__item}>
               <a className={style.modal__link}>
-                <img src={require('../../../assets/images/icons/telegram.png')} />
-                <div>
-                  <span>@cryptoinvest_systems</span>
-                  <span className={style.link}>подписаться</span>
-                </div>
-              </a>
-            </li>
-            <li className={style.modal__item}>
-              <a className={style.modal__link}>
                 <img src={require('../../../assets/images/icons/vk.png')} />
                 <div>
                   <span>/cryptoinvest</span>

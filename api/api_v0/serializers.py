@@ -17,7 +17,7 @@ class BalanceChargeSerializer(serializers.ModelSerializer):
   
   class Meta:
     model = BalanceCharge
-    fields = ('amount', 'date_added', 'agregator')
+    fields = ('amount', 'date_added', 'agregator', 'user')
 
 class GetAllDepositsInfoSerializer(serializers.ModelSerializer):
 

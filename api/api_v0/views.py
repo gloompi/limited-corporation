@@ -37,20 +37,17 @@ from .serializers import (
 )
 
 # Create your views here.
-class BalanceChargeView(viewsets.ModelViewSet):
+class CreateBalanceChargeView(generics.CreateAPIView):
   serializer_class = BalanceChargeSerializer
-
-  def get_queryset(self):
-    balance_charge_list = BalanceCharge.objects.filter(user=self.request.user)
-    return balance_charge_list
+  queryset = BalanceCharge.objects.all()
 
   def perform_create(self, serializer, **kwargs):
     balance_charge = serializer.save()
 
     try:
       user = CustomUser.objects.filter(id = self.request.data['user_id'])[0]
-      amount = str(self.request.data['rub-value'])
-      agregator = str(self.request.data['agregator'])
+      amount = self.request.data['rub-value']
+      agregator = str(self.request.data['payed_paysys'])
       user.account_resource += amount
     except:
       raise Http404
@@ -58,8 +55,15 @@ class BalanceChargeView(viewsets.ModelViewSet):
     user.save()
     balance_charge.amount = amount
     balance_charge.agregator = agregator
-    balance_charge.user = self.request.user
+    balance_charge.user = user
     balance_charge.save()
+
+class BalanceChargeView(generics.ListAPIView):
+  serializer_class = BalanceChargeSerializer
+
+  def get_queryset(self):
+    balance_charge_list = BalanceCharge.objects.filter(user=self.request.user)
+    return balance_charge_list
 
 class PayOffView(generics.ListAPIView):
   serializer_class = PayOffSerializer
@@ -70,7 +74,6 @@ class PayOffView(generics.ListAPIView):
 
 class CreatePayOffView(generics.CreateAPIView):
   serializer_class = PayOffSerializer
-  
 
   def perform_create(self, serializer, **kwargs):
     pay_off = serializer.save()
@@ -185,8 +188,9 @@ class DepositsViewSet(viewsets.ModelViewSet):
       profit = ProfitModel.objects.filter(title = item.profit)[0]
       duration = profit.duration
       endDate = item.date_added + timedelta(days=duration)
-      if endDate < timezone.now():
-        item.is_active = false
+      if item.is_active is True and endDate <= timezone.now():
+        item.is_active = False
+        item.save()
         user.account_resource += item.amount
         user.save()
 
@@ -240,12 +244,17 @@ class CreateUserView(generics.CreateAPIView):
     except:
       first_name = ''
       last_name = ''
+    
+    try:
+      partner = CustomUser.objects.get(username = self.request.data['partner_name'])
+    except:
+      partner = None 
 
-    partner = CustomUser.objects.get(username = self.request.data['partner_name'])
-    print(partner)
+    if partner:
+      user.partner = partner
+
     user.first_name = first_name
     user.last_name = last_name
-    user.partner = partner
     user.save()
 
 class UserView(generics.RetrieveUpdateDestroyAPIView):

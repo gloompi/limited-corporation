@@ -22,6 +22,7 @@ class ChargeList extends Component{
     const {user, entities, loaded, error} = this.props
     const {amount, agregator, open} = this.state
     if(!loaded) return <Loader />
+    else if(error) return <h1>Возникли проблемы при загрузке данных</h1>
     return(
       <div className={`${style.section} ${style.account__section}`}>
         <div className={style.section__top}>

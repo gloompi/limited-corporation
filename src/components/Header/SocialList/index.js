@@ -7,11 +7,6 @@ function SocialList(props){
     <ul className={style.social__list}>
       <li className={style.social__item}>
         <a href="" className={style.social__link}>
-          <i className="fab fa-twitter"></i>
-        </a>
-      </li>
-      <li className={style.social__item}>
-        <a href="" className={style.social__link}>
           <i className="fab fa-youtube"></i>
         </a>
       </li>
