@@ -126,13 +126,15 @@ export const createDepositSaga = function * ({profit, amount}) {
 export const fetchDepositsAmountSaga = function * () {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const csrf = getCookie('csrftoken')
     const {data} = yield call(axios, {
       url: `${api}/get-all-deposits-info/`,
       method: 'get',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': `Token ${token}`
+        'Authorization': `Token ${token}`,
+        'X-CSRFToken': `${csrf}`
       },
     })
     yield put({

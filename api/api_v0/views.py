@@ -191,7 +191,7 @@ class DepositsViewSet(viewsets.ModelViewSet):
       if item.is_active is True and endDate <= timezone.now():
         item.is_active = False
         item.save()
-        user.account_resource += item.amount
+        user.account_resource += item.amount * profit.percent
         user.save()
 
     return deposit_list
