@@ -2,6 +2,7 @@ import {Map, Record} from 'immutable'
 import {put, call, takeEvery} from 'redux-saga/effects'
 import axios from 'axios'
 
+import {getCookie} from '../helpers'
 import {api, appName, jwtSecretName, merchant} from '../../configClient'
 
 const ReducerRecord = Record({
