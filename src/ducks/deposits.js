@@ -118,6 +118,7 @@ export const createDepositSaga = function * ({profit, amount}) {
     })
     alert('Депозит успешно создан')
   } catch (error) {
+    console.log(error)
     alert('Недостаточно средств на балансе')
     yield put({
       type: CREATE_DEPOSIT_FAIL,

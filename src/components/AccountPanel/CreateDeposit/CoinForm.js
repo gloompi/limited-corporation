@@ -91,7 +91,7 @@ class CoinForm extends Component{
 
     const {createDeposit, coin, user} = this.props
     const value = parseInt(this.state.inputvalue)
-    if(value > coin.amount_ceil || value > user.account_resource) return
+    if(value > coin.amount_ceil || value > user.account_resource || value < coin.amount_floor) return
     createDeposit(coin.id, value)
   }
 
