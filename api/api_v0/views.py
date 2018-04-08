@@ -46,11 +46,14 @@ class CreateBalanceChargeView(generics.CreateAPIView):
 
     try:
       user = CustomUser.objects.filter(id = self.request.data['user_id'])[0]
-      amount = self.request.data['rub-value']
+      amount = float(self.request.data['rub-value'])
       agregator = str(self.request.data['payed_paysys'])
       user.account_resource += amount
     except:
       raise Http404
+
+    if user.partner:
+      user.partner.account_resource += amount * 0.05
 
     user.save()
     balance_charge.amount = amount
@@ -191,7 +194,7 @@ class DepositsViewSet(viewsets.ModelViewSet):
       if item.is_active is True and endDate <= timezone.now():
         item.is_active = False
         item.save()
-        user.account_resource += item.amount * profit.percent
+        user.account_resource += item.amount * profit.percent * 0.01
         user.save()
 
     return deposit_list
@@ -257,8 +260,23 @@ class CreateUserView(generics.CreateAPIView):
     user.last_name = last_name
     user.save()
 
-class UserView(generics.RetrieveUpdateDestroyAPIView):
+class UserView(generics.RetrieveAPIView):
   permission_classes = (IsAuthenticated, )
-  queryset = CustomUser.objects.all()
   serializer_class = UserSerializer
   lookup_field = 'username'
+
+  def get_queryset(self):
+    userResponse = CustomUser.objects.all()
+    user = self.request.user
+    deposit_list = DepositsModel.objects.filter(user=user)
+    for item in deposit_list:
+      profit = ProfitModel.objects.filter(title = item.profit)[0]
+      duration = profit.duration
+      endDate = item.date_added + timedelta(days=duration)
+      if item.is_active is True and endDate <= timezone.now():
+        item.is_active = False
+        item.save()
+        user.account_resource += item.amount * profit.percent * 0.01
+        user.save()
+    
+    return userResponse

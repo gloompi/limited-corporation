@@ -36,7 +36,7 @@ class ForPartners extends Component{
                 <div className={style.partners__descr} dangerouslySetInnerHTML={createMarkup(content)}></div>
               </div>
               <div className={style.partners__pic_wrap}>
-                <img src={cover_pic && cover_pic.replace(/http/i, 'https')} alt="pic"/>
+                <img src={cover_pic && cover_pic} alt="pic"/>
               </div>
             </div>
           </div>
