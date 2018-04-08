@@ -97,7 +97,8 @@ export const fetchMerchant = (data) => ({
 })
 
 export const createDepositSaga = function * ({profit, amount}) {
-  const data = {profit, amount}
+  const username = localStorage.getItem('userName')
+  const data = {profit, amount, username}
   try {
     const token = localStorage.getItem(jwtSecretName)
     const csrf = getCookie('csrftoken')
