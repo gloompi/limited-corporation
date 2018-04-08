@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import style from './style'
 import {fetchForInvest} from '../../ducks/forInvestors'
-import {createMarkup} from '../../helpers'
+import {createMarkup, httpChanger} from '../../helpers'
 import CoinInfo from '../../components/CoinInfo'
 import Loader from '../../components/Loader'
 
@@ -32,7 +32,7 @@ class ForInvestors extends Component{
               {entities.map(item => {
                 const {title, cover_pic, content} = item
                 return <li key={title} className={style.guide__item}>
-                  <div className={style.guide__pic_wrap}><img src={cover_pic && cover_pic} alt="pic"/></div>
+                  <div className={style.guide__pic_wrap}><img src={cover_pic && httpChanger(cover_pic)} alt="pic"/></div>
                   <div className={style.guide__content}>
                     <h3 className={style.guide__title}>{title}</h3>
                     <div className={style.guide__descr} dangerouslySetInnerHTML={createMarkup(content)}></div>

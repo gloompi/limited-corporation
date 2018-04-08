@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import style from './style'
 import {fetchForPartners} from '../../ducks/forPartners'
-import {createMarkup} from '../../helpers'
+import {createMarkup, httpChanger} from '../../helpers'
 import Loader from '../../components/Loader'
 import Procents from '../../components/HomeComponents/Procents'
 
@@ -36,7 +36,7 @@ class ForPartners extends Component{
                 <div className={style.partners__descr} dangerouslySetInnerHTML={createMarkup(content)}></div>
               </div>
               <div className={style.partners__pic_wrap}>
-                <img src={cover_pic && cover_pic} alt="pic"/>
+                <img src={cover_pic && httpChanger(cover_pic)} alt="pic"/>
               </div>
             </div>
           </div>

@@ -1,5 +1,11 @@
 import {Map, Record, OrderedMap} from 'immutable'
 
+export function httpChanger(url){
+  let httpsTest = /https/i
+  if(httpsTest.test(url)) return url
+  return url.replace(/http/i, 'https')
+}
+
 export function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"

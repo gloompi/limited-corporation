@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import style from './style.styl'
 import Loader from '../../components/Loader'
 import {fetchNews} from '../../ducks/news'
-import {createMarkup} from '../../helpers'
+import {createMarkup, httpChanger} from '../../helpers'
 
 class News extends Component{
   static propTypes = {
@@ -34,7 +34,7 @@ class News extends Component{
                 return <li key={slug} className={style.news__item}>
                   <Link to={`/news/${slug}`} className={style.news__link}>
                     <h3 className={style.news__title}>{title}</h3>
-                    {cover_picture && <img src={cover_picture} alt="cover picture"/>}
+                    {cover_picture && <img src={httpChanger(cover_picture)} alt="cover picture"/>}
                     <div className={style.news__descr} dangerouslySetInnerHTML={createMarkup(announce)} />
                   </Link>
                 </li>

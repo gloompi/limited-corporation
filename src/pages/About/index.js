@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 
 import style from './style'
 import {fetchAbout} from '../../ducks/about'
-import {createMarkup} from '../../helpers'
+import {createMarkup, httpChanger} from '../../helpers'
 import Loader from '../../components/Loader'
 import ModalWindow from './ModalWindow'
 
@@ -45,7 +45,7 @@ class About extends Component{
                   const {id, img} = item
                   return <li key={id} className={`${style.documents__item}`}>
                     <a href="" onClick={this.handleOpen(img)} className={style.documents__link}>
-                      <img src={img} />
+                      <img src={httpChanger(img)} />
                     </a>
                   </li>
                 })}
