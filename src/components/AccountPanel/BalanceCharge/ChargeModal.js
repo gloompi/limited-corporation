@@ -7,7 +7,7 @@ class ChargeModal extends Component{
 		const {open, agregator, input, handleClose, handleInput, getUSD} = this.props
 		return <div className={`${style.form__modal_wrap} ${open && style.active}`}>
 			<div className={style.form__modal}>
-        <h3 className={style.form__modal_title}>Введите информацию для создания заявки</h3>
+        <h3 className={style.form__modal_title}>Введите сумму в RUB для создания заявки</h3>
         <input type="hidden" name="payed_paysys" value={agregator} />
         <input 
           className={style.modal__input} 

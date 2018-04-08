@@ -82,7 +82,7 @@ class CoinParser extends Component{
       case 'ETH':
         return [
           <Etherium color='#FF2830' key={1} height={20} />,
-          <span key={2}>Etherium</span>]
+          <span key={2}>Ethereum</span>]
 
       case 'DASH':
         return [

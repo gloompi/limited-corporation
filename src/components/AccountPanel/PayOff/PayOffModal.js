@@ -11,7 +11,7 @@ class PayOffModal extends Component{
 				<div className={style.payoff__create_info}>
 					<h4>Инструкция по выводу средств</h4>
 					<ul>
-						<li>Введите сумму (минимальная сумма для вывода - 100 руб.)</li>
+						<li>Введите сумму (минимальная сумма для вывода: Qiwi, YandexMoney, Payeer RUB - 100 руб. Visa/Mastercard, Paypal - 500 RUB)</li>
 						<li><strong>Внимание!</strong> Убедитесь в правильности Ваших платежных реквизитов</li>
 					</ul>
 					<p>В течение 24-х часов вы получите выплату на выбранный Вами электронный кошелёк. </p>

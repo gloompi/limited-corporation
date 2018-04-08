@@ -16,16 +16,16 @@ function ContactsModal({open, handleClose}){
           <ul className={style.modal__list}>
             <span className={style.title}>Подпишитесь на наши социальные сети чтобы всегда быть в курсе событий:</span>
             <li className={style.modal__item}>
-              <a className={style.modal__link}>
+              <a href="https://vk.com/cryptoinvest_group" target="_blank" className={style.modal__link}>
                 <img src={require('../../../assets/images/icons/vk.png')} />
                 <div>
-                  <span>/cryptoinvest</span>
+                  <span>/cryptoinvest_group</span>
                   <span className={style.link}>подписаться</span>
                 </div>
               </a>
             </li>
             <li className={style.modal__item}>
-              <a className={style.modal__link}>
+              <a href="https://www.youtube.com/channel/UCIXZRKVM6uE9zbcmBtGR6CQ" target="_blank" className={style.modal__link}>
                 <img src={require('../../../assets/images/icons/yb.png')} />
                 <div>
                   <span>Cryptoinvest</span>
@@ -37,7 +37,7 @@ function ContactsModal({open, handleClose}){
           <ul className={style.modal__list}>
             <span className={style.title}>Контакты консультантов и технической поддержки:</span>
             <li className={style.modal__item}>
-              <a className={style.modal__link}>
+              <a href="https://vk.com/sup_cryptoinvest" target="_blank" className={style.modal__link}>
                 <img src={require('../../../assets/images/icons/vk.png')} />
                 <div>
                   <span>/cryptoinvest</span>
@@ -49,8 +49,8 @@ function ContactsModal({open, handleClose}){
               <a className={style.modal__link}>
                 <img src={require('../../../assets/images/icons/email.png')} />
                 <div>
-                  <span>support@cryptoinvest.systems</span>
-                  <span className={style.link}>написать</span>
+                  <span>support@cryptoinvest.systems</span>          
+
                 </div>
               </a>
             </li>

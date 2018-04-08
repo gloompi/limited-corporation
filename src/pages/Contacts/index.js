@@ -38,8 +38,8 @@ class Contacts extends Component{
                   <div>
                     <h3 className={style.contacts__item_title}>Юридический адрес:</h3>
                     <span className={style.contacts__item_info}>
-                      <p>Россия, 123100, Москва</p>
-                      <p>ул. Сущёвский Вал, дом 5, строение 18</p>
+                      <p>Россия, 119019, Москва</p>
+                      <p>ул. г. Москва, ул. Новый Арбат, д.11, стр. 1</p>
                     </span>
                   </div>
                 </div>

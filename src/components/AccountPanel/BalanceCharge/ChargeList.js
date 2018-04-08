@@ -26,7 +26,7 @@ class ChargeList extends Component{
     return(
       <div className={`${style.section} ${style.account__section}`}>
         <div className={style.section__top}>
-          <h3 className={style.section__title}>Выберите платежную систему для вывода денежных средств:</h3>
+          <h3 className={style.section__title}>Выберите платежную систему для ввода денежных средств:</h3>
         </div>
         <form method="post" onSubmit={this.handleSubmit} action="https://f-change.biz/merchant_pay" target="_blank" className={style.section__container}>
           <ChargeModal 

@@ -6,12 +6,12 @@ function SocialList(props){
   return(
     <ul className={style.social__list}>
       <li className={style.social__item}>
-        <a href="" className={style.social__link}>
+        <a href="https://www.youtube.com/channel/UCIXZRKVM6uE9zbcmBtGR6CQ" className={style.social__link}>
           <i className="fab fa-youtube"></i>
         </a>
       </li>
       <li className={style.social__item}>
-        <a href="" className={style.social__link}>
+        <a href="https://vk.com/cryptoinvest_group" className={style.social__link}>
           <i className="fab fa-vk"></i>
         </a>
       </li>
