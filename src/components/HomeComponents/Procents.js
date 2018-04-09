@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import PropTypes from 'prop-types'
 
 import style from './style'
@@ -13,12 +13,12 @@ function Procents(props){
       </li>
       <li className={style.partner__diagram_item}>
         <h3 className={style.partner__diagram_title}>2 Ур</h3>
-        <span className={style.partner__diagram_type}>Партнер - 1%</span>
+        <span className={style.partner__diagram_type}>Партнер - 7%</span>
         <span className={style.partner__diagram_type}>Оборот рефералов от 300 000 RUB до 600 000 RUB</span>
       </li>
       <li className={style.partner__diagram_item}>
         <h3 className={style.partner__diagram_title}>3 Ур</h3>
-        <span className={style.partner__diagram_type}>Партнер - 1%</span>
+        <span className={style.partner__diagram_type}>Партнер - 10%</span>
         <span className={style.partner__diagram_type}>Оборот рефералов от 600 000 RUB</span>
       </li>
     </ul>

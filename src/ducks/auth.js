@@ -161,8 +161,9 @@ const fetchRegisterSaga = function * ({username, password, email, first_name, la
 const fetchUserSaga = function * ({user}) {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const username = localStorage.getItem('userName')
     const response = yield call(axios, {
-      url: `${api}/user/${user}/`,
+      url: `${api}/user/${user}/?username=${username}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

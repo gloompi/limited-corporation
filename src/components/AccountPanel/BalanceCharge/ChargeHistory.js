@@ -32,7 +32,7 @@ class ChargeHistory extends Component{
               </tr>
             </thead>
             <tbody>
-              {entities.map(item => {
+              {entities.reverse().map(item => {
                 const {amount, date_added, agregator} = item
                 return <tr key={date_added}>
                   <td>{amount} руб</td>

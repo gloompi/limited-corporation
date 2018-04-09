@@ -27,9 +27,9 @@ function Header({loggedIn, history, token}){
                 <span>Оффлайн поддержка</span>
                 <span>support@cryptoinvest.systems</span>
               </a>
-              <a href="tel: 8-800-511-03-82" className={style.help__btn}>
-                <span>Центр поддержки</span>
-                <span>8-800-511-03-82</span>
+              <a href="Онлайн 24/7" className={style.help__btn}>
+                <span>Тех.поддержка чата </span>
+                <span>Онлайн 24/7</span>
               </a>
             </li>
             <li className={style.header__item}>

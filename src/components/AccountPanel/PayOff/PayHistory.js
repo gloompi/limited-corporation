@@ -32,7 +32,7 @@ class PayHistory extends Component{
               </tr>
             </thead>
             <tbody>
-              {entities.map(item => {
+              {entities.reverse().map(item => {
                 const {id, agregator, amount, comment, date_added, status} = item
                 return <tr key={id}>
                   <td>{amount} руб.</td>

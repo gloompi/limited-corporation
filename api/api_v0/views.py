@@ -65,14 +65,16 @@ class BalanceChargeView(generics.ListAPIView):
   serializer_class = BalanceChargeSerializer
 
   def get_queryset(self):
-    balance_charge_list = BalanceCharge.objects.filter(user=self.request.user)
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
+    balance_charge_list = BalanceCharge.objects.filter(user=user)
     return balance_charge_list
 
 class PayOffView(generics.ListAPIView):
   serializer_class = PayOffSerializer
 
   def get_queryset(self):
-    pay_off_list = PayOffModel.objects.filter(user=self.request.user)
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
+    pay_off_list = PayOffModel.objects.filter(user=user)
     return pay_off_list
 
 class CreatePayOffView(generics.CreateAPIView):
@@ -135,10 +137,11 @@ class AboutView(generics.RetrieveAPIView):
 class GetAllDepositsInfoView(APIView):
   
   def get(self, request, format=None):
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
     info = {'deposits': 0, 'payed_off': 0, 'active_deposits': 0, 'amount': 0}
-    deposits = DepositsModel.objects.filter(user=self.request.user)
-    payed_off = PayOffModel.objects.filter(user=self.request.user)
-    referals = CustomUser.objects.filter(partner = self.request.user)
+    deposits = DepositsModel.objects.filter(user=user)
+    payed_off = PayOffModel.objects.filter(user=user)
+    referals = CustomUser.objects.filter(partner=user)
     for item in deposits:
       info['deposits'] += item.amount
       if item.is_active:
@@ -161,7 +164,7 @@ class CreateDepositView(generics.CreateAPIView):
     deposit = serializer.save()
 
     try:
-      user = self.request.user
+      user = CustomUser.objects.filter(username=self.request.data['username'])[0]
       profit = ProfitModel.objects.filter(id = self.request.data['profit'])[0]
       amount = self.request.data['amount']
     except:
@@ -171,22 +174,19 @@ class CreateDepositView(generics.CreateAPIView):
       user.account_resource -= amount
       user.save()
     else:
-      print(self.request.user, user, user.account_resource, amount) 
       raise Http404
-
 
     deposit.user = user
     deposit.profit = profit
     deposit.amount = amount
     deposit.save()
 
-class DepositsViewSet(viewsets.ModelViewSet):
+class DepositsViewSet(generics.ListAPIView):
   permission_classes = (IsAuthenticated, )
   serializer_class = DepositsSerializer
-  lookup_field = 'id'
 
   def get_queryset(self):
-    user = self.request.user
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
     print('user---', user)
     deposit_list = DepositsModel.objects.filter(user=user)
     for item in deposit_list:
@@ -213,8 +213,9 @@ class NewsItemViewSet(viewsets.ModelViewSet):
 class GetReferalsList(APIView):
 
   def get(self, request, format=None):
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
     data = {}
-    referals = CustomUser.objects.filter(partner = self.request.user)
+    referals = CustomUser.objects.filter(partner = user)
     for referal in referals:
       deposits = DepositsModel.objects.filter(user = referal)
       for item in deposits:
@@ -225,8 +226,9 @@ class GetReferalsList(APIView):
 class GetReferalsInfoView(APIView):
   
   def get(self, request, format=None):
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
     data = {'amount': 0, 'referals': 0, 'active_referals': 0}
-    referals = CustomUser.objects.filter(partner = self.request.user)
+    referals = CustomUser.objects.filter(partner = user)
     for referal in referals:
       data['referals'] += 1
       deposits = DepositsModel.objects.filter(user = referal)
@@ -269,7 +271,7 @@ class UserView(generics.RetrieveAPIView):
 
   def get_queryset(self):
     userResponse = CustomUser.objects.all()
-    user = self.request.user
+    user = CustomUser.objects.filter(username=self.request.query_params.get('username'))[0]
     deposit_list = DepositsModel.objects.filter(user=user)
     for item in deposit_list:
       profit = ProfitModel.objects.filter(title = item.profit)[0]

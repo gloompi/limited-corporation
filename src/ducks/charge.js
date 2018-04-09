@@ -48,7 +48,7 @@ export const fetchChargeListSaga = function * () {
     const token = localStorage.getItem(jwtSecretName)
     const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
-      url: `${api}/charge-list/`,
+      url: `${api}/charge-list/?username=${username}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

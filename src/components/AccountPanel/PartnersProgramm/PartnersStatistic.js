@@ -31,7 +31,7 @@ class PartnerStatistic extends Component{
 							</tr>
 						</thead>
 						<tbody>
-							{Object.keys(entities).map(item => {
+							{Object.keys(entities).reverse().map(item => {
 								const {id, email, amount} = entities[item]
 								return <tr key={id}>
 									<td>

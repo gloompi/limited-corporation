@@ -27,7 +27,6 @@ router = DefaultRouter()
 router.register(r'news', NewsItemViewSet)
 router.register(r'profits', ProfitViewSet)
 router.register(r'documents', DocumentsView)
-router.register(r'deposits', DepositsViewSet, base_name='deposits')
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
@@ -39,6 +38,7 @@ urlpatterns = [
   url(r'^get-all-deposits-info/', GetAllDepositsInfoView.as_view(), name='get_all_deposots_amount'),
   url(r'^pay-off-list/', PayOffView.as_view(), name='pay_off_list'),
   url(r'^create-pay-off-request/', CreatePayOffView.as_view(), name="create_pay_off"),
+  url(r'^deposits/', DepositsViewSet.as_view(), name="deposits_list"),
   url(r'^create-deposit/', CreateDepositView.as_view(), name='create_deposit'),
   url(r'^faq/', FaqView.as_view(), name='faq'),
   url(r'^for_partners/', ForPartnersView.as_view(), name='for_partners'),

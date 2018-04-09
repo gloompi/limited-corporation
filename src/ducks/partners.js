@@ -64,8 +64,9 @@ export const fetchPartnersStatistic = () => ({
 export const fetchPartnersListSaga = function * () {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
-      url: `${api}/get-referals/`,
+      url: `${api}/get-referals/?username=${username}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',
@@ -89,8 +90,9 @@ export const fetchPartnersListSaga = function * () {
 export const fetchPartnersStatisticSaga = function * () {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
-      url: `${api}/get-referals-info/`,
+      url: `${api}/get-referals-info/?username=${username}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

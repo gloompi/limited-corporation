@@ -98,7 +98,7 @@ export const fetchPayoffListSaga = function * () {
     const token = localStorage.getItem(jwtSecretName)
     const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
-      url: `${api}/pay-off-list/`,
+      url: `${api}/pay-off-list/?username=${username}`,
       method: 'get',
       headers: {
         'Accept': 'application/json',

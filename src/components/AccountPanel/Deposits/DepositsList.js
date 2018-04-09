@@ -34,7 +34,7 @@ class DepositsList extends Component{
               </tr>
             </thead>
             <tbody>
-              {deposits.map(deposit => {
+              {deposits.reverse().map(deposit => {
                 const {amount, date_added, is_active, profit} = deposit
                 const profitInfo = ObjToImmArr(profits).filter(item => item.id == profit)[0]
                 const {percent, duration, pay_off} = profitInfo
