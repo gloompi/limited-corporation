@@ -54,6 +54,7 @@ class CreateBalanceChargeView(generics.CreateAPIView):
 
     if user.partner:
       user.partner.account_resource += amount * 0.05
+      user.partner.save()
 
     user.save()
     balance_charge.amount = amount

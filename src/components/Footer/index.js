@@ -73,15 +73,6 @@ class Footer extends Component{
                     </div>
                   </a>
                 </li>
-                <li className={style.footer__news_item}>
-                  <a href="tel: 8-800-511-03-82">
-                    <div className={style.footer__top_icon_wrap}><i className="fas fa-phone"></i></div>
-                    <div className={style.footer__top_contacts}>
-                      <span>Центр поддержки</span>
-                      <b>8-800-511-03-82</b>
-                    </div>
-                  </a>
-                </li>
               </ul>
             </li>
           </ul>
