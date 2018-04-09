@@ -162,17 +162,18 @@ class CreateDepositView(generics.CreateAPIView):
 
     try:
       user = self.request.user
-      balance = user.account_resource
       profit = ProfitModel.objects.filter(id = self.request.data['profit'])[0]
       amount = self.request.data['amount']
     except:
       raise Http404
 
-    if balance >= amount:
-      user.account_resource = balance - amount
+    if amount <= user.account_resource:
+      user.account_resource -= amount
       user.save()
-    else: 
+    else:
+      print(self.request.user, user, user.account_resource, amount) 
       raise Http404
+
 
     deposit.user = user
     deposit.profit = profit
@@ -186,6 +187,7 @@ class DepositsViewSet(viewsets.ModelViewSet):
 
   def get_queryset(self):
     user = self.request.user
+    print('user---', user)
     deposit_list = DepositsModel.objects.filter(user=user)
     for item in deposit_list:
       profit = ProfitModel.objects.filter(title = item.profit)[0]

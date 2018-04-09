@@ -96,6 +96,7 @@ const createPayOffSaga = function * ({user_id, amount, wallet, agregator, commen
 export const fetchPayoffListSaga = function * () {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
       url: `${api}/pay-off-list/`,
       method: 'get',

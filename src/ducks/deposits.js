@@ -131,6 +131,7 @@ export const createDepositSaga = function * ({profit, amount}) {
 export const fetchDepositsAmountSaga = function * () {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
       url: `${api}/get-all-deposits-info/`,
       method: 'get',
@@ -156,6 +157,7 @@ export const fetchDepositsAmountSaga = function * () {
 export const fetchDepositsSaga = function * () {
   try {
     const token = localStorage.getItem(jwtSecretName)
+    const username = localStorage.getItem('userName')
     const {data} = yield call(axios, {
       url: `${api}/deposits/`,
       method: 'get',
