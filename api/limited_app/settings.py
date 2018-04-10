@@ -195,6 +195,10 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'localhost'
 )
+# DAHSBOARD PATH
+
+# JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
 # CKEDITOR SETTINGS
 
 CKEDITOR_CONFIGS = {
