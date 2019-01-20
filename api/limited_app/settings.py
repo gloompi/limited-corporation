@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'limited_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_db',
+        'NAME': 'cryptoinvest_db',
         'USER' : 'gloompi',
         'PASSWORD' : 'kuba1518639695',
         'HOST' : '127.0.0.1',
